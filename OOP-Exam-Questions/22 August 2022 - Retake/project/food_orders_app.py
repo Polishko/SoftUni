@@ -115,6 +115,75 @@ class FoodOrdersApp:
 
 
 
+# my tests
+# from project.client import Client
+# from project.meals.main_dish import MainDish
+# from project.meals.starter import Starter
+# from project.meals.dessert import Dessert
+# from project.food_orders_app import FoodOrdersApp
+#
+#
+# app = FoodOrdersApp()
+# print(app.register_client("0882345768"))
+# print(app.clients_list[0].phone_number)
+# meal_1 = Dessert("cream caramel", 7.5, 2)
+# meal_2 = Starter("fresh tomato mozarella salad", 9, 1)
+# meal_3 = MainDish("shashlik for two", 20, 1)
+# meal_4 = Client("0882341897")
+# meal_5 = MainDish("eggplant and_goat_cheese bake", 13, 1)
+# meal_6 = MainDish("garlicky roasted potatoes", 12, 1)
+# client = Client("0896741087")
+# order = {"cream caramel": 2, "fresh tomato mozarella salad": 1, "shashlik for two": 1,
+#          "eggplant and_goat_cheese bake": 1, "garlicky roasted potatoes": 1}
+#
+# some_meals = [meal_1, meal_2, meal_3, meal_4, meal_5, meal_6]
+# app.add_meals_to_menu(*some_meals)
+# [print(meal.name) for meal in app.menu]
+# print(app.show_menu())
+# print(app.add_meals_to_shopping_cart("0896741087", **order))
+# print(len(app.clients_list[1].shopping_cart))
+# [print(meal.quantity) for meal in app.menu]
+# # print(app.cancel_order("0896741087"))
+# # print(len(app.clients_list[1].shopping_cart))
+# # [print(meal.quantity) for meal in app.menu]
+# print(len(app.clients_list[1].current_orders_quantity))
+# print(app.cancel_order("0896741087"))
+# print(len(app.clients_list[1].shopping_cart))
+# [print(meal.quantity) for meal in app.menu]
+# print(len(app.clients_list[1].shopping_cart))
+
+# test 2
+# from project.food_orders_app import FoodOrdersApp
+# from project.meals.starter import Starter
+# from project.meals.dessert import Dessert
+# from project.meals.main_dish import MainDish
+#
+# food_orders_app = FoodOrdersApp()
+# print(food_orders_app.register_client("0899999999"))
+# french_toast = Starter("French toast", 6.50, 5)
+# hummus_and_avocado_sandwich = Starter("Hummus and Avocado Sandwich", 7.90)
+# tortilla_with_beef_and_pork = MainDish("Tortilla with Beef and Pork", 12.50, 12)
+# risotto_with_wild_mushrooms = MainDish("Risotto with Wild Mushrooms", 15)
+# chocolate_cake_with_mascarpone = Dessert("Chocolate Cake with Mascarpone", 4.60, 17)
+# chocolate_and_violets = Dessert("Chocolate and Violets", 5.20)
+# print(food_orders_app.add_meals_to_menu(
+#     french_toast, hummus_and_avocado_sandwich,
+#     tortilla_with_beef_and_pork,
+#     risotto_with_wild_mushrooms,
+#     chocolate_cake_with_mascarpone,
+#     chocolate_and_violets))
+# print(food_orders_app.show_menu())
+# food = {"Hummus and Avocado Sandwich": 5,
+#         "Risotto with Wild Mushrooms": 1,
+#         "Chocolate and Violets": 4}
+# print(food_orders_app.add_meals_to_shopping_cart('0899999999', **food))
+# additional_food = {"Risotto with Wild Mushrooms": 2,
+#                    "Tortilla with Beef and Pork": 2}
+# print(food_orders_app.add_meals_to_shopping_cart('0899999999', **additional_food))
+# print(food_orders_app.finish_order("0899999999"))
+# print(food_orders_app)
+
+
 
 
 
