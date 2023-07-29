@@ -35,8 +35,6 @@ class FoodOrdersApp:
         if not self.find_client(client_phone_number):
             self.register_client(client_phone_number)
 
-        client_obj = self.find_client(client_phone_number)
-
         for meal_name, meal_quantity in meal_names_and_quantities.items():
             meal_obj = self.find_meal(meal_name)
 
@@ -46,7 +44,7 @@ class FoodOrdersApp:
             if meal_obj.quantity < meal_quantity:
                 raise Exception(f"Not enough quantity of {meal_obj.__class__.__name__}: {meal_name}!")
 
-        return client_obj
+        return True
 
     def register_client(self, client_phone_number: str):
         if self.find_client(client_phone_number):
@@ -70,9 +68,9 @@ class FoodOrdersApp:
         return "\n".join(meal.details() for meal in self.menu)
 
     def add_meals_to_shopping_cart(self, client_phone_number: str, **meal_names_and_quantities):
-        client_obj = self.can_client_order(client_phone_number, **meal_names_and_quantities)
+        if self.can_client_order(client_phone_number, **meal_names_and_quantities):
+            client_obj = self.find_client(client_phone_number)
 
-        if client_obj:
             for meal_name, meal_quantity in meal_names_and_quantities.items():
                 meal_obj = self.find_meal(meal_name)
                 price_meal = meal_quantity * meal_obj.price
@@ -112,7 +110,6 @@ class FoodOrdersApp:
 
     def __str__(self):
         return f"Food Orders App has {len(self.menu)} meals on the menu and {len(self.clients_list)} clients."
-
 
 
 # my tests
