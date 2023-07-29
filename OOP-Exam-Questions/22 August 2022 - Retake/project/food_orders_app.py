@@ -57,10 +57,9 @@ class FoodOrdersApp:
 
     def add_meals_to_menu(self, *meals):
         for meal_obj in meals:
-            if meal_obj.__class__.__name__ not in self.VALID_MEALS:
-                continue
-            self.menu.append(meal_obj)
-
+            if meal_obj.__class__.__name__ in self.VALID_MEALS:
+                self.menu.append(meal_obj)
+            
     def show_menu(self):
         if len(self.menu) < 5:
             raise Exception("The menu is not ready!")
