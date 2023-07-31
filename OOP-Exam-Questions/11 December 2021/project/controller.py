@@ -123,3 +123,77 @@ class Controller:
             result.append(f"Driver {d.name} wins the {race_name} race with a speed of {d.car.speed_limit}.")
 
         return "\n".join(result)
+
+
+# # my tests
+# # from project.car.muscle_car import MuscleCar
+# # from project.car.sports_car import SportsCar
+# # from project.driver import Driver
+# # from project.race import Race
+# # from project.controller import Controller
+# #
+# # # car_1 = SportsCar("Subaru-BRZ", 550)
+# # # car_2 = MuscleCar("Pontiac-GTO", 300)
+# # # print(car_1.min_speed_limit)
+# # # print(car_2.max_speed_limit)
+# #
+# # controller = Controller()
+# # print(controller.create_car("SportsCar", "Mazda MX-5", 400))
+# # print(controller.create_car("SportsCar", "Subaru-BRZ", 550))
+# # print(controller.create_car("MuscleCar", "Pontiac-GTO", 300))
+# # print(controller.create_car("SportsCar", "Toyota GR86", 450))
+# # # print(controller.create_car("MuscleCar", "Pontiac-GTO", 300))
+# # print(len(controller.cars))
+# # print(controller.create_driver("Genc"))
+# # print(controller.create_driver("Nalan"))
+# # print(controller.create_driver("Gizmo"))
+# # print(controller.create_driver("Sultan"))
+# # # print(controller.create_driver("Genc"))
+# # print(controller.create_race("winter race"))
+# # # print(controller.create_race("winter race"))
+# # print(controller.add_car_to_driver("Genc", "MuscleCar"))
+# # # print(controller.add_car_to_driver("Genc", "MuscleCar"))
+# # print(controller.add_car_to_driver("Genc", "SportsCar"))
+# # print(controller.add_car_to_driver("Nalan", "MuscleCar"))
+# # print(controller.add_car_to_driver("Gizmo", "SportsCar"))
+# # print(controller.add_car_to_driver("Sultan", "SportsCar"))
+# # [print(car.is_taken) for car in controller.cars]
+# # print(controller.drivers[0].car.model)
+# # print(controller.add_driver_to_race("winter race", "Genc"))
+# # print(controller.races[0].drivers[0].name)
+# # print(controller.add_driver_to_race("winter race", "Nalan"))
+# # # print(controller.add_driver_to_race("race", "Genc"))
+# # # print(controller.add_driver_to_race("winter race", "Genc"))
+# # # print(controller.start_race("race"))
+# # # print(controller.start_race("winter race"))
+# # print(controller.add_driver_to_race("winter race", "Gizmo"))
+# # print(controller.add_driver_to_race("winter race", "Sultan"))
+# # print(controller.start_race("winter race"))
+# #
+#
+# # given tests and some more
+#
+# from project.controller import Controller
+#
+# controller = Controller()
+# print(controller.create_driver("Peter"))
+# print(controller.create_car("SportsCar", "Porsche 718 Boxster", 470))
+# print(controller.add_car_to_driver("Peter", "SportsCar"))
+# print(controller.create_car("SportsCar", "Porsche 911", 580))
+# print(controller.add_car_to_driver("Peter", "SportsCar"))
+# print(controller.create_car("MuscleCar", "BMW ALPINA B7", 290))
+# print(controller.create_car("MuscleCar", "Mercedes-Benz AMG GLA 45", 420))
+# print(controller.create_driver("John"))
+# print(controller.create_driver("Jack"))
+# print(controller.create_driver("Kelly"))
+# print(controller.add_car_to_driver("Kelly", "MuscleCar"))
+# print(controller.add_car_to_driver("Jack", "MuscleCar"))
+# print(controller.add_car_to_driver("John", "SportsCar"))
+# print(controller.create_race("Christmas Top Racers"))
+# print(controller.add_driver_to_race("Christmas Top Racers", "John"))
+# print(controller.add_driver_to_race("Christmas Top Racers", "Jack"))
+# print(controller.add_driver_to_race("Christmas Top Racers", "Kelly"))
+# print(controller.add_driver_to_race("Christmas Top Racers", "Peter"))
+# print(controller.start_race("Christmas Top Racers"))
+# [print(d.name, d.number_of_wins) for d in controller.drivers]
+# [print((car.__class__.__name__, car.speed_limit, car.is_taken)) for car in controller.cars]
