@@ -92,3 +92,155 @@ class Controller:
         [result.append(str(aqu)) for aqu in self.aquariums]
 
         return "\n".join(result)
+        
+# tests
+# from project.controller import Controller
+
+# print("# ADD_AQUA")
+# controller = Controller()
+# print(controller.add_aquarium("FreshwaterAquarium", "FreshAqu_1"))
+# print(controller.add_aquarium("SaltwaterAquarium", "SaltAqu_1"))
+# print(controller.add_aquarium("FreshwaterAquarium", "FreshAqu_2"))
+# print(controller.add_aquarium("SaltwaterAquarium", "SaltAqu_2"))
+# print(controller.add_aquarium("RiverwaterAquarium", "SaltAqu_2"))
+# # print(controller.add_aquarium("FreshwaterAquarium", ""))
+# print(len(controller.aquariums))
+# print(controller.aquariums[0].capacity)
+# print(controller.aquariums[1].capacity)
+
+# print("# ADD_DECO")
+# print(controller.add_decoration("Plant"))
+# print(controller.add_decoration("Ornament"))
+# print(controller.add_decoration("Plant"))
+# print(controller.add_decoration("Ornament"))
+# print(controller.add_decoration("LittleStone"))
+# print(len(controller.decorations_repository.decorations))
+# print(controller.decorations_repository.decorations[0].comfort)
+# print(controller.decorations_repository.decorations[0].price)
+# print(controller.decorations_repository.decorations[1].comfort)
+# print(controller.decorations_repository.decorations[1].price)
+
+# print("# INSERT DECO")
+# print(controller.insert_decoration("SaltAqu_1", "Plant"))
+# print(len(controller.decorations_repository.decorations))
+# print(len(controller.aquariums[1].decorations))
+# print(controller.insert_decoration("SaltAqu_1", "LittleStone"))
+
+# print(("# ADD FISH"))
+# print(controller.add_fish("SaltAqu_1", "SaltwaterFish", "salt_fish_1", "species_1", 10.00))
+# print(controller.add_fish("FreshAqu_2", "FreshwaterFish", "fresh_fish_1", "species_1", 5.00))
+# print(controller.add_fish("SaltAqu_1", "SaltwaterFish", "salt_fish_2", "species_2", 15.00))
+# print(controller.add_fish("FreshAqu_2", "FreshwaterFish", "fresh_fish_2", "species_2", 10.00))
+# print(controller.add_fish("FreshAqu_2", "SaltwaterFish", "fresh_fish_1", "species_1", 5.00))
+# print(controller.add_fish("FreshAqu_2", "StrangeFish", "fresh_fish_1", "species_1", 5.00))
+# # print(controller.add_fish("FreshAqu_2", "SaltwaterFish", "", "species_1", 5.00))
+# # print(controller.add_fish("FreshAqu_2", "SaltwaterFish", "salt_fish_1", "", 5.00))
+# # print(controller.add_fish("FreshAqu_2", "SaltwaterFish", "salt_fish_1", "species_1", 0.00))
+# print(len(controller.aquariums[0].fish))
+# print(len(controller.aquariums[1].fish))
+# print(len(controller.aquariums[2].fish))
+# print(len(controller.aquariums[3].fish))
+# [print(f.name) for f in controller.aquariums[1].fish]
+# [print(f.name) for f in controller.aquariums[2].fish]
+# print(controller.feed_fish("SaltAqu_1"))
+# print(controller.calculate_value("SaltAqu_1"))
+# print(controller.report())
+
+# print(controller.add_fish("SaltAqu_1", "SaltwaterFish", "salt_fish_1", "species_1", 10.00))
+# fishes = [(f"salt_fish_{i}", f"species_{i}") for i in range(25)]
+
+# for fish in fishes:
+#     print(controller.add_fish("SaltAqu_1", "SaltwaterFish", fish[0], fish[1], 10.00))
+
+# print(len(controller.aquariums[2].fish))
+# controller.aquariums[2].remove_fish(controller.aquariums[2].fish[0])
+# print(len(controller.aquariums[2].fish))
+
+# test output
+# # ADD_AQUA
+# Successfully added FreshwaterAquarium.
+# Successfully added SaltwaterAquarium.
+# Successfully added FreshwaterAquarium.
+# Successfully added SaltwaterAquarium.
+# Invalid aquarium type.
+# 4
+# 50
+# 25
+# # ADD_DECO
+# Successfully added Plant.
+# Successfully added Ornament.
+# Successfully added Plant.
+# Successfully added Ornament.
+# Invalid decoration type.
+# 4
+# 5
+# 10
+# 1
+# 5
+# # INSERT DECO
+# Successfully added Plant to SaltAqu_1.
+# 3
+# 1
+# There isn't a decoration of type LittleStone.
+# # ADD FISH
+# Successfully added SaltwaterFish to SaltAqu_1.
+# Successfully added FreshwaterFish to FreshAqu_2.
+# Successfully added SaltwaterFish to SaltAqu_1.
+# Successfully added FreshwaterFish to FreshAqu_2.
+# Water not suitable.
+# There isn't a fish of type StrangeFish.
+# 0
+# 2
+# 2
+# 0
+# salt_fish_1
+# salt_fish_2
+# fresh_fish_1
+# fresh_fish_2
+# Fish fed: 2
+# The value of Aquarium SaltAqu_1 is 35.00.
+# FreshAqu_1:
+# Fish: none
+# Decorations: 0
+# Comfort: 0
+# SaltAqu_1:
+# Fish: salt_fish_1 salt_fish_2
+# Decorations: 1
+# Comfort: 5
+# FreshAqu_2:
+# Fish: fresh_fish_1 fresh_fish_2
+# Decorations: 0
+# Comfort: 0
+# SaltAqu_2:
+# Fish: none
+# Decorations: 0
+# Comfort: 0
+# Successfully added SaltwaterFish to SaltAqu_1.
+# Successfully added SaltwaterFish to SaltAqu_1.
+# Successfully added SaltwaterFish to SaltAqu_1.
+# Successfully added SaltwaterFish to SaltAqu_1.
+# Successfully added SaltwaterFish to SaltAqu_1.
+# Successfully added SaltwaterFish to SaltAqu_1.
+# Successfully added SaltwaterFish to SaltAqu_1.
+# Successfully added SaltwaterFish to SaltAqu_1.
+# Successfully added SaltwaterFish to SaltAqu_1.
+# Successfully added SaltwaterFish to SaltAqu_1.
+# Successfully added SaltwaterFish to SaltAqu_1.
+# Successfully added SaltwaterFish to SaltAqu_1.
+# Successfully added SaltwaterFish to SaltAqu_1.
+# Successfully added SaltwaterFish to SaltAqu_1.
+# Successfully added SaltwaterFish to SaltAqu_1.
+# Successfully added SaltwaterFish to SaltAqu_1.
+# Successfully added SaltwaterFish to SaltAqu_1.
+# Successfully added SaltwaterFish to SaltAqu_1.
+# Successfully added SaltwaterFish to SaltAqu_1.
+# Successfully added SaltwaterFish to SaltAqu_1.
+# Successfully added SaltwaterFish to SaltAqu_1.
+# Successfully added SaltwaterFish to SaltAqu_1.
+# Successfully added SaltwaterFish to SaltAqu_1.
+# Not enough capacity.
+# Not enough capacity.
+# Not enough capacity.
+# 2
+# 1
+
