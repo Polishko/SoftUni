@@ -15,21 +15,26 @@ class TestPaintFactory(TestCase):
         self.assertEqual(["white", "yellow", "blue", "green", "red"],
                          self.paint_factory1.valid_ingredients)
 
+    # getattr gets the value of the "products" attribute of the class (type(...))
+    # isinstance then checks it the attr is defined as property
     def test_if_products_property_defined(self):
         self.assertEqual(True,
                          isinstance(getattr(type(self.paint_factory1),
                                             "products"), property))
 
     def test_if_products_property_sets_correctly(self):
+        # no ingredients
         self.paint_factory1.ingredients = {}
         self.assertEqual({}, self.paint_factory1.products)
+
+        #after ingredients are set
         self.paint_factory1.ingredients = {"green": 3, "blue": 7}
         self.assertEqual({"green": 3, "blue": 7}, self.paint_factory1.products)
 
     def test_if_paint_factory_inherits_from_factory(self):
         self.assertTrue(issubclass(PaintFactory, Factory))
 
-    def test_if_all_attributes_are_inherited(self):
+    def test_if_all_parent_attributes_are_inherited(self):
         self.assertTrue(hasattr(self.paint_factory1, "name"))
         self.assertTrue(hasattr(self.paint_factory1, "capacity"))
         self.assertTrue(hasattr(self.paint_factory1, "ingredients"))
@@ -47,9 +52,9 @@ class TestPaintFactory(TestCase):
 
     def test_if_abstract_attributes_are_overridden(self):
         paintclass = PaintFactory.__dict__["add_ingredient"]
-        self.assertTrue(paintclass is PaintFactory.add_ingredient)
+        self.assertFalse(paintclass is Factory.add_ingredient)
         paintclass = PaintFactory.__dict__["remove_ingredient"]
-        self.assertTrue(paintclass is PaintFactory.remove_ingredient)
+        self.assertFalse(paintclass is Factory.remove_ingredient)
 
     def test_if_non_abstract_attributes_are_directly_inherited(self):
         paintclass = Factory.__dict__["can_add"]
@@ -72,7 +77,7 @@ class TestPaintFactory(TestCase):
         self.paint_factory1.ingredients = {"green": 3, "blue": 6}
         self.assertEqual(True, self.paint_factory1.can_add(1))
 
-    def test_add_ingredient_with_capacity_product_not_in_ingredients(self):
+    def test_add_ingredient_when_capacity_and_product_not_in_ingredients(self):
         # no ingredients
         self.paint_factory1.ingredients = {}
         self.paint_factory1.add_ingredient("yellow", 1)
@@ -81,7 +86,7 @@ class TestPaintFactory(TestCase):
         self.assertEqual({"yellow": 1},
                          self.paint_factory1.products)
 
-        # ingredients
+        # add when ingredients
         self.paint_factory1.ingredients = {"green": 3, "blue": 5}
         self.paint_factory1.add_ingredient("yellow", 1)
         self.assertEqual({"green": 3, "blue": 5, "yellow": 1},
@@ -89,14 +94,14 @@ class TestPaintFactory(TestCase):
         self.assertEqual({"green": 3, "blue": 5, "yellow": 1},
                          self.paint_factory1.products)
 
-        # one more
+        # add one more
         self.paint_factory1.add_ingredient("red", 1)
         self.assertEqual({"green": 3, "blue": 5, "yellow": 1, "red": 1},
                          self.paint_factory1.ingredients)
         self.assertEqual({"green": 3, "blue": 5, "yellow": 1, "red": 1},
                          self.paint_factory1.products)
 
-    def test_add_ingredient_with_capacity_product_in_ingredients(self):
+    def test_add_ingredient_when_enough_capacity_and_product_in_ingredients(self):
         self.paint_factory1.ingredients = {"green": 3, "blue": 5}
         self.paint_factory1.add_ingredient("green", 2)
         self.assertEqual({"green": 5, "blue": 5},
@@ -104,7 +109,7 @@ class TestPaintFactory(TestCase):
         self.assertEqual({"green": 5, "blue": 5},
                          self.paint_factory1.products)
 
-    def test_add_ingredient_no_capacity_product_in_ingredients(self):
+    def test_add_ingredient_when_no_capacity_and_product_in_ingredients(self):
         self.paint_factory1.capacity = 3
         self.paint_factory1.ingredients = {"green": 2, "blue": 1}
         with self.assertRaises(ValueError) as ve:
@@ -115,7 +120,7 @@ class TestPaintFactory(TestCase):
         self.assertEqual({"green": 2, "blue": 1},
                          self.paint_factory1.products)
 
-    def test_add_ingredient_no_capacity_product_noy_in_ingredients(self):
+    def test_add_ingredient_when_no_capacity_and_product_not_in_ingredients(self):
         self.paint_factory1.capacity = 3
         self.paint_factory1.ingredients = {"green": 2, "blue": 1}
         with self.assertRaises(ValueError) as ve:
@@ -147,15 +152,18 @@ class TestPaintFactory(TestCase):
         self.assertEqual({"green": 0, "blue": 1}, self.paint_factory1.ingredients)
         self.assertEqual({"green": 0, "blue": 1}, self.paint_factory1.products)
 
-        # one more
+        # remove one more
         result2 = self.paint_factory1.remove_ingredient("blue", 1)
         self.assertEqual(None, result2)
         self.assertEqual({"green": 0, "blue": 0}, self.paint_factory1.ingredients)
         self.assertEqual({"green": 0, "blue": 0}, self.paint_factory1.products)
 
     def test_repr_returns_correct_info(self):
+        # no ingredients
         expected1 = "Factory name: paintjoy with capacity 10.\n"
         self.assertEqual(expected1, repr(self.paint_factory1))
+
+        # with ingredients
         self.paint_factory1.ingredients = {"green": 3, "blue": 5, "red": 2}
         expected2 = "Factory name: paintjoy with capacity 10.\n" \
                     "green: 3\nblue: 5\nred: 2\n"
