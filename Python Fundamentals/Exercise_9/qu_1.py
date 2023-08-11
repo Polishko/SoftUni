@@ -1,14 +1,16 @@
-string = input()
-characters = {}
+import re
+pattern = r"\d+"
 
-for char in string:
-    if char == " ":
-        continue
+text = "" # bunu list yapabilirsin
 
-    if char not in characters:
-        characters[char] = 0
+while True:
+    line = input()
+    if len(line) > 0: # if not line: break dogru olan
+        text += f" {line}" # bunu hic yapma
+    else:
+        break
 
-    characters[char] += 1
-
-for key, value in characters.items():  # veya for key in dict print key --> dict[key]
-    print(f"{key} -> {value}")
+matches = re.findall(pattern, text) # bunu while icinde yapip altta extend ile liste ekleyebilirsin
+#hemen altina da text.extend(matches) bos line'i da aliyor yoksa bos bos enter basiyon bitene kadar run
+# neden extend ama append degil debug ile bak buna
+print(*matches, end=" ") # bunda da list elemanlarini print edersin

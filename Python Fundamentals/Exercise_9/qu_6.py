@@ -1,25 +1,19 @@
-# bunda da iki ayri sozluk yapti biri urun fiyat oburu urun miktar; fiyatlari guncelledi miktarlari artirdi.
-# listede ise iki indeks ayri tur sey sakliyor ve kafa karistirabilir
+import re
 
-products = {}
+pattern = r"(?P<link>w{3}\.[A-Za-z0-9]+[A-Za-z0-9\-]*[A-Za-z0-9]+(?:\.[a-z]+)+)"
+# hocanin regexine ve cozumune bak sorun --- lerden olusan domain name degilmis
 
+lst = []
 while True:
-    command = input()
-
-    if command == "buy":
+    user_input = input()
+    if not user_input:
         break
+    else:
+        lst.append(user_input)
 
-    arg_1, arg_2, arg_3 = command.split(" ")
-    name = arg_1
-    price = float(arg_2)
-    quantity = float(arg_3)
+for text in lst:
+    matches = re.finditer(pattern, text)
 
-    if name not in products:
-        products[name] = [0.0, 0.0]
+    for match in matches:
+        print(str(match.group("link")))
 
-    products[name][0] = price
-    products[name][1] += quantity
-
-
-for key, value in products.items():
-    print(f"{key} -> {value[0] * value[1]:.2f}")

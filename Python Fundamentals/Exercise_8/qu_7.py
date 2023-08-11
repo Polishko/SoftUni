@@ -1,34 +1,23 @@
-class Article:
+string = input()
+chars_to_check = len(string)
+idx_char = -len(string)
+chars_to_delete = 0
+output_string = ""
 
-    def __init__(self, title: str, content: str, author: str):
-        self.title = title
-        self.content = content
-        self.author = author
+while chars_to_check > 0:
+    char = string[idx_char]
 
-    def edit(self, new_content: str):
-        self.content = new_content
+    if chars_to_delete > 0 and char != ">":
+        chars_to_delete -= 1
+        chars_to_check -= 1
+        idx_char += 1
+        continue
 
-    def change_author(self, new_author: str):
-        self.author = new_author
+    elif char == ">":
+        chars_to_delete += int(string[idx_char + 1])
 
-    def rename(self, new_title: str):
-        self.title = new_title
+    output_string += char
+    chars_to_check -= 1
+    idx_char += 1
 
-    def __repr__(self):
-        return f"{self.title} - {self.content}: {self.author}"
-
-article = Article(
-    "Highest Recorded Temperature",
-    "Temperatures across Europe are unprecedented, according to scientists.",
-    "Ben Turner"
-)
-article.edit(
-    "Syracuse, a city on the coast of the Italian island of Sicily, registered temperatures of 48.8 degrees Celsius"
-)
-article.rename(
-    "Temperature in Italy"
-)
-article.change_author(
-    "B. T."
-)
-print(article)
+print(output_string)

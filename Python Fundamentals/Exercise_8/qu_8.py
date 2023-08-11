@@ -1,47 +1,26 @@
-class Vehicle:
+import string
+string_lst = input().split()
+total = 0
 
-    def __init__(self, type, model, price):
-        self.type = type
-        self.model = model
-        self.price = price
-        self.owner = None
+for line in string_lst:
 
-    def buy(self, money: int, owner: str):
+    letter_1 = line[0]
+    letter_2 = line[-1]
+    num = int(line[1:-1])
 
-        if money < self.price:
-            return f"Sorry, not enough money"
+    if not 97 <= ord(letter_1.lower()) <= 122 or not 97 <= ord(letter_2.lower()) <= 122:
+        continue
 
-        if self.owner is not None:
-            return f"Car already sold"
+    if letter_1.isupper():
+        num /= (string.ascii_uppercase.index(letter_1) + 1) # position_1 = olarak if disina alinabilir
+    elif letter_1.islower(): # bunlar else
+        num *= (string.ascii_lowercase.index(letter_1) + 1)
 
-        self.owner = owner
-        return f"Successfully bought a {self.type}. Change: {money - self.price:.2f}"
+    if letter_2.isupper():
+        num -= (string.ascii_uppercase.index(letter_2) + 1)
+    elif letter_2.islower():
+        num += (string.ascii_lowercase.index(letter_2) + 1)
 
-    def sell(self):
+    total += num
 
-        if self.owner is None: # if not self.owner ile ayni ama ilkini takip daha kolay
-            return f"Vehicle has no owner"
-
-        self.owner = None
-
-    def __repr__(self):
-        if self.owner is not None:
-            return f"{self.model} {self.type} is owned by: {self.owner}"
-        else:
-            return f"{self.model} {self.type} is on sale: {self.price}"
-
-
-vehicle_type = "car"
-model = "BMW"
-price = 30000
-vehicle = Vehicle(vehicle_type, model, price)
-print(vehicle.buy(15000, "Peter"))
-print(vehicle.buy(35000, "George"))
-print(vehicle)
-vehicle.sell()
-print(vehicle)
-
-
-
-
-
+print(f"{total:.2f}")

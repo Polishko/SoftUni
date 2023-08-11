@@ -1,4 +1,9 @@
-[print(f"{key} -> {value}") for key, value in zip(input().split(", "), input().split(", "))]
+import re
+text = input() # bu ikisini lower() yapabilirsin falg olarak ignorecase yerine ama oburu daha guzel duruyo :P
+word = input() # ve bunu
 
-# iki liste ulke ve capital:
-# sonra dict = {ulke[idx]: capital[idx] for idx in len(capital)}
+pattern = r"\b" + re.escape(word) + r"\b"  # bu ne ki?    matches = re.findall(rf"\b{word}\b", text)
+count = len(re.findall(pattern, text, re.IGNORECASE))
+print(count)
+
+# re.escape: metin icinde escape edilmesi gerekebilcek karakterleri escape ediyo

@@ -1,29 +1,10 @@
-class Class:
-    __students_count = 22
+text = input()
+emoticons = []
+current_idx = -1
 
-    def __init__(self, name):
-        self.name = name
-        self.students = []
-        self.grades = []
+for char in text:
+    current_idx += 1
+    if char == ":":
+        emoticons.append(text[current_idx:current_idx + 2])
 
-    def add_student(self, name: str, grade: float):
-        if Class.__students_count > 0: # buyuk len(students olsun)
-            self.students.append(name)
-            self.grades.append(grade)
-
-            Class.__students_count -= 1 # bunu yapma len ile karsilastir. bunlari degistirmiyoruz
-
-    def get_average_grade(self):
-        ave_grade = f"{sum(self.grades) / len(self.grades):.2f}"
-        return float(ave_grade)
-
-    def __repr__(self):
-        return f"The students in {self.name}: {', '.join(self.students)}. Average grade: {self.get_average_grade():.2f}"
-
-
-a_class = Class("11B")
-a_class.add_student("Peter", 4.80)
-a_class.add_student("George", 6.00)
-a_class.add_student("Amy", 3.50)
-print(a_class)
-
+print(*emoticons, sep="\n")

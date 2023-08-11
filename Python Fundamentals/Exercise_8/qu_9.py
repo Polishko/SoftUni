@@ -1,37 +1,35 @@
-class Movie:
-    __watched_movies = []
+sequence = input()
+letter_part = ""
+num_part = ""
+output = ""
+slice_idx = 0
 
-    def __init__(self, name, director):
-        self.name = name
-        self.director = director
-        self.watched = False
+while len(sequence) > 0:
 
-    def change_name(self, new_name: str):
-        self.name = new_name
+    for idx in range(len(sequence)):
+        char = sequence[idx]
+        if not char.isnumeric():
+            letter_part += char
+        else:
+            slice_idx = idx
+            break
+    sequence = sequence[slice_idx:]
 
-    def change_director(self, new_director: str):
-        self.director = new_director
+    for idx in range(len(sequence)):
+        char = sequence[idx]
+        if char.isnumeric():
+            num_part += char
+        else:
+            slice_idx = idx
+            break
 
-    def watch(self):
-        if self.watched:
-            return
+    sequence = sequence[slice_idx:]
+    num = int(num_part)
+    output += letter_part.upper() * num
+    letter_part = ""
+    num_part = ""
 
-        self.watched = True
-        self.__watched_movies.append(self.name)
+unique_chars = len(set(output))
 
-    def __repr__(self):
-        return f"Movie name: {self.name}; Movie director: {self.director}. Total watched movies:" \
-               f" {len(self.__watched_movies)}"
-
-
-first_movie = Movie("Inception", "Christopher Nolan")
-second_movie = Movie("The Matrix", "The Wachowskis")
-third_movie = Movie("The Predator", "Shane Black")
-first_movie.change_director("Me")
-third_movie.change_name("My Movie")
-first_movie.watch()
-third_movie.watch()
-first_movie.watch()
-print(first_movie)
-print(second_movie)
-print(third_movie)
+print(f"Unique symbols used: {unique_chars}")
+print(output)

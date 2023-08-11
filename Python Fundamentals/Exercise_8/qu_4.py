@@ -1,21 +1,11 @@
-class Town:
+input_str = input()
+encrypted_str = ""
 
-    def __init__(self, name: str):
-        self.name = name
-        self.latitude = "0°N"
-        self.longitude = "0°E"
+for char in input_str:
+    new_char = chr(ord(char) + 3)
+    encrypted_str += new_char
 
-    def set_latitude(self, latitude):
-        self.latitude = " ".join(latitude.split(" "))
-
-    def set_longitude(self, longitude):
-        self.longitude = " ".join(longitude.split(" "))
-
-    def __repr__(self):
-        return f"Town: {self.name} | Latitude: {self.latitude} | Longitude: {self.longitude}"
+print(encrypted_str)
 
 
-town = Town("Sofia")
-town.set_latitude("42° 41\' 51.04\" N")
-town.set_longitude("23° 19\' 26.94\" E")
-print(town)
+# comprehension encrypted = "".join([chr(ord(char) + 3) for char in input_str])
