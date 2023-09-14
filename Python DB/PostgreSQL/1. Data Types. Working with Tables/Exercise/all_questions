@@ -27,11 +27,17 @@ RENAME salary TO banana;
 
 ALTER TABLE minions_info
 ADD COLUMN email VARCHAR (20),
-ADD COLUMN equipped BOOLEAN NOT NULL;
+ADD COLUMN equipped BOOLEAN NOT NULL; -- ADD COLUMN equipped BOOLEAN DEFAULT FALSE NOT NULL
 
 6.	Create ENUM Type
 
-CREATE TYPE type_mood AS ENUM ('happy', 'relaxed', 'stressed', 'sad');
+CREATE TYPE type_mood
+AS ENUM (
+  'happy',
+  'relaxed', 
+  'stressed', 
+  'sad'
+);
 
 ALTER TABLE minions_info
 ADD COLUMN mood type_mood;
@@ -46,18 +52,22 @@ ALTER COLUMN code SET DEFAULT '';
 8.	Add Constraints
 
 ALTER TABLE minions_info
-ADD CONSTRAINT unique_containt UNIQUE (id, email),
-ADD CONSTRAINT banana_check CHECK (banana > 0);
+ADD CONSTRAINT unique_containt UNIQUE
+(id, email),                          --Correct way to add constraint as standard is UQ_id_and_email
+ADD CONSTRAINT banana_check
+CHECK (banana > 0);                   --Corret is CK banan_is_positive_number
 
 9.	Change Column’s Data Type
 
 ALTER TABLE minions_info
-ALTER COLUMN task TYPE VARCHAR (150);
+ALTER COLUMN task
+TYPE VARCHAR (150);
 
 10.	Drop Constraint
 
 ALTER TABLE minions_info
-ALTER COLUMN equipped DROP NOT NULL;
+ALTER COLUMN equipped
+DROP NOT NULL;
 
 11.	Remove Column
 
@@ -67,11 +77,11 @@ DROP COLUMN age;
 12.	Table Birthdays
 
 CREATE TABLE minions_birthdays (
-	id SERIAL NOT NULL UNIQUE,
-	name VARCHAR (50) NOT NULL,
-	date_of_birth DATE NOT NULL,
-	age INT NOT NULL,
-	present VARCHAR (100) DEFAULT '',
+	id SERIAL NOT NULL UNIQUE,  -- id INTEGER NOT NULL UNIQUE (according to qu conditions)
+	name VARCHAR (50),
+	date_of_birth DATE,
+	age INTEGER,
+	present VARCHAR (100),
 	party TIMESTAMPTZ
 );
 
@@ -99,7 +109,12 @@ VALUES
 	
 14.	* Select
 
-SELECT name, task, email, banana FROM minions_info;
+SELECT 
+	name, 
+	task, 
+	email, 
+	banana
+FROM minions_info;
 
 15.	Truncate the Table
 
