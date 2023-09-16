@@ -1,0 +1,32 @@
+1. River Info
+
+CREATE VIEW view_river_info AS
+SELECT CONCAT(
+	'The river',
+	' ',
+	"river_name",
+	' ',
+	'flows into the',
+	' ', "outflow",
+	' ',
+	'and is',
+	' ', "length",
+	' ',
+	'kilometers long.')
+	AS "River Information"
+FROM rivers
+ORDER BY river_name;
+
+2. Concatenate Geography Data
+
+CREATE VIEW view_continents_countries_currencies_details AS
+SELECT
+	CONCAT(continents.continent_name, ': ', continents.continent_code) AS "Continent Details",
+	CONCAT(countries.country_name, ' - ', countries.capital, ' - ', countries.area_in_sq_km, ' - km2') AS "Country Information",
+	CONCAT(currencies.description, ' (', currencies.currency_code, ')') AS "Currencies"
+FROM 
+	continents, countries, currencies
+WHERE
+	countries.continent_code = continents.continent_code
+	AND currencies.currency_code = countries.currency_code 
+ORDER BY "Country Information";
