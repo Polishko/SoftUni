@@ -30,3 +30,109 @@ WHERE
 	countries.continent_code = continents.continent_code
 	AND currencies.currency_code = countries.currency_code 
 ORDER BY "Country Information";
+
+3. Capital Code
+
+ALTER TABLE countries
+ADD COLUMN "capital_code" VARCHAR(25);
+
+UPDATE countries
+SET "capital_code" = SUBSTRING(capital, 1, 2);
+
+4. (Descr)iption
+
+SELECT SUBSTRING(description, 5) AS substring
+FROM currencies;
+
+5. Substring River Length
+
+SELECT SUBSTRING("River Information", '([0-9]{1,4})') AS "river_length"
+FROM view_river_info;
+
+6. Replace A
+
+SELECT 
+	REPLACE(mountain_range, 'a', '@') AS replace_a,
+	REPLACE(mountain_range, 'A', '$') AS replace_A		
+FROM mountains;
+
+7. Translate
+
+SELECT 
+	capital,
+	TRANSLATE(capital, 'áãåçéíñóú', 'aaaceinou') AS "translated_name"
+FROM countries;
+
+8. LEADING
+
+SELECT
+	continent_name,
+	TRIM(LEADING FROM continent_name) AS "trim"
+FROM continents;
+
+9. TRAILING
+
+SELECT
+	continent_name,
+	TRIM(TRAILING FROM continent_name) AS "trim"
+FROM continents;
+
+10. LTRIM & RTRIM
+
+SELECT
+	TRIM(LEADING 'M' FROM peak_name) AS "Left Trim",
+	TRIM(TRAILING 'm' FROM peak_name) AS "Right Trim"
+FROM peaks;
+
+11. Character Length and Bits
+
+SELECT 
+	CONCAT(mountains.mountain_range, ' ', peaks.peak_name) AS "Mountain Information",
+	LENGTH(CONCAT(mountains.mountain_range, ' ', peaks.peak_name)) AS "Characters Length",
+	BIT_LENGTH(CONCAT(mountains.mountain_range, ' ', peaks.peak_name)) AS "Bits of a String"
+FROM mountains, peaks
+WHERE mountains.id = peaks.mountain_id;
+
+12. Length of a Number
+
+SELECT
+	population,
+	LENGTH(CAST(population AS TEXT)) AS "length"
+FROM countries;
+
+13. Positive and Negative LEFT
+
+SELECT
+	peak_name,
+	LEFT(peak_name, 4) AS "Positive Left",
+	LEFT(peak_name, -4) AS "Negative Left"
+FROM peaks;
+
+14. Positive and Negative RIGHT
+
+SELECT
+	peak_name,
+	RIGHT(peak_name, 4) AS "Positive Left",
+	RIGHT(peak_name, -4) AS "Negative Left"
+FROM peaks;
+
+15. Update iso_code
+
+UPDATE countries
+SET iso_code = UPPER(LEFT(country_name, 3))
+WHERE iso_code IS NULL;
+
+16. REVERSE country_code
+
+UPDATE countries
+SET country_code = REVERSE(LOWER(country_code));
+
+17. Elevation --->> Peak Name
+
+SELECT CONCAT(elevation, ' ', REPEAT('-', 3), REPEAT('>', 2), ' ', peak_name) AS "Elevation --->> Peak Name"
+FROM peaks
+WHERE elevation >= 4884
+
+
+
+
