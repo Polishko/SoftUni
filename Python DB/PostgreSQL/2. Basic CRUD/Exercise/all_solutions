@@ -123,9 +123,9 @@ ORDER BY
 13.	Missing Value
 
 SELECT
-	id,
-	first_name,
-	last_name
+  id,
+  first_name,
+  last_name
 FROM
   employees
 WHERE
@@ -170,7 +170,7 @@ WHERE end_date IS NULL;
 UPDATE employees
 SET
   salary = salary + 1500,
-	job_title = 'Senior ' || job_title
+  job_title = 'Senior ' || job_title
 WHERE
   hire_date BETWEEN '1998-01-01' AND '2000-01-05';
 
@@ -195,8 +195,8 @@ SELECT
 	employees.first_name || ' ' || employees.last_name AS "Full Name",
 	employees.department_id,
 	addresses.number || ' ' || addresses.street AS "Address"
-FROM employees, addresses
-WHERE addresses.id = employees.address_id;
+FROM employees, addresses --For join FROM employees as e
+WHERE addresses.id = employees.address_id; --Better to solve with JOIN   JOIN addresses as a ON e.employees_id. = a.id
 
 SELECT *
 FROM view_addresses
