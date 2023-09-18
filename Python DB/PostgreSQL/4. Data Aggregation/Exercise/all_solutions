@@ -1,0 +1,45 @@
+1. COUNT of Records
+
+SELECT COUNT(id) AS "Count" 
+FROM wizard_deposits;
+
+2. Total Deposit Amount
+
+SELECT SUM(deposit_amount) AS "Total Amount"
+FROM wizard_deposits;
+
+3. AVG Magic Wand Size
+
+SELECT ROUND(AVG(magic_wand_size), 3) AS "Average Magic Wand Size"
+FROM wizard_deposits;
+
+4. MIN Deposit Charge
+
+SELECT MIN(deposit_charge) AS "Minimum Deposit Charge"
+FROM wizard_deposits;
+
+5. MAX Age
+
+SELECT MAX(age) AS "Maximum Age"
+FROM wizard_deposits;
+
+6. GROUP BY Deposit Interest
+
+SELECT
+	deposit_group,
+	SUM(deposit_interest) AS "Deposit Interest"
+FROM wizard_deposits
+GROUP BY deposit_group
+ORDER BY "Deposit Interest" DESC;
+
+7. LIMIT the Magic Wand Creator
+
+SELECT
+	magic_wand_creator,
+	MIN(magic_wand_size) AS "Minimum Wand Size"
+FROM wizard_deposits
+GROUP BY magic_wand_creator
+ORDER BY "Minimum Wand Size"
+LIMIT 5;
+
+
