@@ -42,4 +42,36 @@ GROUP BY magic_wand_creator
 ORDER BY "Minimum Wand Size"
 LIMIT 5;
 
+8. Bank Profitability
+
+SELECT
+	deposit_group,
+	is_deposit_expired,
+	FLOOR(AVG(deposit_interest)) AS "Deposit Interest"
+FROM wizard_deposits
+WHERE deposit_start_date > '1985-01-01'
+GROUP BY deposit_group, is_deposit_expired
+ORDER BY deposit_group DESC, is_deposit_expired;
+
+9. Notes with Dumbledore
+
+SELECT
+	last_name,
+	COUNT(notes) AS "Notes with Dumbledore"
+FROM wizard_deposits
+WHERE notes LIKE '%Dumbledore%'
+GROUP BY last_name;
+
+10. Wizard View
+
+CREATE VIEW "view_wizard_deposits_with_expiration_date_before_1983_08_17" AS
+SELECT
+	CONCAT(first_name, ' ', last_name) AS "Wizard Name",
+	deposit_start_date AS "Start Date",
+	deposit_expiration_date AS "Expiration Date",
+	deposit_amount AS "Amount"
+FROM wizard_deposits
+WHERE deposit_expiration_date <= '1983-08-17'
+GROUP BY "Wizard Name", "Start Date", "Expiration Date", "Amount"
+ORDER BY "Expiration Date";
 
