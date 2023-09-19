@@ -75,3 +75,17 @@ WHERE deposit_expiration_date <= '1983-08-17'
 GROUP BY "Wizard Name", "Start Date", "Expiration Date", "Amount"
 ORDER BY "Expiration Date";
 
+11. Filter Max Deposit
+
+SELECT
+	magic_wand_creator,
+	MAX(deposit_amount) AS "Max Deposit Amount"
+FROM "wizard_deposits"
+GROUP BY magic_wand_creator
+HAVING MAX(deposit_amount) NOT BETWEEN 20000 AND 40000
+ORDER BY "Max Deposit Amount" DESC
+LIMIT 3;
+
+12. Age Group
+
+
