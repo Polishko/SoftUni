@@ -1,7 +1,7 @@
 1. River Info
 
 CREATE VIEW view_river_info AS
-SELECT CONCAT(
+SELECT CONCAT(       --Better to use CONCAT_WS here because separator is " " everywhere
 	'The river',
 	' ',
 	"river_name",
@@ -26,7 +26,7 @@ SELECT
 	CONCAT(currencies.description, ' (', currencies.currency_code, ')') AS "Currencies"
 FROM 
 	continents, countries, currencies
-WHERE
+WHERE                                                                   -- Can use JOIN() here
 	countries.continent_code = continents.continent_code
 	AND currencies.currency_code = countries.currency_code 
 ORDER BY "Country Information";
@@ -46,7 +46,7 @@ FROM currencies;
 
 5. Substring River Length
 
-SELECT SUBSTRING("River Information", '([0-9]{1,4})') AS "river_length"
+SELECT SUBSTRING("River Information", '([0-9]{1,4})') AS "river_length"  --with REGEX_MATCHING() [1] also possible
 FROM view_river_info;
 
 6. Replace A
@@ -74,22 +74,22 @@ FROM continents;
 
 SELECT
 	continent_name,
-	TRIM(TRAILING FROM continent_name) AS "trim"
+	TRIM(TRAILING FROM continent_name) AS "trim"                   --Can use LTRIM() as well
 FROM continents;
 
 10. LTRIM & RTRIM
 
 SELECT
-	TRIM(LEADING 'M' FROM peak_name) AS "Left Trim",
-	TRIM(TRAILING 'm' FROM peak_name) AS "Right Trim"
+	TRIM(LEADING 'M' FROM peak_name) AS "Left Trim",    --Can write as LTRIM()
+	TRIM(TRAILING 'm' FROM peak_name) AS "Right Trim"   --Can write as RTRIM()
 FROM peaks;
 
 11. Character Length and Bits
 
 SELECT 
 	CONCAT(mountains.mountain_range, ' ', peaks.peak_name) AS "Mountain Information",
-	LENGTH(CONCAT(mountains.mountain_range, ' ', peaks.peak_name)) AS "Characters Length",
-	BIT_LENGTH(CONCAT(mountains.mountain_range, ' ', peaks.peak_name)) AS "Bits of a String"
+	LENGTH(CONCAT(mountains.mountain_range, ' ', peaks.peak_name)) AS "Characters Length", --CHAR_LENGTH() would be more correct here length gıves bytes
+	BIT_LENGTH(CONCAT(mountains.mountain_range, ' ', peaks.peak_name)) AS "Bits of a String"   
 FROM mountains, peaks
 WHERE mountains.id = peaks.mountain_id;
 
@@ -129,11 +129,13 @@ SET country_code = REVERSE(LOWER(country_code));
 
 17. Elevation --->> Peak Name
 
-SELECT CONCAT(elevation, ' ', REPEAT('-', 3), REPEAT('>', 2), ' ', peak_name) AS "Elevation --->> Peak Name"
+SELECT CONCAT(elevation, ' ', REPEAT('-', 3), REPEAT('>', 2), ' ', peak_name) AS "Elevation --->> Peak Name"        --CONCAT_WS() can be also used
 FROM peaks
 WHERE elevation >= 4884
 
 18. Arithmetical Operators
+
+--All this can be done using CAST() in AS SELECT during table creation
 
 CREATE TABLE bookings_calculation AS
 SELECT booked_for
@@ -191,13 +193,13 @@ SELECT
 	user_id,
 	AGE(starts_at, booked_at) AS "Early Birds"
 FROM bookings
-WHERE AGE(starts_at, booked_at) >= '10 months';
+WHERE AGE(starts_at, booked_at) >= '10 months';   --Or WHERE starts_at - booked_at >= '10 MONTHS'
 
 24. Match or Not
 
 SELECT "companion_full_name", "email"
 FROM users
-WHERE LOWER("companion_full_name") LIKE '%and%' AND "email" NOT LIKE '%@gmail';
+WHERE LOWER("companion_full_name") LIKE '%and%' AND "email" NOT LIKE '%@gmail';  --Or use ILIKE which is case insensitive like
 
 25. * COUNT by Initial
 
