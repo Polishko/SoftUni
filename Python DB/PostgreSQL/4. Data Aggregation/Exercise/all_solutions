@@ -128,8 +128,8 @@ FROM employees
 UPDATE employees
 SET
 	salary = CASE
-		WHEN hire_date < '2015-01-16'::DATE THEN salary + 2500
-		WHEN hire_date < '2020-03-04'::DATE THEN salary + 1500
+		WHEN hire_date < '2015-01-16' THEN salary + 2500
+		WHEN hire_date < '2020-03-04' THEN salary + 1500
 		ELSE salary
 	END,
 	
@@ -139,6 +139,90 @@ SET
 		ELSE job_title
 	END;
 	
+15. Categorizes Salary
 
+WITH view_salary_status AS (
+	SELECT
+		job_title,
+		AVG(salary) as ave_salary
+	FROM employees
+	GROUP BY job_title
+)
+
+SELECT
+	job_title,
+	CASE
+		WHEN ave_salary > 45800 THEN 'Good'
+		WHEN ave_salary BETWEEN 27500 AND 45800 THEN 'Medium'
+		WHEN ave_salary < 27500 THEN 'Need Improvement'
+	END AS "Category"
+	
+FROM view_salary_status
+GROUP BY job_title, ave_salary
+ORDER BY "Category", job_title
+;
+
+16. WHERE Project Status
+
+SELECT
+	project_name,
+	CASE
+		WHEN start_date IS NULL AND end_date IS NULL THEN 'Ready for development'
+		WHEN end_date IS NULL THEN 'In Progress'
+		ELSE 'Done'
+	END AS "project_status"
+FROM projects
+WHERE project_name LIKE '%Mountain%'
+;
+
+17. HAVING Salary Level
+
+
+SELECT
+	department_id,
+	COUNT(department_id) AS num_employees,
+	CASE
+		WHEN AVG(salary) > 50000 THEN 'Above average'
+		WHEN AVG(salary) <= 50000 THEN 'Below average'
+	END AS "salary_level"
+FROM employees
+GROUP BY department_id
+HAVING AVG(salary) > 30000
+ORDER BY department_id
+;
+
+18. * Nested CASE Conditions
+
+CREATE VIEW view_performance_rating AS 
+	SELECT
+		first_name,
+		last_name,
+		job_title,
+		salary,
+		department_id,
+		CASE
+			WHEN (salary >= 25000) AND (job_title LIKE 'Senior%') THEN 'High-performing Senior'
+			WHEN salary >= 25000 THEN 'High-performing Employee'
+			ELSE 'Average-performing'
+		END AS "performance_rating"		
+	FROM employees
+;
+
+19. * Foreign Key
+
+CREATE TABLE IF NOT EXISTS employees_projects (
+	id SERIAL PRIMARY KEY,
+	employee_id INT,
+	project_id INT,
+	FOREIGN KEY (employee_id) REFERENCES employees (id),
+	FOREIGN KEY (project_id) REFERENCES projects (id)
+);
+
+20. * JOIN Tables
+
+SELECT *
+FROM departments AS d
+	JOIN employees AS e ON
+		d.id = e.department_id
 
 
