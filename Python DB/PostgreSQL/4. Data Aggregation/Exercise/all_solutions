@@ -1,6 +1,6 @@
 1. COUNT of Records
 
-SELECT COUNT(id) AS "Count" 
+SELECT COUNT(id) AS "Count" --(SELECT COUNT(*) also works)
 FROM wizard_deposits;
 
 2. Total Deposit Amount
@@ -81,9 +81,12 @@ SELECT
 	magic_wand_creator,
 	MAX(deposit_amount) AS "Max Deposit Amount"
 FROM "wizard_deposits"
-GROUP BY magic_wand_creator
-HAVING MAX(deposit_amount) NOT BETWEEN 20000 AND 40000
-ORDER BY "Max Deposit Amount" DESC
+GROUP 
+	BY magic_wand_creator
+HAVING 
+	MAX(deposit_amount) NOT BETWEEN 20000 AND 40000 --(MAX(deposit_amount) < 20000 AND MAX(deposit_amount) > 40000 also works)
+ORDER BY 
+	"Max Deposit Amount" DESC
 LIMIT 3;
 
 12. Age Group
@@ -110,16 +113,37 @@ GROUP BY "Age Group"
 ORDER BY "Age Group"
 ;
 
+-- No need for view:
+
+SELECT
+	CASE
+		WHEN age BETWEEN 0 AND 10 THEN '[0-10]'
+		WHEN age BETWEEN 11 AND 20 THEN '[11-20]'
+		WHEN age BETWEEN 21 AND 30 THEN '[21-30]'
+		WHEN age BETWEEN 31 AND 40 THEN '[31-40]'
+		WHEN age BETWEEN 41 AND 50 THEN '[41-50]'
+		WHEN age BETWEEN 51 AND 60 THEN '[51-60]'
+		ELSE '[61+]'		
+	END AS "Age Group",
+	COUNT(*)
+FROM
+	wizard_deposits
+GROUP BY
+	"Age Group"
+ORDER BY
+	"Age Group"
+;
+
 13. SUM the Employees
 
 SELECT
-	COUNT(CASE WHEN department_id=1 THEN 1 ELSE NULL END) AS "Engineering",
-	COUNT(CASE WHEN department_id=2 THEN 1 ELSE NULL END) AS "Tool Design",
-	COUNT(CASE WHEN department_id=3 THEN 1 ELSE NULL END) AS "Sales",
-	COUNT(CASE WHEN department_id=4 THEN 1 ELSE NULL END) AS "Marketing",
-	COUNT(CASE WHEN department_id=5 THEN 1 ELSE NULL END) AS "Purchasing",
-	COUNT(CASE WHEN department_id=6 THEN 1 ELSE NULL END) AS "Research and Development",
-	COUNT(CASE WHEN department_id=7 THEN 1 ELSE NULL END) AS "Production"
+	COUNT(CASE WHEN department_id = 1 THEN 1 END) AS "Engineering",  --No need for ELSE here so I removed the ELSE clauses
+	COUNT(CASE WHEN department_id = 2 THEN 1 END) AS "Tool Design",
+	COUNT(CASE WHEN department_id = 3 THEN 1 END) AS "Sales",
+	COUNT(CASE WHEN department_id = 4 THEN 1 END) AS "Marketing",
+	COUNT(CASE WHEN department_id = 5 THEN 1 END) AS "Purchasing",
+	COUNT(CASE WHEN department_id = 6 THEN 1 END) AS "Research and Development",
+	COUNT(CASE WHEN department_id = 7 THEN 1 END) AS "Production"
 FROM employees
 ;
 
@@ -141,7 +165,7 @@ SET
 	
 15. Categorizes Salary
 
-WITH view_salary_status AS (
+///WITH view_salary_status AS (
 	SELECT
 		job_title,
 		AVG(salary) as ave_salary
@@ -160,7 +184,22 @@ SELECT
 FROM view_salary_status
 GROUP BY job_title, ave_salary
 ORDER BY "Category", job_title
-;
+;///
+
+-- Again no need for view
+
+SELECT
+	job_title,
+	CASE
+		WHEN ave_salary > 45800 THEN 'Good'
+		WHEN ave_salary BETWEEN 27500 AND 45800 THEN 'Medium'
+		WHEN ave_salary < 27500 THEN 'Need Improvement'
+	END AS "Category"
+FROM employees
+GROUP BY job_title
+ORDER BY
+	"Category",
+	job_title;
 
 16. WHERE Project Status
 
@@ -185,10 +224,14 @@ SELECT
 		WHEN AVG(salary) > 50000 THEN 'Above average'
 		WHEN AVG(salary) <= 50000 THEN 'Below average'
 	END AS "salary_level"
-FROM employees
-GROUP BY department_id
-HAVING AVG(salary) > 30000
-ORDER BY department_id
+FROM
+	employees
+GROUP BY
+	department_id
+HAVING
+	AVG(salary) > 30000
+ORDER BY
+	department_id
 ;
 
 18. * Nested CASE Conditions
@@ -203,6 +246,26 @@ CREATE VIEW view_performance_rating AS
 		CASE
 			WHEN (salary >= 25000) AND (job_title LIKE 'Senior%') THEN 'High-performing Senior'
 			WHEN salary >= 25000 THEN 'High-performing Employee'
+			ELSE 'Average-performing'
+		END AS "performance_rating"		
+	FROM employees
+;
+
+--Nested version:
+
+CREATE VIEW view_performance_rating AS 
+	SELECT
+		first_name,
+		last_name,
+		job_title,
+		salary,
+		department_id,
+		CASE
+			WHEN salary >= 25000 THEN
+				CASE
+					WHEN job_title LIKE 'Senior%' THEN 'High-performing Senior'
+					ELSE 'High-performing Employee'
+				END
 			ELSE 'Average-performing'
 		END AS "performance_rating"		
 	FROM employees
