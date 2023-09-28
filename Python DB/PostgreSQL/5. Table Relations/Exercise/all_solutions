@@ -327,4 +327,23 @@ VALUES
 DELETE FROM customers AS c
 WHERE c.id = 1;
 
+14. * Peaks in Rila
 
+SELECT
+	m.mountain_range,
+	p.peak_name,
+	p.elevation
+FROM mountains AS m
+	JOIN peaks AS p
+		ON m.id = p.mountain_id
+WHERE m.mountain_range = 'Rila'
+ORDER BY
+	p.elevation DESC;
+
+15. * Countries Without Any Rivers
+
+SELECT COUNT(c.country_code) AS "countries_without_rivers"
+FROM countries AS c
+	LEFT JOIN countries_rivers AS cr
+		ON c.country_code = cr.country_code
+WHERE cr.country_code IS NULL;
