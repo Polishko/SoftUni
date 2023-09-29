@@ -63,8 +63,8 @@ SELECT
 COUNT(employee_id) AS "count"
 FROM employees
 WHERE salary > (SELECT AVG(salary) as "ave_salary"
-				        FROM employees
-			          HAVING AVG(salary) IS NOT NULL)
+		FROM employees
+		HAVING AVG(salary) IS NOT NULL)
 ;
 
 
