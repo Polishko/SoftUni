@@ -100,3 +100,84 @@ FROM bookings AS b
 WHERE c.last_name = 'Hahn'
 ;
 
+--9. Total Sum of Nights
+
+SELECT
+	a.name,
+	SUM(b.booked_for)
+FROM apartments AS a
+	JOIN bookings AS b
+		ON b.apartment_id = b.apartment_id
+WHERE b.apartment_id = a.apartment_id
+GROUP BY
+	a.name
+ORDER BY
+	a.name
+;
+
+--OR
+
+SELECT
+	a.name,
+	SUM(b.booked_for)
+FROM apartments AS a, bookings AS b
+WHERE b.apartment_id = a.apartment_id
+GROUP BY
+	a.name
+ORDER BY
+	a.name
+;
+
+--10. Popular Vacation Destination
+
+SELECT
+	a.country,
+	COUNT(*) AS "booking_count"
+FROM apartments AS a
+	JOIN bookings AS b
+		ON a.apartment_id = b.apartment_id
+WHERE b.booked_at > '2021-05-18 07:52:09.904+03' AND b.booked_at < '2021-09-17 19:48:02.147+03'
+GROUP BY
+	a.country
+ORDER BY
+	"booking_count" DESC
+;
+
+--11. Bulgaria's Peaks Higher than 2835 Meters
+
+SELECT
+	mc.country_code,
+	m.mountain_range,
+	p.peak_name,
+	p.elevation
+FROM
+	mountains_countries AS mc
+		JOIN mountains AS m
+			ON mc.mountain_id = m.id
+				JOIN peaks AS p
+					ON m.id = p.mountain_id
+WHERE
+	p.elevation > 2835 AND mc.country_code = 'BG'
+ORDER BY
+	p.elevation DESC
+;
+
+--12. Count Mountain Ranges
+
+SELECT
+	mc.country_code,
+	COUNT(m.mountain_range) AS "mountain_range_count"
+FROM
+	mountains_countries AS mc
+		JOIN mountains AS m
+			ON mc.mountain_id = m.id
+WHERE
+	mc.country_code IN ('US', 'RU', 'BG')
+GROUP BY
+	mc.country_code
+ORDER BY
+	COUNT(m.mountain_range) DESC
+;
+
+--13. Rivers in Africa
+
