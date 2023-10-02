@@ -225,5 +225,123 @@ SELECT
 
 --16. Monasteries by Country **
 
+CREATE TABLE monasteries (
+	id SERIAL PRIMARY KEY,
+	monastery_name VARCHAR(255),
+	country_code CHAR(2)
+);
+
+INSERT INTO monasteries(monastery_name, country_code)
+VALUES
+	('Rila Monastery "St. Ivan of Rila"', 'BG'),
+	('Bachkovo Monastery "Virgin Mary"', 'BG'),
+	('Troyan Monastery "Holy Mother''s Assumption"', 'BG'),
+	('Kopan Monastery', 'NP'),
+	('Thrangu Tashi Yangtse Monastery', 'NP'),
+	('Shechen Tennyi Dargyeling Monastery', 'NP'),
+	('Benchen Monastery', 'NP'),
+	('Southern Shaolin Monastery', 'CN'),
+	('Dabei Monastery', 'CN'),
+	('Wa Sau Toi', 'CN'),
+	('Lhunshigyia Monastery', 'CN'),
+	('Rakya Monastery', 'CN'),
+	('Monasteries of Meteora', 'GR'),
+	('The Holy Monastery of Stavronikita', 'GR'),
+	('Taung Kalat Monastery', 'MM'),
+	('Pa-Auk Forest Monastery', 'MM'),
+	('Taktsang Palphug Monastery', 'BT'),
+	('Sümela Monastery', 'TR');
+
+ALTER TABLE countries
+ADD COLUMN three_rivers BOOLEAN DEFAULT FALSE;
+
+UPDATE countries AS c
+SET three_rivers = 'true'
+FROM (
+	SELECT
+		c.country_code,
+		COUNT(cr.river_id) AS river_count
+	FROM countries AS c
+		LEFT JOIN countries_rivers AS cr
+			ON c.country_code = cr.country_code
+				GROUP BY
+					c.country_code
+		) AS rc
+
+WHERE rc.country_code = c.country_code AND rc.river_count > 3
+;
+
+SELECT
+	m.monastery_name AS "Monastery",
+	c.country_name AS "Country"
+FROM monasteries AS m
+	JOIN countries AS c
+		ON m.country_code = c.country_code
+WHERE c.three_rivers = 'false'
+ORDER BY
+	m.monastery_name
+;
+
+-- 17. Monasteries by Continents and Countries**
+
+UPDATE countries
+SET country_name = 'Burma'
+WHERE country_name = 'Myanmar';
+
+INSERT INTO monasteries (monastery_name, country_code)
+VALUES
+	('Hanga Abbey', (SELECT
+				c.country_code
+			FROM
+				countries AS c
+			WHERE
+				c.country_name = 'Tanzania'
+					)),
+	('Myin-Tin-Daik', (SELECT
+				c.country_code
+			FROM
+				countries AS c
+			WHERE
+				c.country_name = 'Myanmar'
+					))
+;				
+
+SELECT
+	cn.continent_name AS "Continent Name",
+	c.country_name AS "Country Name",
+	COUNT(m.monastery_name) AS "Monasteries Count"
+FROM
+	continents AS cn
+	LEFT JOIN countries AS c
+		ON cn.continent_code = c.continent_code
+			LEFT JOIN monasteries AS m
+				ON c.country_code = m.country_code
+WHERE c.three_rivers = 'false'
+GROUP BY
+	cn.continent_name,
+	c.country_name
+ORDER BY
+	COUNT(m.monastery_name) DESC,
+	c.country_name
+;
+
+--18. Retrieving Information about Indexes
+
+SELECT
+	tablename,
+	indexname,
+	indexdef
+FROM
+	pg_indexes
+WHERE
+	schemaname = 'public'
+ORDER BY
+	tablename,
+	indexname
+;
+
+--19. * Continents and Currencies
+
+--20. * The Highest Peak in Each Country
 
 
