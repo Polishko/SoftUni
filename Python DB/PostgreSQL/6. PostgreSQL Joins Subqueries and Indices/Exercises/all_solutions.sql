@@ -185,10 +185,10 @@ SELECT
 	c.country_name,
 	r.river_name
 FROM countries AS c
-			LEFT JOIN countries_rivers AS cr
-				ON c.country_code = cr.country_code
-					LEFT JOIN rivers AS r
-						ON cr.river_id = r.id
+	LEFT JOIN countries_rivers AS cr
+		ON c.country_code = cr.country_code
+			LEFT JOIN rivers AS r
+				ON cr.river_id = r.id
 WHERE
 	c.continent_code = 'AF'
 ORDER BY
@@ -200,13 +200,14 @@ LIMIT
 --14. Minimum Average Area Across Continents
 
 SELECT MIN(area) AS "min_average_area"
-	FROM (SELECT
-			c.continent_code,
-			SUM(c.area_in_sq_km)/COUNT(c.country_code)::NUMERIC AS "area"
-		  FROM countries as c
-		GROUP BY
-			c.continent_code
-		 ) AS subquery
+FROM (
+	SELECT
+		c.continent_code,
+		SUM(c.area_in_sq_km)/COUNT(c.country_code)::NUMERIC AS "area"
+	FROM countries as c
+	GROUP BY
+		c.continent_code		 
+	) AS subquery
 ;
 
 --15. Countries Without Any Mountains
