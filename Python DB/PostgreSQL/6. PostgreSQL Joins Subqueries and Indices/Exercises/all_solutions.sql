@@ -181,3 +181,49 @@ ORDER BY
 
 --13. Rivers in Africa
 
+SELECT
+	c.country_name,
+	r.river_name
+FROM countries AS c
+			LEFT JOIN countries_rivers AS cr
+				ON c.country_code = cr.country_code
+					LEFT JOIN rivers AS r
+						ON cr.river_id = r.id
+WHERE
+	c.continent_code = 'AF'
+ORDER BY
+	c.country_name
+LIMIT
+	5
+;
+
+--14. Minimum Average Area Across Continents
+
+SELECT MIN(area) AS "min_average_area"
+	FROM (SELECT
+			c.continent_code,
+			SUM(c.area_in_sq_km)/COUNT(c.country_code)::NUMERIC AS "area"
+		  FROM countries as c
+		GROUP BY
+			c.continent_code
+		 ) AS subquery
+;
+
+--15. Countries Without Any Mountains
+
+SELECT 
+	COUNT(no_mountains) AS "countries_without_mountains"	
+	FROM (
+		SELECT
+			c.country_name
+		FROM countries AS c
+			LEFT JOIN mountains_countries AS mc
+				ON c.country_code = mc.country_code
+		WHERE
+			mc.mountain_id IS NULL) AS no_mountains
+;
+
+--16. Monasteries by Country **
+
+
+
