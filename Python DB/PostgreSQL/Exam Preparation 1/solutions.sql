@@ -177,3 +177,63 @@ ORDER BY
 
 --9.	Volunteers in Sofia
 
+SELECT
+    v."name" AS "volunteers",
+    v.phone_number,
+    TRIM(SUBSTRING(v.address, POSITION(',' IN v.address) + 1)) AS "address"
+FROM volunteers AS v
+    JOIN volunteers_departments AS vd
+        ON v.department_id = vd.id
+WHERE
+    vd.department_name = 'Education program assistant' AND
+    v.address LIKE '%Sofia%'
+ORDER BY
+    v."name"
+;
+
+--10.	Animals for Adoption
+
+SELECT
+    a."name" AS "animal",
+    EXTRACT(YEAR FROM a.birthdate) AS "birth_year",
+    at.animal_type
+FROM animals AS a
+    JOIN animal_types AS at
+        ON a.animal_type_id = at.id
+WHERE
+    a.owner_id IS NULL AND
+    EXTRACT(YEAR FROM AGE('01-01-2022', a.birthdate)) < 5 AND
+    at.animal_type <> 'Birds'
+ORDER BY
+    a."name"
+;
+
+--11.	All Volunteers in a Department
+
+CREATE OR REPLACE FUNCTION fn_get_volunteers_count_from_department(
+searched_volunteers_department VARCHAR(30)
+)
+
+RETURNS INT AS
+$$
+    DECLARE
+        volunteers_count INT;
+    BEGIN
+        SELECT COUNT(*) INTO volunteers_count
+        FROM volunteers_departments AS vd
+                JOIN volunteers AS v
+                    ON vd.id = v.department_id
+            WHERE
+                department_name = searched_volunteers_department;
+    RETURN volunteers_count;
+    END;
+$$
+LANGUAGE plpgsql;
+
+--test
+SELECT fn_get_volunteers_count_from_department('Zoo events')
+
+
+--12. Animals with Owner or Not
+
+
