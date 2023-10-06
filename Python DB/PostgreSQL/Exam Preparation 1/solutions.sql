@@ -236,4 +236,35 @@ SELECT fn_get_volunteers_count_from_department('Zoo events')
 
 --12. Animals with Owner or Not
 
+CREATE OR REPLACE PROCEDURE sp_animals_with_owners_or_not(
+    IN animal_name VARCHAR(30),
+    OUT owner VARCHAR(50)
+)
+LANGUAGE plpgsql
+AS $$
+    DECLARE
+        check_owner VARCHAR(50);
+    BEGIN
+        SELECT
+            o."name" INTO check_owner
+    FROM animals AS a
+        LEFT JOIN owners AS o
+            ON a.owner_id = o.id
+    WHERE a."name" = animal_name;
+
+    IF check_owner IS NULL THEN
+        owner:= 'For adoption';
+    ELSE
+        owner := check_owner;
+    END IF;
+
+    END
+$$;
+
+--test: use '' acts as output placeholder, this is required when procedure has an output (usually doesnt used to produce an output)
+
+CALL sp_animals_with_owners_or_not('Pumpkinseed Sunfish', '');
+
+--with COALESCE: withou using a temporary parameter check_owner directly select COALESCE(o."name", 'For adoption') into owner, so when owner is null the latter will be displayed.
+
 
