@@ -297,4 +297,39 @@ CREATE TRIGGER tr_account_balance_change
 
 --13. Notification Email on Balance Change
 
+CREATE TABLE notification_emails(
+    id SERIAL PRIMARY KEY,
+    recipient_id INT,
+    subject VARCHAR(200),
+    body TEXT
+);
 
+CREATE OR REPLACE FUNCTION trigger_fn_send_email_on_balance_change()
+    RETURNS TRIGGER
+AS $$
+
+    BEGIN
+
+        INSERT INTO notification_emails(recipient_id, subject, body)
+        VALUES (
+                NEW.account_id,
+                CONCAT('Balance change for account: ', NEW.account_id),
+                CONCAT('On ', CURRENT_DATE,' your balance was changed from ',
+            NEW.old_sum, ' to ', NEW.new_sum, '.')
+                );
+        RETURN NEW;
+    END
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER tr_send_email_on_balance_change
+    AFTER UPDATE OF new_sum ON logs
+    FOR EACH ROW
+    EXECUTE FUNCTION trigger_fn_send_email_on_balance_change();
+
+-- test
+INSERT INTO logs(account_id, old_sum, new_sum)
+VALUES (1, 100, 200);
+
+SELECT *
+FROM notification_emails;
