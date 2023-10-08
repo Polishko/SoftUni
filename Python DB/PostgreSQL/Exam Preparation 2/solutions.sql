@@ -176,4 +176,142 @@ ORDER BY
     c.id
 ;
 
+--8.	Regular Clients
 
+WITH clients_with_a AS
+    (SELECT
+         cl.id,
+         cl.full_name
+        FROM clients AS cl
+            WHERE SUBSTRING(cl.full_name FROM 2 FOR 1) = 'a')
+
+SELECT
+    cwa.full_name,
+    COUNT(co.car_id) AS "count_of_cars",
+    SUM(co.bill)
+FROM clients_with_a AS cwa
+    JOIN courses AS co
+        ON cwa.id = co.client_id
+GROUP BY
+    cwa.full_name
+HAVING
+    COUNT(co.car_id) > 1
+ORDER BY
+    cwa.full_name
+;
+
+--better
+
+SELECT
+    cl.full_name,
+    COUNT(co.car_id) AS "count_of_cars",
+    SUM(co.bill) AS "total_sum"
+FROM clients AS cl
+    JOIN courses AS co
+        ON cl.id = co.client_id
+WHERE
+    SUBSTRING(cl.full_name FROM 2 FOR 1) = 'a'
+GROUP BY
+    cl.full_name
+HAVING
+    COUNT(co.car_id) > 1
+ORDER BY
+    cl.full_name
+;
+
+--9.	Full Information of Courses
+
+SELECT
+    a.name,
+    CASE
+        WHEN EXTRACT(HOUR FROM co.start) BETWEEN 6 AND 20 THEN 'Day'
+        ELSE
+            'Night'
+    END AS "day_time",
+    co.bill,
+    cl.full_name,
+    c.make,
+    c.model,
+    ca.name
+FROM courses AS co
+    JOIN addresses AS a
+        ON co.from_address_id = a.id
+            JOIN clients AS cl
+                ON co.client_id = cl.id
+                    JOIN cars AS c
+                        ON co.car_id = c.id
+                            JOIN categories AS ca
+                                ON c.category_id = ca.id
+ORDER BY
+    co.id
+;
+
+--10.	Find all Courses by Client’s Phone Number
+
+CREATE OR REPLACE FUNCTION fn_courses_by_client(
+    IN phone_num VARCHAR(20),
+    OUT number_of_courses INT
+)
+AS $$
+    BEGIN
+        SELECT
+            COUNT(co.id)
+        FROM clients AS cl
+            JOIN courses AS co
+                ON cl.id = co.client_id
+        WHERE
+            cl.phone_number = phone_num
+        INTO number_of_courses;
+    END
+$$
+LANGUAGE plpgsql;
+
+--test
+SELECT fn_courses_by_client('(803) 6386812')
+
+--11.	Full Info for Address
+
+CREATE TABLE search_results (
+            id SERIAL PRIMARY KEY,
+            address_name VARCHAR(50),
+            full_name VARCHAR(100),
+            level_of_bill VARCHAR(20),
+            make VARCHAR(30),
+            condition CHAR(1),
+            category_name VARCHAR(50)
+        );
+
+CREATE OR REPLACE PROCEDURE sp_courses_by_address(address_name VARCHAR(100))
+LANGUAGE plpgsql
+AS $$
+    BEGIN
+        TRUNCATE search_results;
+
+        INSERT INTO search_results (address_name, full_name, level_of_bill, make, condition, category_name)
+        SELECT
+            a.name,
+            cl.full_name,
+            CASE
+                WHEN co.bill <= 20 THEN 'Low'
+                WHEN co.bill <= 30 THEN 'Medium'
+                ELSE 'High'
+            END,
+            c.make,
+            c.condition,
+            ca.name
+        FROM courses AS co
+            RIGHT JOIN addresses AS a
+                ON a.id = co.from_address_id
+                    JOIN clients AS cl
+                        ON co.client_id = cl.id
+                            JOIN cars AS c
+                                ON co.car_id = c.id
+                                    JOIN categories AS ca
+                                        ON c.category_id = ca.id
+        WHERE
+            a.name = address_name
+        ORDER BY
+            c.make,
+            cl.full_name;
+    END
+$$;
