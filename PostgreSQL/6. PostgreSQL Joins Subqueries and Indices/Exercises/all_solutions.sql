@@ -361,7 +361,6 @@ CREATE VIEW continent_currency_usage AS
         ORDER BY
             currency_usage DESC
         )
-
     SELECT
         continent_code,
         currency_code,
@@ -371,5 +370,37 @@ CREATE VIEW continent_currency_usage AS
 ;
 
 --20. * The Highest Peak in Each Country
+
+WITH row_number AS(
+    SELECT
+        c.country_name AS "Country",
+        p.peak_name AS "Highest Peak Name",
+        p.elevation AS "Highest Peak Elevation",
+        m.mountain_range AS "Mountain",
+       DENSE_RANK() OVER (PARTITION BY c.country_name ORDER BY p.elevation DESC) AS rn
+    FROM countries AS c
+        LEFT JOIN mountains_countries AS mc
+            ON c.country_code = mc.country_code
+                LEFT JOIN mountains AS m
+                    ON mc.mountain_id = m.id
+                        LEFT JOIN peaks AS p
+                            ON m.id = p.mountain_id
+)
+
+    SELECT
+        "Country",
+        COALESCE("Highest Peak Name", '(no highest peak)') AS "Highest Peak Name",
+        COALESCE("Highest Peak Elevation", 0) AS "Highest Peak Elevation",
+        CASE
+            WHEN "Highest Peak Name" IS NULL THEN '(no mountain)'
+            ELSE "Mountain"
+        END AS "Mountain"
+    FROM row_number
+    WHERE rn = 1
+    ORDER BY
+        "Country",
+        "Highest Peak Elevation" DESC
+;
+
 
 
