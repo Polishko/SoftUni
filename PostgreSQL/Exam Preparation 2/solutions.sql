@@ -133,16 +133,11 @@ SELECT
     c.make,
     c.model,
     c.mileage
-FROM
-    drivers AS d
-JOIN
-    cars_drivers AS cd
-ON
-    d.id = cd.driver_id
-JOIN
-        cars AS c
-ON
-    cd.car_id = c.id
+FROM  drivers AS d
+  JOIN cars_drivers AS cd
+    ON d.id = cd.driver_id
+      JOIN cars AS c
+        ON cd.car_id = c.id
 WHERE
     c.mileage IS NOT NULL
 ORDER BY
@@ -161,7 +156,6 @@ SELECT
         WHEN COUNT(cr.id) > 0 THEN ROUND(AVG(cr.bill), 2)
     END
         AS "average_bill"
-
 FROM cars AS c
     LEFT JOIN courses AS cr
         ON c.id = cr.car_id
