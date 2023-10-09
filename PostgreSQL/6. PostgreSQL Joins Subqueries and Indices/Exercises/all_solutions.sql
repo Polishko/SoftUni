@@ -343,6 +343,33 @@ ORDER BY
 
 --19. * Continents and Currencies
 
+CREATE VIEW continent_currency_usage AS
+    WITH cte AS (
+        SELECT
+            co.continent_code,
+            c.currency_code,
+            COUNT(c.currency_code) AS "currency_usage",
+            DENSE_RANK() OVER (PARTITION BY co.continent_code ORDER BY COUNT(c.currency_code) DESC) AS rn
+        FROM countries AS c
+            JOIN continents AS co
+                ON c.continent_code = co.continent_code
+        GROUP BY
+            co.continent_code,
+            c.currency_code
+        HAVING
+            COUNT(c.currency_code) > 1
+        ORDER BY
+            currency_usage DESC
+        )
+
+    SELECT
+        continent_code,
+        currency_code,
+        currency_usage
+    FROM cte
+    WHERE rn = 1
+;
+
 --20. * The Highest Peak in Each Country
 
 
