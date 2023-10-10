@@ -114,7 +114,7 @@ ALTER TABLE board_games
 DROP CONSTRAINT fk_board_games_publishers;
 
 ALTER TABLE board_games
-ADD CONSTRAINT fk_board_games_addresses
+ADD CONSTRAINT fk_board_games_publishers
 FOREIGN KEY(publisher_id)
 REFERENCES publishers(id)
 ON DELETE CASCADE ;
