@@ -11,6 +11,8 @@ def add_price(apps, schema_editor):
         phone.price = len(phone.brand) * 120
         phone.save()
 
+# set categories function and a third one that combines them then its reverse function
+# check props drilling concept
 
 def reverse_add_price(apps, schema_editor):
     Smartphone = apps.get_model("main_app", "Smartphone")
