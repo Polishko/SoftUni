@@ -19,6 +19,8 @@ def add_age_group(apps, schema_editor):
             person.age_group = "Adult"
 
         person.save()
+   
+# instead of saving each person obj to db each time, you can say Person.objects.bulk_update(Person, ["age_group"]) and update after the for cyle finishes so this is more optimized
 
 
 def reverse_add_age_group(apps, schema_editor):
@@ -29,6 +31,8 @@ def reverse_add_age_group(apps, schema_editor):
     for person in all_people:
         person.age_group = "No age group"
         person.save()
+
+# check Dilyan's file for the correct reverse function
 
 
 class Migration(migrations.Migration):
