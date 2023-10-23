@@ -14,6 +14,8 @@ def create_unique_brands(apps, schema_editor):
     for brand_name in unique_brand_names:
         unique_brands.objects.using(db_alias).create(brand_name=brand_name)
 
+    # this is not very good because you create and add each value set, its better first to create all values (instances) and then populate the db using class_name.objects.bulk_create(list_of_objects)
+
 
 class Migration(migrations.Migration):
 
