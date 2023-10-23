@@ -1,13 +1,6 @@
 from django.db import models
 
 
-STATUS = [
-    ("Pending", "Pending"),
-    ("Completed", "Completed"),
-    ("Cancelled", "Cancelled")
-]
-
-
 class Shoe(models.Model):
     brand = models.CharField(max_length=25)
     size = models.PositiveIntegerField()
@@ -155,6 +148,13 @@ class Smartphone(models.Model):
 
 
 class Order(models.Model):
+ 
+STATUS = [
+    ("Pending", "Pending"),
+    ("Completed", "Completed"),
+    ("Cancelled", "Cancelled")
+]
+
     product_name = models.CharField(
         max_length=30
     )
