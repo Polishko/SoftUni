@@ -66,7 +66,8 @@ def new_capital():
         first_location = locations[0]
         first_location.is_capital = True
         first_location.save()
-
+        
+ #use first(), it's faster also good to use filter to filter the first object and the use update on it
 
 def get_capitals():
     return Location.objects.filter(is_capital=True).values("name")
@@ -75,7 +76,7 @@ def get_capitals():
 def delete_first_location():
     locations = Location.objects.all()
     if locations:
-        locations[0].delete()
+        locations[0].delete() #use first(), it's faster
 
 # print(show_all_locations())
 # print(new_capital())
