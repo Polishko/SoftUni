@@ -9,7 +9,6 @@ django.setup()
 # Import your models here
 from main_app.models import Pet, Artifact, Location, Car, Task, HotelRoom, Character
 
-
 # Create queries within functions
 # 1. Pet
 
@@ -23,7 +22,6 @@ def create_pet(name: str, species: str):
 # print(create_pet('Rocky', 'Hamster'))
 
 # 2.	Artifact
-
 
 def create_artifact(name: str, origin: str, age: int, description: str, is_magical: bool):
     artifact = Artifact.objects.create(
@@ -47,7 +45,6 @@ def delete_all_artifacts():
 
 #3. Location
 
-
 def show_all_locations():
     collection = []
     locations = Location.objects.all().order_by("-id")
@@ -63,11 +60,11 @@ def new_capital():
     locations = Location.objects.all()
 
     if locations:
-        first_location = locations[0]
+        first_location = locations.first()
         first_location.is_capital = True
         first_location.save()
         
- #use first(), it's faster also good to use filter to filter the first object and the use update on it
+ #use first(), not [0]; also good to use filter to filter the first object and the use update on it
 
 def get_capitals():
     return Location.objects.filter(is_capital=True).values("name")
@@ -76,14 +73,15 @@ def get_capitals():
 def delete_first_location():
     locations = Location.objects.all()
     if locations:
-        locations[0].delete() #use first(), it's faster
+        locations.first().delete() #use first(), not [0], note for myself
+
 
 # print(show_all_locations())
 # print(new_capital())
 # print(get_capitals())
 
 # 4. Car
-#
+
 def apply_discount():
     cars = Car.objects.all()
 
@@ -93,6 +91,7 @@ def apply_discount():
             car.price_with_discount = float(car.price) * (1 - sum_digits/100)
             car.save()
 
+# this can be achieved with advanced operation (update?)
 
 def get_recent_cars():
     return Car.objects.filter(year__gte=2020).values("model", "price_with_discount")
@@ -105,24 +104,19 @@ def delete_last_car():
         cars.last().delete()
 
 
-# def delete_last_car():
-#     cars = list(Car.objects.all())
-#
-#     if cars:
-#         cars[-1].delete()
-
 # apply_discount()
 # print(get_recent_cars())
-#
+
 # 5. Task Encoder
-#
+
+
 def show_unfinished_tasks():
     tasks = Task.objects.all()
     uncompleted_tasks = []
 
     for task in tasks:
         if task.is_finished is False:
-            uncompleted_tasks.append(f"Task - {task.title} needs to be done until {task.due_date}!")
+            uncompleted_tasks.append(f"Task - {task.title} needs to be done until {task.due_date}!")    # or again you can overide the __str__ method to obtain more abstraction, then return the str of each task object in tasks.
 
     return "\n".join(uncompleted_tasks)
 
@@ -140,13 +134,15 @@ def encode_and_replace(text: str, task_title: str):
     text = "".join([chr(ord(char) - 3) for char in text])
     tasks = Task.objects.all()
     task = tasks.filter(title=task_title).update(description=text)
-#
+
+
 # print(show_unfinished_tasks())
 # complete_odd_tasks()
 
 # encode_and_replace("Zdvk#wkh#glvkhv$", "Some Task")
 # print(Task.objects.get(title='Some Task').description)
-#
+
+
 # 6. Hotel room
 
 
