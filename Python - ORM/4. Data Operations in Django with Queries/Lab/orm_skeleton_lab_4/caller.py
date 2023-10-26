@@ -66,6 +66,7 @@ def update_students_emails():
         student.email = student.email.replace("university.com", "uni-students.com")
         student.save()
 
+# here again can I bulk-update? For instance use bulk update after the for cycle.
 
 def truncate_students():
     Student.objects.all().delete()
