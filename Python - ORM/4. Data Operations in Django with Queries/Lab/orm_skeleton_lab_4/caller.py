@@ -48,6 +48,8 @@ def add_students():
     )
     student_4.save()
 
+# Good idea is to create a list containing strudent information as a dictionary with necessary fields for each student, then create the objects using a for cycle on the list (Student.objects.create(**_student))
+# Bulk create method is another good option.
 
 def get_students_info():
     students = Student.objects.all()
