@@ -45,7 +45,7 @@ def delete_all_artifacts():
 # print(create_artifact('Crystal Amulet', 'Mystic Forest', 300,
 # 'A magical amulet believed to bring good fortune', True))
 
-#4. Location
+#3. Location
 
 
 def show_all_locations():
@@ -57,6 +57,7 @@ def show_all_locations():
 
     return "\n".join(collection)
 
+# or create a __str__ for the class with the information wanted then return "\n".join(str(l) for l in locations)
 
 def new_capital():
     locations = Location.objects.all()
