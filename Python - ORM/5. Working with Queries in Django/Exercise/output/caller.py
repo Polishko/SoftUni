@@ -184,6 +184,8 @@ def grand_chess_title_GM():
 
 def grand_chess_title_IM():
     ChessPlayer.objects.filter(rating__range=(2300, 2399)).update(title="IM")
+    # alternative
+    # ChessPlayer.objects.filter(Q(rating__gte=2300) & Q(rating__lte=2399)).update(title="IM")
 
 
 def grand_chess_title_FM():
@@ -209,6 +211,8 @@ def set_new_preparation_times():
     Meal.objects.filter(meal_type="Lunch").update(preparation_time="12 minutes")
     Meal.objects.filter(meal_type="Dinner").update(preparation_time="15 minutes")
     Meal.objects.filter(meal_type="Snack").update(preparation_time="5 minutes")
+
+# here also cases are better as a more optimised version
 
 
 # set_new_preparation_times()
