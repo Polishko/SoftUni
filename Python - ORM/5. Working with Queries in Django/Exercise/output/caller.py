@@ -48,7 +48,7 @@ def show_the_most_expensive_laptop():
 
 
 def bulk_create_laptops(*args):
-    Laptop.objects.bulk_create(args)
+    Laptop.objects.bulk_create(*args)
 
 # Create three instances of Laptop
 # laptop1 = Laptop(
@@ -88,6 +88,9 @@ def bulk_create_laptops(*args):
 def update_to_512_GB_storage():
     Laptop.objects.filter(brand__in=["Asus", "Lenovo"]).update(storage=512)
 
+    # alternative:
+    # Laptop.objects.filter(Q(brand="Lenovo") | Q(brand) = "Asus").update(storage=512)
+
 
 # update_to_512_GB_storage()
 
@@ -101,6 +104,17 @@ def update_operation_systems():
     Laptop.objects.filter(brand="Apple").update(operation_system="MacOS")
     Laptop.objects.filter(brand__in=["Dell", "Acer"]).update(operation_system="Linux")
     Laptop.objects.filter(brand="Lenovo").update(operation_system="Chrome OS")
+
+# to optimize this so that not to filter for each case we can use this alternative:
+# Laptop.objects.update(
+#     operation_system=Case(
+#     When(brand="Asus", then=Value("Windows"),
+#          .
+#          .
+#          .
+#          default=F("operation_system")  take current OP for another brand
+#     )
+# )
 
 # update_operation_systems()
 
