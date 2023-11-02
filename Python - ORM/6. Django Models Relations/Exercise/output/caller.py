@@ -247,10 +247,10 @@ return expired_drivers
 
 def register_car_by_owner(owner: object):
     registration = Registration.objects.filter(car_id__isnull=True).first()
-    all_registered_cars_id_list = [r.car_id for r in Registration.objects.all()]
-    car = Car.objects.exclude(id__in=all_registered_cars_id_list).first()
+    all_registered_cars_id_list = [r.car_id for r in Registration.objects.all()] # not necessary
+    car = Car.objects.exclude(id__in=all_registered_cars_id_list).first() # here in parantheses registration__isnull=True
 
-    registration.car_id = car.id
+    registration.car_id = car.id # also set the relation directly between objects
     registration.registration_date = timezone.now().date()
 
     registration.save()
@@ -262,5 +262,3 @@ def register_car_by_owner(owner: object):
 
 # print(register_car_by_owner(owner1))
 
-
-# 6. Car Admin Setup
