@@ -44,7 +44,7 @@ def show_all_authors_with_their_books():
     authors = Author.objects.all().order_by("id")
 
     result = []
-    for author in authors:
+    for author in authors: # to avoid two requests better to use prefetch -> next lectures
         if author.book_set.count() == 0:
             continue
 
