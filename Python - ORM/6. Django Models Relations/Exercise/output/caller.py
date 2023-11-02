@@ -142,8 +142,10 @@ def remove_song_from_artist(artist_name: str, song_title: str):
 
 def calculate_average_rating_for_product_by_name(product_name: str):
     searched_product = Product.objects.filter(name=product_name).first()
-    searched_reviews = Review.objects.filter(product=searched_product).all()
+    searched_reviews = Review.objects.filter(product=searched_product).all()  # or use directly searched_product.reviews.all() if you have related_name=reviews or use review_set
     return sum(review.rating for review in searched_reviews)/searched_reviews.count()
+
+# optimized alternative, next lectures: Use annotate and select all needed things at once using annotate
 
 
 # Calculate and print the average rating
