@@ -217,6 +217,11 @@ def get_drivers_with_expired_licenses(due_date):
     return info
 
 
+# beter alternative so that you dont cycle:
+expire_cutoff_date = due - timedelta(365)
+expired_drivers= Driver.objecs.filter(drivinglisence__issue_date__gt==expire_cutoff_date)
+return expired_drivers
+
 # Get drivers with expired licenses
 # drivers_with_expired_licenses = get_drivers_with_expired_licenses(date(2023, 1, 1))
 # for driver in drivers_with_expired_licenses:
