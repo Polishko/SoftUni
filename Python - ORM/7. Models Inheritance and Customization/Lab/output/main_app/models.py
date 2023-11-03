@@ -80,6 +80,8 @@ class ZooKeeper(Employee):
     )
 
     def clean(self):
+        def clean(self):
+            super().clean() # good to add if something in the base
 
         if self.specialty not in dict(self.SPECIALIZATION):
             raise ValidationError("Specialty must be a valid choice.")
