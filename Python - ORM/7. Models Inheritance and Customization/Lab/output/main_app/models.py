@@ -25,7 +25,11 @@ class Animal(models.Model):
         if ((today.month < self.birth_date.month)
                 or (today.month == self.birth_date.month and today.day < self.birth_date.day)):
             years -= 1
-
+        # you can use true false casting to int:
+        # today = date.today()
+        # age = today.year - self.birth_date.year - (
+                    #(today.month, today.day) < 
+                    #(self.birth_date.month, self.birth_date.day))
         return years
 
 
