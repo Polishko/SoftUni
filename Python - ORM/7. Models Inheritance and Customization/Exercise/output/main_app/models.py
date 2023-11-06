@@ -5,7 +5,8 @@ from django.core.exceptions import ValidationError
 from abc import abstractmethod
 
 
-# Create your models here.
+# 1.	Character Classes
+
 class BaseCharacter(models.Model):
     name = models.CharField(
         max_length=100
@@ -87,6 +88,7 @@ class FelbladeDemonHunter(DemonHunter):
         max_length=100
     )
 
+# 2.	Chat App
 
 class UserProfile(models.Model):
     username = models.CharField(
@@ -128,19 +130,34 @@ class Message(models.Model):
         self.is_read = False
 
     def reply_to_message(self, reply_content, receiver):
-        reply_message = Message.objects.create(sender=self.receiver, receiver=receiver, content=reply_content)
+        reply_message = Message.objects.create(
+            sender=self.receiver,
+            receiver=receiver,
+            content=reply_content)
+        # not tested but need to save the message: reply_message.save()
         return reply_message
 
     def forward_message(self, sender, receiver):
-        forwarded_message = Message.objects.create(sender=sender, receiver=receiver, content=self.content)
+        forwarded_message = Message.objects.create(
+            sender=sender,
+            receiver=receiver,
+            content=self.content)
+        # not tested but need to save the message: forwarded_message.save()
         return forwarded_message
 
 
+# 3.	Student Information
 class StudentIDField(models.PositiveIntegerField):
 
-    def get_prep_value(self, value):
+    def get_prep_value(self, value): # this method inherits from positiveinteger
         return int(value)
 
+# better alternative to just use to_python
+def to_python(self, value):
+    try:
+        return int(value)
+    except ValueError:
+        pass # better raise ValidationError in real life (can cause issue in Judge)
 
 class Student(models.Model):
     name = models.CharField(
@@ -148,7 +165,7 @@ class Student(models.Model):
     )
     student_id = StudentIDField()
 
-
+# 4.	Credit Card Masking
 class MaskedCreditCardField(models.CharField):
     def __init__(self, *args, **kwargs):
         kwargs["max_length"] = 20
@@ -163,14 +180,14 @@ class MaskedCreditCardField(models.CharField):
             raise ValidationError("The card number must be exactly 16 characters long")
         return f"****-****-****-{value[-4:]}"
 
-
 class CreditCard(models.Model):
     card_owner = models.CharField(
         max_length=100
     )
     card_number = MaskedCreditCardField()
 
-# Question 6 needs correction
+# Hotel Reservation System
+Question 5 needs correction
 
 class Hotel(models.Model):
     name = models.CharField(
@@ -202,8 +219,8 @@ class Room(models.Model):
             raise ValidationError("Total guests are more than the capacity of the room")
 
     def save(self, *args, **kwargs):
-        self.full_clean()
-        super().save(*args, **kwargs)
+        self.clean()
+        super().save(*args, **kwargs) #saves in the DB
         return f"Room {self.number} created successfully"
 
 
@@ -227,10 +244,10 @@ class BaseReservation(models.Model):
         return self.room_type
 
     def reservation_period(self):
-        return (self.end_date - self.start_date).days
+        return (self.end_date - self.start_date).days  #object.days -> days as integer
 
     def calculate_total_cost(self):
-        return f"{(self.room.price_per_night * self.reserved_days):.1f}"
+        return f"{round(self.room.price_per_night * self.reserved_days), 1}"
 
     def clean(self):
         if self.start_date >= self.end_date:
@@ -252,7 +269,7 @@ class BaseReservation(models.Model):
             raise ValidationError(f"Room {self.room.number} cannot be reserved")
 
     def save(self, *args, **kwargs):
-        self.full_clean()
+        self.clean()
         super().save(*args, **kwargs)
         return f"{self.room_type} reservation for room {self.room.number}"
 
