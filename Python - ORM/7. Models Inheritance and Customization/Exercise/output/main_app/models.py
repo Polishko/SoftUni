@@ -170,6 +170,7 @@ class CreditCard(models.Model):
     )
     card_number = MaskedCreditCardField()
 
+# Question 6 needs correction
 
 class Hotel(models.Model):
     name = models.CharField(
