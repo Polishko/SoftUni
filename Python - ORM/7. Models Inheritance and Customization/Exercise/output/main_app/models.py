@@ -186,8 +186,8 @@ class CreditCard(models.Model):
     )
     card_number = MaskedCreditCardField()
 
-# Hotel Reservation System
-Question 5 needs correction
+# 5. Hotel Reservation System
+
 
 class Hotel(models.Model):
     name = models.CharField(
@@ -220,11 +220,14 @@ class Room(models.Model):
 
     def save(self, *args, **kwargs):
         self.clean()
-        super().save(*args, **kwargs) #saves in the DB
+        super().save(*args, **kwargs)
         return f"Room {self.number} created successfully"
 
 
 class BaseReservation(models.Model):
+    class Meta:
+        abstract = True
+
     room = models.ForeignKey(
         to=Room,
         on_delete=models.CASCADE,
@@ -232,80 +235,59 @@ class BaseReservation(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
 
-    class Meta:
-        abstract = True
-
-    @property
-    def reserved_days(self):
-        return self.reservation_period()
-
-    @abstractmethod
-    def room_type(self):
-        return self.room_type
-
     def reservation_period(self):
-        return (self.end_date - self.start_date).days  #object.days -> days as integer
+        return (self.end_date - self.start_date).days
 
     def calculate_total_cost(self):
-        return f"{round(self.room.price_per_night * self.reserved_days), 1}"
+        cost = self.room.price_per_night * self.reservation_period()
+        return round(cost, 1)
+
+    @property
+    def is_available(self):
+        reservations = self.__class__.objects.filter(
+            room=self.room,
+            end_date__gte=self.start_date,
+            start_date__lte=self.end_date
+        )
+        return not reservations.exists()
 
     def clean(self):
         if self.start_date >= self.end_date:
             raise ValidationError("Start date cannot be after or in the same end date")
 
-        regular_reservations = self.room.regularreservation_set.all()
-        special_reservations = self.room.specialreservation_set.all()
-
-        def is_reserved_valid():
-            for reservation in regular_reservations:
-                if not (self.start_date > reservation.end_date or self.end_date < reservation.start_date):
-                    return False
-            for reservation in special_reservations:
-                if not (self.start_date > reservation.end_date or self.end_date < reservation.start_date):
-                    return False
-            return True
-
-        if not is_reserved_valid():
+        if not self.is_available:
             raise ValidationError(f"Room {self.room.number} cannot be reserved")
-
-    def save(self, *args, **kwargs):
-        self.clean()
-        super().save(*args, **kwargs)
-        return f"{self.room_type} reservation for room {self.room.number}"
 
 
 class RegularReservation(BaseReservation):
-    ROOM_TYPE = "Regular"
 
-    @property
-    def room_type(self):
-        return self.ROOM_TYPE
+    def save(self, *args, **kwargs):
+        super().clean()
+        super().save(*args, **kwargs)
+        return f"Regular reservation for room {self.room.number}"
 
 
 class SpecialReservation(BaseReservation):
-    ROOM_TYPE = "Special"
 
-    @property
-    def room_type(self):
-        return self.ROOM_TYPE
+    def save(self, *args, **kwargs):
+        super().clean()
+        super().save(*args, **kwargs)
+        return f"Special reservation for room {self.room.number}"
 
     def extend_reservation(self, days: int):
-        special_reservations = self.room.regularreservation_set.all()
-        regular_reservations = self.room.specialreservation_set.all()
+        reservations = SpecialReservation.objects.filter(
+            room=self.room,
+            end_date__gte=self.start_date,
+            start_date__lte=self.start_date + timedelta(days=days)
+        )
 
-        def check_valid_extension():
-            if self not in special_reservations or self not in regular_reservations:
-                return False
+        if reservations:
+            raise ValidationError("Error during extending reservation")
 
-            new_end_date = self.end_date + timedelta(days=days)
+        self.end_date += timedelta(days=days)
+        self.save()
 
-            for reservation in special_reservations:
-                if new_end_date <= reservation.end_date:
-                    return False
-            for reservation in regular_reservations:
-                if new_end_date <= reservation.end_date:
-                    return False
-            return True
+        return f"Extended reservation for room {self.room.number} with {days} days"
 
         if not check_valid_extension():
             raise ValidationError("Error during extending reservation")
