@@ -25,6 +25,9 @@ class Customer(models.Model):
         ]
     )
     email = models.EmailField()
+    # if you want custom message:
+    EmailField(error_messages="invalid": {"custom message"})
+    
     phone_number = models.CharField(
         max_length=13,
         validators=[
@@ -34,7 +37,11 @@ class Customer(models.Model):
             )
         ]
     )
+    #or use a re.match(regex_pattern) in a separate function kept in separate file for validators
+    
     website_url = models.URLField()
+    # if you want custom message:
+    URLField(error_messages="invalid": {"custom message"})
 
 
 # 2.	Media
