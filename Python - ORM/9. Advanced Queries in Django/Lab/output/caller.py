@@ -74,30 +74,30 @@ from django.db.models import Sum, F, Q
 
 # 2. Product Quantity Ordered
 def product_quantity_ordered():
-    # all_orders = (Product.objects.
-    #               annotate(sum_products=Sum("orderproduct__quantity")).
-    #               exclude(sum_products=None).
-    #               order_by("-sum_products")
-    # )
-    #
-    # result = []
-    # for product in all_orders:
-    #     result.append(f"Quantity ordered of {product.name}: {product.sum_products}")
-    #
-    # return "\n".join(result)
+    all_orders = (Product.objects.
+                  annotate(sum_products=Sum("orderproduct__quantity")).
+                  exclude(sum_products=None).
+                  order_by("-sum_products")
+    )
+    
+    result = []
+    for product in all_orders:
+        result.append(f"Quantity ordered of {product.name}: {product.sum_products}")
+    
+    return "\n".join(result)
 
     # alternative 1
-    # all_orders = (OrderProduct.objects.values("product_id").
-    #               annotate(total_products=Sum(F("quantity"))).
-    #               order_by("-total_products")
-    #               )
-    #
-    # result = []
-    # for order in all_orders:
-    #     product_name = Product.objects.filter(pk=order["product_id"]).first().name
-    #     result.append(f"Quantity ordered of {product_name}: {order['total_products']}")
-    #
-    # return "\n".join(result)
+    all_orders = (OrderProduct.objects.values("product_id").
+                  annotate(total_products=Sum(F("quantity"))).
+                  order_by("-total_products")
+                  )
+    
+    result = []
+    for order in all_orders:
+        product_name = Product.objects.filter(pk=order["product_id"]).first().name
+        result.append(f"Quantity ordered of {product_name}: {order['total_products']}")
+    
+    return "\n".join(result)
 
     # alternative 2
     all_orders = (OrderProduct.objects.prefetch_related("product").
