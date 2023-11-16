@@ -1,4 +1,4 @@
-from models import Recipe
+from models import Recipe, Chef
 from main import Session
 
 
@@ -147,3 +147,134 @@ def get_recipes_by_ingredient(ingredient_name: str):
 # for recipe in filtered_recipes:
 #     print(f"Recipe name - {recipe.name}")
 
+
+# 6.	Recipe Ingredients Swap Transaction
+# Delete all objects (recipes) from the database
+# with Session() as session:
+#     session.query(Recipe).delete()
+#     session.commit()
+#
+# # Create the first recipe
+# create_recipe("Pancakes", "Flour, Eggs, Milk", "Mix and cook on a griddle")
+#
+# # Create the second recipe
+# create_recipe("Waffles", "Flour, Eggs, Milk, Baking Powder", "Mix and cook in a waffle iron")
+
+
+def swap_recipe_ingredients_by_name(first_recipe_name: str, second_recipe_name: str):
+    session = Session()
+    transaction = session.begin()
+
+    try:
+        recipe_1 = session.query(Recipe).filter_by(name=first_recipe_name).first()
+        recipe_2 = session.query(Recipe).filter_by(name=second_recipe_name).first()
+        recipe_1.ingredients, recipe_2.ingredients = recipe_2.ingredients, recipe_1.ingredients
+        transaction.commit()
+    except Exception as e:
+        transaction.rollback()
+        print("An error occurred:", str(e))
+    finally:
+        session.close()
+
+
+# Now, swap their ingredients
+# swap_recipe_ingredients_by_name("Pancakes", "Waffles")
+# with Session() as session:
+#     recipe1 = session.query(Recipe).filter_by(name="Pancakes").first()
+#     recipe2 = session.query(Recipe).filter_by(name="Waffles").first()
+#     print(f"Pancakes ingredients {recipe1.ingredients}")
+#     print(f"Waffles ingredients {recipe2.ingredients}")
+
+# 7.	Model Chef
+# new model created in models.py
+
+# 8.	Extend the Recipe Model
+# modified model in models.py
+
+# 9.	Recipe and Chef Relations
+# Create a recipe instance for Bulgarian Musaka
+# musaka_recipe = Recipe(
+#     name="Musaka",
+#     ingredients="Potatoes, Ground Meat, Onions, Eggs, Milk, Cheese, Spices",
+#     instructions="Layer potatoes and meat mixture, pour egg and milk mixture on top, bake until golden brown."
+# )
+#
+# # Create a Bulgarian chef instances
+# bulgarian_chef1 = Chef(name="Ivan Zvezdev")
+# bulgarian_chef2 = Chef(name="Uti Buchvarov")
+#
+# with Session() as session:
+    # Add the recipe instance to the session
+#     session.add(musaka_recipe)
+#
+#     # Add the chef instances to the session
+#     session.add(bulgarian_chef1)
+#     session.add(bulgarian_chef2)
+#
+#     # Commit the changes to the database
+#     session.commit()
+
+def relate_recipe_with_chef_by_name(recipe_name: str, chef_name: str):
+    with Session() as session:
+        recipe = session.query(Recipe).filter_by(name=recipe_name).first()
+        chef = session.query(Chef).filter_by(name=chef_name).first()
+
+        if recipe and recipe.chef_id:
+            raise Exception(f"Recipe: {recipe_name} already has a related chef")
+        if not recipe or not chef:
+            raise Exception(f"Recipe or chef not found")
+        recipe.chef_id = chef.id
+        session.commit()
+        return f"Related recipe {recipe_name} with chef {chef_name}"
+
+
+# print(relate_recipe_with_chef_by_name("Musaka", "Ivan Zvezdev"))
+# print(relate_recipe_with_chef_by_name("Musaka", "Chef Uti"))
+
+
+# 10. Chef and Recipe Integration
+# Delete all objects (recipes and chefs) from the database
+# with Session() as session:
+#     session.query(Recipe).delete()
+#     session.query(Chef).delete()
+#     session.commit()
+#
+# # Create chef instances
+# chef1 = Chef(name="Gordon Ramsay")
+# chef2 = Chef(name="Julia Child")
+# chef3 = Chef(name="Jamie Oliver")
+# chef4 = Chef(name="Nigella Lawson")
+
+# Create recipe instances associated with chefs
+# recipe1 = Recipe(name="Beef Wellington", ingredients="Beef fillet, Puff pastry, Mushrooms, Foie gras", instructions="Prepare the fillet and encase it in puff pastry.")
+# recipe1.chefs = chef1
+#
+# recipe2 = Recipe(name="Boeuf Bourguignon", ingredients="Beef, Red wine, Onions, Carrots", instructions="Slow-cook the beef with red wine and vegetables.")
+# recipe2.chefs = chef2
+#
+# recipe3 = Recipe(name="Spaghetti Carbonara", ingredients="Spaghetti, Eggs, Pancetta, Cheese", instructions="Cook pasta, mix ingredients.")
+# recipe3.chefs = chef3
+#
+# recipe4 = Recipe(name="Chocolate Cake", ingredients="Chocolate, Flour, Sugar, Eggs", instructions="Bake a delicious chocolate cake.")
+# recipe4.chefs = chef4
+#
+# recipe5 = Recipe(name="Chicken Tikka Masala", ingredients="Chicken, Yogurt, Tomatoes, Spices", instructions="Marinate chicken and cook in a creamy tomato sauce.")
+# recipe5.chefs = chef3
+#
+# with Session() as session:
+#     session.add_all([chef1, chef2, chef3, chef4, recipe1, recipe2, recipe3, recipe4, recipe5])
+#     session.commit()
+
+
+def get_recipes_with_chef():
+    with Session() as session:
+        recipes__with_chef = session.query(Recipe).filter(Recipe.chef_id.isnot(None)).all()
+
+        result = []
+        for recipe in recipes__with_chef:
+            result.append(f"Recipe: {recipe.name} made by chef: {recipe.chefs.name}")
+
+        return "\n".join(result)
+
+
+# print(get_recipes_with_chef())
