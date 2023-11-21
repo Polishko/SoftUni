@@ -118,10 +118,10 @@ def get_profiles(search_string=None):
     profiles = (Profile.
                 objects.prefetch_related("profile_orders").
                 filter(query).
-                annotate(num_orders=Count("profile_orders")).
+                annotate(num_orders=Count("profile_orders")). #profile.orders can be counted in the last step as profile.order.count()
                 order_by("full_name"))
 
-    if not profiles:
+    if not profiles: # also maybe no need for this because if no profiles the join will return ""
         return ""
 
     result = []
@@ -154,23 +154,33 @@ def get_loyal_profiles():
 
 
 def get_last_sold_products():
-    order = (Order.objects.
-             prefetch_related("products").
-             order_by("-creation_date").
-             first())
+    last_order = Order.objects.prefetch_related("products").last()
 
-    if order is None:
+    if last_order is None or not last_order.products.exists():
         return ""
 
-    if order:
-        products = (order.
-                    products.order_by("name").
-                    values_list("name", flat=True))
-        if products:
-            product_list = ", ".join(products)
-            return f"Last sold products: {product_list}"
+    products_list = [product.name for product in last_order.products.all()]
 
-        return ""
+    return f"Last sold products: {", ".join(product_list)}"
+
+
+    # order = (Order.objects.
+    #          prefetch_related("products").
+    #          order_by("-creation_date"). # redundant? use last() directly
+    #          first())
+
+    # if order is None:
+    #     return ""
+
+    # if order: # no need for this line
+    #     products = (order.
+    #                 products.order_by("name").
+    #                 values_list("name", flat=True))
+    #     if products:
+    #         product_list = ", ".join(products)
+    #         return f"Last sold products: {product_list}"
+
+    #     return "" # you can also check this above next to if order is None and if not order.products.exists()
 
 
 # date_time = datetime(2023, 11, 19, 9, 47, 54, 203769, timezone.utc)
@@ -188,7 +198,7 @@ def get_top_products():
                 filter(num_orders__gt=0).
                 order_by("-num_orders", "name"))[:5]
 
-    if not products or not Order.objects.all:
+    if not products or not Order.objects.all: # this second part is redundant, you already check this with num_prders__gt=0
         return ""
 
     result = [f"Top products:"]
@@ -206,9 +216,9 @@ def apply_discounts():
               prefetch_related("products").
               annotate(num_products=Count("products")).
               filter(num_products__gt=2).
-              filter(is_completed=False))
+              filter(is_completed=False)) # add this in the first filter
 
-    discounted_orders = orders.update(total_price=F("total_price") * 0.90)
+    discounted_orders = orders.update(total_price=F("total_price") * 0.90) # this could be done above directly
 
     return f"Discount applied to {discounted_orders} orders."
 
