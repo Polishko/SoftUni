@@ -33,7 +33,7 @@ class Product(IsAvailableMixin, CreationMixin):
         ]
     )
     in_stock = models.PositiveIntegerField(
-        validators=[
+        validators=[                    # no need, PositiveIntegerField checks this
             MinValueValidator(0)
         ]
     )
