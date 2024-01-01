@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital@1&family=Great+Vibes&family=Merriweather:wght@700&family=Raleway:wght@100;400&display=swap');
+* reset.css */
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+/* typography.css */
+
+html {
+    font-family: Helvetica, sans-serif;
+}
+
+body, input, textarea {
+    font: inherit
+  }
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Garamond;
+    margin-bottom: 0.5em;
+    margin-top: 1.5em;
+}
+
+.site-content p {
+    margin-bottom: 1.5em;
+}
+
+.site-title {
+    font-weight: bold;
+    font-size: 30px;
+    padding-bottom: 0.3em;
+}
+
+/* layout.css */
+.site {
+    margin: 2em auto;
+    max-width: 60em;
+}
+
+.site-header {
+    position: relative;
+    /* border: 1px solid black; */
+    height: 34px;
+}
+
+
+
+hr {
+    margin-top: 1em;
+    background-color: black;
+    height: 3px;
+}
+
+/* navigation.css */
+.main-nav {
+    position: absolute;
+    bottom: 0%;
+    right: 50%;
+    /* border: 1px solid black; */
+    transform: translateY(-25%);
+}
+
+.main-nav li {
+    list-style: none outside;
+}
+
+.main-nav > ul > li {
+    display: inline-block;
+}
+
+.main-nav a {
+    color: lightseagreen;
+    text-decoration: none;
+    padding: 0 0.5em;
+}
+    
