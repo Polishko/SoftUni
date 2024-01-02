@@ -39,7 +39,6 @@ html {
 }
 
 .card img {
-  /* display: inline-block; */
   width: 100%;;
   padding: 2em;
 }
@@ -52,11 +51,7 @@ html {
   height: 50vh;
 }
 
-.img {
-  position: relative;
-}
-.img i {
-  /* display: block; */
+.viewport span {
   position: absolute;
   bottom: 0%;
   right: 0%;
