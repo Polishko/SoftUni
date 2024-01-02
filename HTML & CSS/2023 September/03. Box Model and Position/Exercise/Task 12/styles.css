@@ -1,0 +1,142 @@
+/* reset.css */
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+*, *::after, *::before {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+/* typography.css */
+html {
+    line-height: 1.5;
+}
+
+body {
+    background-color: rgb(238, 238, 238);
+}
+
+blockquote {
+    font-family: Georgia, serif;
+    font-size: small;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font: 1em/1.2, Georgia, serif;
+}
+
+/* layout.css */
+.site {
+    padding: 2em;
+    width: 140ch;
+    position: relative;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+}
+
+.article-section {
+    width: 45em;
+}
+.article-section:last-child {
+    padding-bottom: 1em;
+}
+
+.site-title {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+blockquote {
+    border-left: 4px solid #CCC;
+    padding-left: 2em;
+    padding-right: 1em;
+    font-style: italic;
+    opacity: 0.6;
+    float:right;
+    width:48%;
+    margin-left: 0.5em;
+    margin-right: 2em;
+    margin-top: 1em;
+  }
+
+blockquote:last-child {
+    padding-bottom: 6em;
+}
+
+.author {
+    text-align: right;
+}
+
+aside {
+    position: absolute;
+    top: 8%;
+    left: 73%;
+}
+
+hr {
+    height: 3px;
+    color: black;
+    background: black;
+}
+
+/* navigation.css */
+.site-nav ul {
+    list-style: none;
+    position: absolute;
+    top: 3.5%;
+    left:73%;
+}
+
+.site-nav li {
+    display: inline-block;
+    padding-right: 1em;
+}
+
+.site-nav a {
+    display: block;
+    text-decoration: none;
+    color: rgb(0, 102, 0);
+}
+
+.aside-nav li {
+    list-style-position: inside;
+    padding-left: 0.5em;
+}
+
+.aside-nav a {
+    text-decoration: none;    color: rgb(0, 186, 0);
+}
+
+/* images.css */
+image {
+    /* display: inline-block; */
+    box-shadow: rgba(0, 0, 0, 0.25);
+    background-color: rgb(255, 255, 255);
+}
+
+#one {
+    float: right;
+    margin-left: 1em;
+    margin-top: 0.5em;
+    border: 1.5px solid black;
+    padding: 0.5em;
+}
+
+#two {
+    float: left;
+    margin-right: 1em;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    border: 1.5px solid black;
+    padding: 0.5em;
+}
+  
