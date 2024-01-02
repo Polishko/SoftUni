@@ -39,7 +39,7 @@ html {
 }
 
 .card img {
-  display: inline-block;
+  /* display: inline-block; */
   width: 100%;;
   padding: 2em;
 }
@@ -56,7 +56,7 @@ html {
   position: relative;
 }
 .img i {
-  display: block;
+  /* display: block; */
   position: absolute;
   bottom: 0%;
   right: 0%;
