@@ -1,0 +1,70 @@
+@import url(https://use.fontawesome.com/releases/v5.6.3/css/all.css);
+
+body {
+  margin: 0;
+}
+
+.viewport {
+  /* border: 1px solid red; */
+  height: 100vh;
+  position: relative;
+}
+
+.viewport:nth-of-type(1) {
+  background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 62%);
+}
+
+.viewport:nth-of-type(2) {
+  background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 31%, rgba(252,176,69,1) 100%);
+}
+
+.card {
+  /* border: 1px solid black; */
+  width: 10em;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  border: 1px solid rgb(255, 255, 255, 0.5);
+  box-shadow: 0 0 1em 0.2em rgb(0, 0, 0, 0.2);
+}
+
+.card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.card .inner-shadow {
+  display: block;
+  position: absolute;
+  background-color: rgb(0, 0, 0, 0.5);
+  top: 0%;
+  left: 0%;
+  right: 0%;
+  bottom: 0%;
+  box-shadow: 0 0 1em 0.5em rgb(0, 0, 0, 0.5) inset;
+  opacity: 1;
+  transition: opacity 0.3s ease-in;
+}
+
+.card:hover .inner-shadow {
+  opacity: 0;
+}
+
+.viewport > .card > span {
+  display: block;
+  position: absolute;
+  color: white;
+}
+
+.image-1 {
+  top: 80%;
+  left: 85%;
+}
+
+.image-2 {
+  top: 90%;
+  left: 85%;
+}
