@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article list with Flexbox</title>
+    <style>
+           * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 2em;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        .list-container {
+            display: flex;
+            border: 2px solid black;
+            padding: 2em;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2em;
+        }
+
+        .list-container::before,
+        .list-container::after {
+            display: block;
+            content: "";
+            flex-basis: 300px;
+            flex-grow: 1;
+            flex-shrink: 1;
+            order: 1000;
+        }
+        
+
+        article {
+            border: 2px solid green;
+            padding: 1em;
+            flex-basis: 300px;
+            flex-grow: 1;
+            flex-shrink: 1;
+        }
+
+        article header {
+            color: green;
+        }
+
+    </style>
+</head>
+<body>
+    <section class="list-container">
+
+        <article>
+            <header>
+                <h3>Article header is here and interesting</h3>
+            </header>
+
+            <section>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur doloremque earum incidunt impedit sunt voluptatum suscipit ullam unde, facilis veritatis distinctio dolor eveniet. Ea nemo commodi eveniet iusto dolores laudantium.</p>
+            </section>
+        </article>
+
+        <article>
+            <header>
+                <h3>Article header is here and interesting</h3>
+            </header>
+
+            <section>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur doloremque earum incidunt impedit sunt voluptatum suscipit ullam unde, facilis veritatis distinctio dolor eveniet. Ea nemo commodi eveniet iusto dolores laudantium.</p>
+            </section>
+        </article>
+
+        <article>
+            <header>
+                <h3>Article header is here and interesting</h3>
+            </header>
+
+            <section>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur doloremque earum incidunt impedit sunt voluptatum suscipit ullam unde, facilis veritatis distinctio dolor eveniet. Ea nemo commodi eveniet iusto dolores laudantium.</p>
+            </section>
+        </article>
+
+        <article>
+            <header>
+                <h3>Article header is here and interesting</h3>
+            </header>
+
+            <section>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur doloremque earum incidunt impedit sunt voluptatum suscipit ullam unde, facilis veritatis distinctio dolor eveniet. Ea nemo commodi eveniet iusto dolores laudantium.</p>
+            </section>
+        </article>
+
+    </section>
+    
+</body>
+</html>
