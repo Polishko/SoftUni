@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Layout with Flexbox</title>
+    <style>
+
+        * {
+            /* box-sizing: border-box; */
+        }
+
+        body {
+            margin: 0;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        .site {
+            border: 2px solid #000;
+            padding: 2em;
+            display: flex;
+            flex-wrap: wrap;
+            /* gap: 2em; */
+         }
+
+        .site > * {
+            border: 2px solid green;
+            padding: 2em;
+         }
+
+        .site-header {
+            flex-basis: 100%;
+        }
+
+        .site-content {
+            flex-grow: 2;
+            /* margin-right: 2em; */
+        }
+
+        .site-sidebar {
+            flex-grow: 1;
+        }
+
+        .site-footer {
+            margin-top: auto;
+            flex-basis: 100%;
+        }
+
+        
+
+    </style>
+</head>
+<body>
+    <div class="site">
+
+        <header class="site-header">
+            <p class="site-title"><a href="#">Header</a></p>
+        </header>
+
+        <main class="site-content">
+            <p>Main content</p>
+        </main>
+
+        <aside class="site-sidebar">
+            <p>Sidebar</p>
+        </aside>
+
+        <footer class="site-footer">
+            <p>Footer</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
