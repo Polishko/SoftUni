@@ -1,0 +1,39 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+}
+
+.site-content {
+	background-color: #EEE;
+	padding: 5rem;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2rem;
+	min-height: 100vh;
+}
+
+.site-content > * {
+	padding: 2rem;
+	background-color: #FFF;
+	border-radius: 0.4rem;
+	color: #000;
+}
+
+.site-header, .site-footer {
+	flex-basis: 100%;
+}
+
+.site-main {
+	flex-grow: 8;
+	flex-shrink: 1;
+	flex-basis: 40rem;
+}
+
+.site-sidebar {
+	flex-grow: 2;
+	flex-shrink: 1;
+	flex-basis: 20rem;
+}
