@@ -1,13 +1,8 @@
 .flex-container {
   display: flex;
+  justify-content: center;
   background-color: DodgerBlue;
-  width: 225px;
-  height: 200px;
-  flex-wrap: wrap;
-}
-
-#box2 {
-  background-color: pink;
+  width: 300px;
 }
 
 .flex-container > div {

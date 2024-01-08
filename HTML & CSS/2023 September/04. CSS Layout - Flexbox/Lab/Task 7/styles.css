@@ -1,21 +1,10 @@
 .flex-container {
   display: flex;
   background-color: DodgerBlue;
-  width: 225px;
-  height: 150px;
+  width: 220px;
+  height: 260px;
   flex-wrap: wrap;
-}
-
-#box1 {
-  background-color: pink;
-}
-
-#box2 {
-  background-color: lightgreen;
-}
-
-#box3 {
-  background-color: lightblue;
+  gap: 70px;
 }
 
 .flex-container > div {

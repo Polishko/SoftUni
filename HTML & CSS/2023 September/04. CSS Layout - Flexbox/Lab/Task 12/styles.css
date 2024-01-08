@@ -1,9 +1,24 @@
 .flex-container {
   display: flex;
   background-color: DodgerBlue;
-  width: 220px;
-  height: 260px;
+  width: 225px;
+  height: 150px;
   flex-wrap: wrap;
+}
+
+#box1 {
+  background-color: pink;
+  order: 2;
+}
+
+#box2 {
+  background-color: lightgreen;
+  order: 0;
+}
+
+#box3 {
+  background-color: lightblue;
+  order: 1;
 }
 
 .flex-container > div {
