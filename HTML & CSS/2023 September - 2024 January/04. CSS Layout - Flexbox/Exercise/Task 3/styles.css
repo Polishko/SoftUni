@@ -1,0 +1,80 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+    font-family: Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-width: 15vw;
+    height: 35rem;
+    gap: 0.5em;
+    padding: 2em;
+}
+
+span { 
+    border: 1px solid black;
+    flex-basis: 2px;
+    min-width: 5.5vw;
+    min-height: 4vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#one {
+    order: 8;
+}
+
+#two {
+    order: 1;
+}
+
+#three {
+    order: 9;
+}
+
+#four {
+    order: 3;
+}
+
+#five {
+    order: 7;
+}
+
+#six {
+    order: 6;
+}
+
+#seven {
+    order: 10;
+}
+
+#eight {
+    order: 4;
+}
+
+#nine {
+    order: 5;
+}
+
+#ten {
+    order: 11;
+}
+
+#eleven {
+    order: 0;
+}
+
+#twelve {
+    order: 2;
+}
+
+
+/* to arrange the letters, use the flex property order */
