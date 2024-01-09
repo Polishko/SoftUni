@@ -1,0 +1,117 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: rgb(238, 238, 238);
+    margin: 4em auto;
+    width: 57vw;
+}
+
+h1, h2 {
+    padding-bottom: 1em;
+}
+
+main, aside {
+    margin-top: 2em;
+}
+
+main {
+    flex-basis: 75%;
+    padding-right: 6em;
+}
+
+aside {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    flex-basis: 25%;
+}
+
+blockquote, h1, h2 {
+    font-family: Georgia, serif;
+}
+
+blockquote {
+    padding-left: 1em;
+    color: rgba(64, 64, 64, 0.5);
+    font-style: italic;
+    flex-basis: 50%;
+}
+
+ul {
+    list-style-position: inside;
+    padding-left: 1em;
+}
+
+a {
+    color: rgb(0, 153, 0);
+    text-decoration: none;
+}
+
+header {
+    display: flex;
+    justify-content: flex-start;
+    flex-basis: 100%;
+    border-bottom: 2px solid black;
+    padding-bottom: 1.5em;
+}
+
+img {
+    background-color: rgb(255, 255, 255);
+    border: 3px solid black;
+    padding: 0.5em;
+}
+
+#one {
+    float: right;
+    margin-left: 1em;
+    margin-bottom: 1em;
+}
+
+#two {
+    float: left;
+    margin-right: 1em;
+    margin-bottom: 1.5em;
+}
+
+.page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.site-title {
+    text-transform: uppercase;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.site-sidebar > section > p {
+    padding-bottom: 0.5em;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.site-content p {
+    margin-bottom: 1.5em;
+}
+
+.site-content > p:last-of-type {
+    margin-bottom: 3em;
+}
+
+.blockquote-div {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-bottom: 1em;
+}
+
+.blockquote-div > p {
+    border-right: 3px solid rgba(192, 192, 192, 0.5);
+    padding-right: 0.5em;
+    flex-basis: 50%;
+}
