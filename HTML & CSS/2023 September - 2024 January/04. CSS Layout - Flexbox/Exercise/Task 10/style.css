@@ -1,0 +1,54 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(238, 238, 238);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+img {
+    display: block;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+#two > img {
+    padding: 0em 0.7em;
+    background: black;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.7)
+}
+
+.container {
+    display: flex;
+    flex-basis: 55%;
+    margin: 10em;
+    gap: 1em;
+    align-items: center;
+    height: 40%;
+    border-radius: 10px;
+}
+
+.container span {
+    height: 100%;
+}
+
+#one, #three, #four {
+    flex-grow: 1;
+    flex-basis: 12%;
+}
+
+#two {
+    flex-grow: 7;
+    flex-basis: 64%;
+}
+
