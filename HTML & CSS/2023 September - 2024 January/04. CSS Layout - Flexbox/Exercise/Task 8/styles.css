@@ -1,0 +1,49 @@
+* {
+    box-sizing: border-box;
+}
+
+body, p {
+    margin: 0;
+}
+
+html {
+    font-family: Helvetica, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background: rgb(238, 238, 238);
+    min-height: 100vh;
+    /* flex-wrap: wrap; */
+}
+
+h2 {
+    font-family: Georgia, serif;
+}
+
+main > p {
+    padding-bottom: 1.5em;
+}
+
+footer {
+    color: rgb(255, 255, 255);
+    background-color: rgb(102, 102, 102) ;
+    margin-top: auto;
+}
+
+header, footer, main {
+    padding: 1.5em 2em 0em 2em;
+    /* border: 1px solid black; */
+    flex-grow: 1;
+}
+
+header > p {
+    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+main > p:last-child {
+    padding-bottom: 2em;
+}
