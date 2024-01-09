@@ -1,0 +1,49 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+}
+
+p, ul {
+    padding: inherit;
+    margin: inherit;
+}
+
+body {
+    margin: 2.5em auto;
+    width: 65vw;
+}
+
+header {
+    border-bottom: 2px solid rgb(0, 0, 0);
+    display: flex;
+    padding-bottom: 1em;
+}
+
+ul {
+    display: flex;
+    list-style: none;
+    justify-content: flex-end;
+    gap: 1.5em;
+}
+
+a {
+    color: rgb(0, 153, 0);
+    text-decoration: none;
+}
+
+header > * {
+    flex-grow: 1;
+}
+
+.site-title {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+main > p {
+    padding-bottom: 1em;
+}
