@@ -1,0 +1,52 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font: 16px/1.5 Verdana, sans-serif;
+}
+
+body {
+    padding: 4em;
+}
+
+p {
+    padding-bottom: 1.5em;
+}
+
+h2 {
+    font-family: Georgia, sans-serif;
+}
+
+header {
+    border-bottom: 2px solid rgb(0, 0, 0);
+    display: flex;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    justify-content: space-between;
+}
+
+header > h1:nth-of-type(1) {
+    text-transform: uppercase;
+}
+
+/* nav {
+    margin-left: auto; one way to push nav element to left end, or put space between to header
+} */
+
+nav ul {
+    display: flex;
+    gap: 1em; 
+}
+
+nav ul li {
+    display: block;
+    list-style: none outside;
+}
+
+nav a {
+    color: rgb(0, 153, 0);
+    text-decoration: none;
+}
