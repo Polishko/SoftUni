@@ -1,0 +1,64 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    background-color: #DDD;
+    padding: 3em;
+}
+
+.gallery {
+    display: flex;
+
+}
+
+.gallery ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    max-width: 60em;
+}
+
+.gallery li {
+    flex: 1 1 200px;   
+    display: flex;
+    list-style: none;
+    align-items: center;
+    border: 6px solid black;
+    background-color: white;
+    padding: 2em 1em;
+    box-shadow: 
+        0 0 1.2em 0.2em rgba(0, 0, 0, 0.3),
+        0 0 0.3em 0.1em rgba(0, 0, 0, 0.3) inset
+    ;
+}
+
+/* the flex setting, allows the li which takes the size of its content to grow and shrink but keep a min size*/
+
+.gallery img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* if img is inline, html keeps small space under */
+/* height auto to keep img resolution */
+
+.gallery::before,
+.gallery::after {
+    display: block;
+    content: "";
+    flex: 1 1 200px;
+    order: 1000; 
+}
+
+/* pseudoelements prevented last li taking full space but doesnt work for any column number,
+ best solved with grid*/
+
+/* So in the document we set the li min size we allow it to shrink and grow,
+ we set image width to be always 100% of its container so it fills it and also if we set max-width for 
+ ul section in the gallery we can control easily how many images we want as columns*/
