@@ -15,41 +15,54 @@ body {
     align-items: center;
 }
 
-h2 {
-    /* flex-basis: 100%; */
-}
-
 section, footer {
     padding: 1em;
+}
+
+footer {
+    border-top: 1px solid rgb(167, 183, 199);
+    margin-top: auto;
+    height: 70px;
 }
 
 img {
     display: block;
     width: 100%;
     object-fit: cover;
+    border-radius: 10px 10px 0px 0px;
 }
 
 [class^="cards-"] {
     display: flex;
     flex-direction: column;
     height: 100%;
-    width:60%;
-    border: 1px solid black;
+    width:50%;
     justify-content: center;
     gap: 2em;
+    margin-bottom: 2em;
 }
 
 .card {
     background-color: white;
-    border: 1px solid black;
+    border: 1px solid rgb(167, 183, 199);
+    border-radius: 10px;
+    width: 250px;
+    height: auto;
 }
 
 .collection {
     display: flex;
     justify-content: center;
     gap: 1em;
-    /* flex-basis: 100%; */
 }
+
+[class*="masonry"] > .collection  {
+   gap: 2em;
+}
+
+[class*="flex"] > .collection  {
+    flex-direction: column;
+ }
 
 
 [class*="masonry"] > .collection > .section {
@@ -59,12 +72,20 @@ img {
     gap: 2em;
 }
 
+
 [class*="flex"] > .collection > .section {
     display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 2em;
 }
 
+[class*="flex"] > .collection > .section > .card {
+    display: flex;
+    flex-direction: column;
+    height: 680px;
+}
 
-
-
-
-
+[class*="flex"] > .collection > .section > .card > section {
+    flex-grow: 1;
+}
