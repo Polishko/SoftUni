@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #DDD;
+}
+
+/* in order to be able to center items on the cross axis the body must be able to stretch 
+to cover given height, otherwise it adapts to the height of its content and the content
+doesn't appear in the middle of the browser */
+
+.card {
+    border: 1px solid black;
+    background-color: white;
+    max-width: 20em;
+    padding: 2em;
+    border-radius: 0.5em;
+    box-shadow: 0 0 1em 0.5em rgb(0, 0, 0, 0.2);
+}
+
+/* 
+
+p {
+    padding: 0;
+    margin: 0;
+}
+
+
+
+.card-title {
+    font-size: 20px;
+    font-weight: bold;
+} */
