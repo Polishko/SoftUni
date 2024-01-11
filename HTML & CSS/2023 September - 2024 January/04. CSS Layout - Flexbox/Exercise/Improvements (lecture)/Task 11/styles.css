@@ -1,0 +1,124 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #EEE;
+}
+
+.cards-layout {
+    margin: 2em auto;
+    max-width: 50em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    /* align-items: flex-start; */
+}
+
+.card {
+    flex: 0 0 200px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 0.3em;
+    border: 2px solid #ccc;
+    box-shadow: 0 0 1em 0.2em rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.card section,
+.card footer {
+    padding: 1em 1.2em;
+}
+
+.card section {
+    flex: 1 0 auto;
+}
+
+.card footer {
+    border-top: 2px solid #CCC;
+}
+
+/*
+section, footer {
+    padding: 1em;
+}
+
+footer {
+    border-top: 1px solid rgb(167, 183, 199);
+    margin-top: auto;
+    height: 70px;
+}
+
+img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px 10px 0px 0px;
+}
+
+[class^="cards-"] {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width:50%;
+    justify-content: center;
+    gap: 2em;
+    margin-bottom: 2em;
+    margin-top: 2em;
+}
+
+.card {
+    background-color: white;
+    border: 1px solid rgb(167, 183, 199);
+    border-radius: 10px;
+    width: 250px;
+    height: auto;
+}
+
+.collection {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+
+[class*="flex"] > .collection  {
+    flex-direction: column;
+    gap: 2em;
+ }
+
+
+[class*="masonry"] > .collection > .section {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 2em;
+}
+
+
+[class*="flex"] > .collection > .section {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 2em;
+}
+
+[class*="flex"] > .collection > .section > .card {
+    display: flex;
+    flex-direction: column;
+    height: 680px;
+}
+
+[class*="flex"] > .collection > .section > .card > section {
+    flex-grow: 1;
+} */
+ 
