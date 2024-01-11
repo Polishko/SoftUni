@@ -1,0 +1,60 @@
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #DDD;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* .container {
+    display: flex;
+} */
+
+.container ul {
+    display: flex;
+    gap: 1em;
+}
+
+.container li {
+    display: block;
+    width: 10em;
+    height: 25em;
+    overflow: hidden;
+    border-radius: 0.5em;
+    box-shadow: 0 0 1em 0,5em rgba(0, 0, 0, 0.2em);
+    transition: width 0.3s ease-in-out;
+}
+/* If we want to be able to cut images we need to put them in separate containers */
+/* Instead of using object fit on the image selector the here the container li's overflow setting will cut the image */
+
+.container img {
+    display: block;
+    height: 100%;
+    width: auto;
+    transform: translateX(-50%);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* last two lines: we positioned the image in the center of container so its not cut from one side then the transition is for the img hower below
+which resets the image to its original position in its container*/
+
+/* .container li.open {
+    width:30em;
+} */
+
+/* You can also use flex grow for this above */
+
+.container li:hover {
+    width: 35em;
+}
+
+.container li:hover img {
+    transform: translateX(0);
+}
