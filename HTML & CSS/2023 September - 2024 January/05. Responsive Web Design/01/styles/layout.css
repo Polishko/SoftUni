@@ -1,0 +1,52 @@
+/* The main structure of the site */
+body {
+    padding: 2em;
+}
+
+.site {
+    /* max-width: 50em;
+    margin: 0 auto;  */
+    /*put site in middle of browser*/
+    /*Later we put them only on main part of site*/
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column; /*Otherwise header main and footer elements are put next to each other
+    in a row */ 
+}
+
+.site-header {
+    display: flex;
+    justify-content: space-between; /*put nav in other end*/
+    align-items: center; /*center items vertically*/
+    background: #3c6382; /*from ui colors site*/
+    color: #fff;
+    border-radius: 0.3em;
+    padding: 0.5em 1.5em;
+    position: relative; /*added for the responsive form nav in the end*/
+}
+
+.site-header a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.site-title {
+    font-size: 2em;
+    font-weight: bold;
+    padding: 0; /*remove padding that comes form its typography*/
+}
+
+.site-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: #3c6382;
+    color: #fff;
+    padding: 0.5em 1em;
+    border-radius: 0.3em;
+}
+
+.site-content {
+    max-width: 50em;
+    margin: 0 auto; 
+}

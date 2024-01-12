@@ -1,0 +1,13 @@
+/* The main structure of the site */
+body {
+    padding: 2em;
+}
+
+.site {
+    max-width: 50em;
+    margin: 0 auto; /*put site in middle of browser*/
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column; /*Otherwise header main and footer elements are put next to each other
+    in a row */ 
+}

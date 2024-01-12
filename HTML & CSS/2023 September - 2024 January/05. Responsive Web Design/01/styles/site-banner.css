@@ -1,0 +1,59 @@
+.site-banner {
+    overflow: hidden;
+    border-radius: 0.3em;
+    margin-top: 0.3em;
+    position: relative;
+}
+
+.site-banner::before,
+.site-banner::after {
+    /*these are before and after the content not the element; they are inside the element
+    purpose: create the necessary container 'context' for any image that may come before or
+    after the current html element*/
+    display: block;
+    content: '';
+    /* background: red; */
+}
+
+.site-banner::before {
+    padding-top: 56.23%;
+    /* 16 9 aspect ratio 
+    set this so that any image will
+    respect it*/
+}
+
+.site-banner::after {
+    /*use the after element to appy effects such as shadow on image*/
+    position: absolute;
+    inset: 0; /*means 0 for all top bottom left right*/
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 1.5em 0.1em rgba(0, 0, 0, 0.4) inset;
+    transition: background 0.3s ease-in;
+    z-index: 40;
+}
+
+.site-banner:hover::after {
+    background: rgba(0, 0, 0, 0.1);
+    /*lighten shadow on image after hower*/
+}
+
+.site-banner img {
+    position: absolute;
+    /* top: 0; */
+    bottom: 0;
+    /*Put our image on top of our banner cotainer*/
+    top: 50%;
+    transform: translateY(-50%);
+    /*Vertically center the image on container*/
+}
+
+.site-banner p {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: #fff;
+    padding: 1em 2em;
+    z-index: 50;
+    font-style: italic;
+    /*z indext higher than after element to avoid its shadow*/
+}

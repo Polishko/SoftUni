@@ -1,0 +1,87 @@
+.main-nav {
+    display: none;
+    /*Mobile-first rule, hidden for mobile or as default*/
+}
+
+/* .main-nav ul {
+    display: flex;
+    gap: 1.5em;
+} */
+/*Moved to query so only flex when on desktop*/
+
+.main-nav ul {
+    padding: 0;
+}
+
+.main-nav li {
+    display: block;
+}
+
+.main-nav a {
+    display: block;
+    text-decoration: none;
+}
+
+#nav-toggle {
+    appearance: none;
+    pointer-events: none;
+    /*Deactivating the checkbox and leaving only the label toggle'able through the checkbox*/
+}
+
+/* #nav-toggle:checked + .site .site-header {
+    background: red;
+} */
+/*select header in site through nav toggle
+all moved to a media query below*/
+
+@media (min-width: 600px) {
+    .main-nav {
+        display: block; /*when not mobile*/
+    }
+
+    .site-header label {
+        display: none;
+    }
+
+    .main-nav ul {
+        display: flex;
+        gap: 1.5em;
+    }
+}
+
+@media (max-width: 600px) {
+    .site-header label span {
+        display: none;
+    }
+    
+    #nav-toggle:checked + .site .site-header .main-nav {
+        /*targtet main nav when toggled*/
+        display: block;
+        position: absolute;
+        top: 5em;
+        right: 1em;
+        background: white;
+        padding: 1em;
+        z-index: 2000;
+        box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.4);
+        border-radius: 0.3em;
+    }
+
+    #nav-toggle:checked + .site .site-header .main-nav li {
+        /*selects only a li that is first level after another li (so avoid firts li)*/
+        margin-top: 0.5em;
+    }
+
+    #nav-toggle:checked + .site .site-header .main-nav a {
+        background: #3c6382;
+        padding: 0.5em;
+        text-align: center;
+        border-radius: 0.3em;
+    }
+
+    #nav-toggle:checked + .site .site-header label span {
+        display: inline;
+    }
+
+}
+
