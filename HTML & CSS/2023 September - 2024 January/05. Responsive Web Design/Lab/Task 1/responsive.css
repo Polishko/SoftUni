@@ -1,4 +1,4 @@
-@media all {
+@media all and (min-width: 600px) {
     body {
         font-size: 10px;
     }

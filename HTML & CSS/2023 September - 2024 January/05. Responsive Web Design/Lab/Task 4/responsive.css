@@ -1,9 +1,4 @@
-code:hover {
-    background: white;
-    color: black;
-}
-
-@media (hover:hover) {
+@media (hover) {
     code {
         background: black;
         color: white

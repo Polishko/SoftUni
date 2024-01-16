@@ -1,4 +1,4 @@
-@media print {
+@media print and (min-width: 650px) {
     body {
         font-size: 10px;
     }
