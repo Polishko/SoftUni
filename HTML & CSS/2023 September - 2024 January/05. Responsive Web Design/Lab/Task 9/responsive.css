@@ -1,0 +1,52 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 95vw;
+    margin: 0 auto;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    max-width: 50%;
+    min-width: 20%;
+    height: 100%;
+    margin: 2em auto;
+}
+
+.card h2, .card p, .card img {
+    padding-bottom: 1em;
+}
+
+.card h2 {
+    text-align: center;
+    font-size: 2em;
+}
+
+.card p {
+    text-align: justify;
+    padding: 0.5em;
+}
+
+.card img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+
+@media (max-width:700px) {
+    .card {
+        max-width: 90%;
+        min-width: 50%;
+    }
+
+    .card h2 {
+        font-size: 1.5em;
+    }
+}
+    
