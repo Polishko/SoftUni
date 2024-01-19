@@ -6,6 +6,94 @@
 
 body {
     display: flex;
+    flex-wrap: wrap;
+    padding: 1em;
+    gap: 1em;
+}
+
+body > * {
+    background-color: rgb(186, 223, 247);
+    padding: 1em;
+    border-radius: 0.3em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 2em;
+    padding: 0.5em;
+}
+
+header, footer {
+    flex: 1 1 100%;
+}
+
+main {
+    flex: 1 1 70%;
+}
+
+aside {
+    flex: 11 25%
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.site-nav ul {
+    display: flex;
+}
+
+.site-nav li {
+    display: block;
+}
+
+.site-nav a {
+    display: block;
+    padding: 1em 0.5em;
+    text-decoration: none;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    text-indent: 1ch;
+    line-height: 1.5;
+}
+
+.site-section ul {
+    list-style-position: inside;
+    text-indent: 3ch;
+} 
+
+.sidebar-nav ul a {
+    text-decoration: none;
+    color: rgb(84, 2, 165);
+}
+
+@media (max-width: 500px) {
+    body {
+        flex-direction: column;
+    }
+
+    header,
+    .site-nav ul {
+        display: block;
+    }
+
+    .site-nav ul {
+        padding-left: 5em;
+    }
+} 
+
+
+/* * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
     flex-direction: column;
     align-content: space-between;
     justify-items: center;
@@ -107,4 +195,4 @@ h1, h2, h3, h4, h5, h6 {
 
     }
 
-}
+} */
