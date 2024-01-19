@@ -10,7 +10,6 @@ body {
     align-content: space-between;
     justify-items: center;
     gap: 1em;
-    border: 1px solid black;
     max-width: 50vw;
     min-width: 25vw;
     margin: 2em auto;
@@ -68,11 +67,11 @@ h1, h2, h3, h4, h5, h6 {
     left: -1ch;
 } 
 
-@media (min-width: 800px) {
-    body {
+@media (max-width: 500px) {
+    /* body {
         max-width: 90vw;
         min-width: 50vw;
-    }
+    } */
 
     .site-main {
         display: flex;
