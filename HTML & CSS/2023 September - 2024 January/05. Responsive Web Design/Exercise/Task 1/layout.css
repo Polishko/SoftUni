@@ -67,7 +67,7 @@ h1, h2, h3, h4, h5, h6 {
     left: -1ch;
 } 
 
-@media (max-width: 500px) {
+@media (min-width: 500px) {
     /* body {
         max-width: 90vw;
         min-width: 50vw;
