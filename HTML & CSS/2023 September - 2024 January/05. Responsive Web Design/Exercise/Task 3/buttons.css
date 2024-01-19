@@ -1,0 +1,28 @@
+.button, .button.type-pill {
+  display: inline-block;
+  text-decoration: none;
+  background-color: #fad390;
+  color:#0c2461;
+  font-weight: bold;
+  padding: 0.7em;
+  border-radius: 1em;
+  transition: all 0.3s ease-in;
+}
+.button:hover, .button.type-pill:hover {
+  background-color: #b71540;
+  color: yellow;
+}
+
+.button:active, .button.type-pill:active {
+  background-color: #0a3d62;
+  color: antiquewhite;
+}
+
+.button.type-pill {
+  border-radius: 5em;
+}
+
+.site-title i {
+  color: #fa983a;
+  margin-right: 0.5em;
+}
