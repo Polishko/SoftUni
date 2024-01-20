@@ -1,0 +1,130 @@
+body {
+    display: flex;
+    flex-direction: column;
+    max-width: 100ch;
+    margin: 1em auto;
+    min-height: 100vh;
+    gap: 2em;
+}
+
+.site-content {
+    flex: 1;
+    padding: 2em;
+}
+
+.subscribe-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2em 0 2em 0;
+    margin-bottom: 2em;
+    background-color: rgb(90, 0, 128);
+}
+
+.team,
+.testimonials {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1em;
+    padding-bottom: 2em;
+}
+
+.team h3,
+.testimonials h3,
+.subscribe-form h3 {
+    text-align: center;
+    flex: 1 1 100%;
+    padding-bottom: 1em;
+    position: relative;
+}
+
+.team h3::after,
+.testimonials h3::after,
+.subscribe-form h3::after {
+    position: absolute;
+    content: "";
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    border-bottom: 2px solid black;
+    width: 8%;
+}
+
+.team section,
+.testimonials section {
+    flex: 1 1 25%;
+    text-align: center;
+}
+
+.testimonials {
+    box-shadow: 0px 8px 6px -6px #999;
+}
+
+.subscribe-form div {
+    display: flex;
+    gap: 1em;
+    margin-top: 1em;
+    min-width: 50%;
+}
+
+.subscribe-form h3 {
+    color: aliceblue;
+}
+
+.subscribe-form div input {
+    flex-basis: 70%;
+    max-height: 90%;
+}
+
+.subscribe-form div p {
+    border: 1px solid black;
+    padding: 0.5em;
+    max-height: 90%;
+    background-color: aliceblue;
+}
+
+.subscribe-form div a {
+    text-decoration: none;
+    color: black;
+}
+
+.team-member {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.team-member div {
+    position: relative;
+    width: 60%;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.team-member div::before,
+.team-member div::after {
+    display: block;
+    content: "";
+}
+
+.team-member div::before {
+    padding-top: 56.23%;
+}
+
+.team-member div img {
+    position: absolute;
+    display: block;
+    top: 0;
+    transform: translateY(-15%);
+    width: 100%;
+    height: auto;
+}
+
+.team-member p:first-of-type {
+    font-weight: bold;
+    margin-top: 0.5em;
+}

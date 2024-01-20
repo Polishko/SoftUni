@@ -1,0 +1,19 @@
+.upper-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-nav ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    gap: 2em;
+}
+
+.site-nav a {
+    text-decoration: none;
+    color: black;
+}
+

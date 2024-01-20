@@ -1,0 +1,52 @@
+.bottom-footer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap:1em;  
+}
+
+.site-add {
+    flex-basis: 20%;
+}
+.site-contacts {
+    flex-basis: 20%
+}
+.site-map {
+    flex-basis: 30%;
+}
+
+.site-map ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    justify-content: flex-start;
+    align-items: flex-start;
+    
+}
+
+.site-map li {
+    flex-basis: 50%;
+}
+
+.site-map a {
+    text-decoration: none;
+    color: black;
+}
+
+.phone::before {
+    font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f095";
+}
+
+.email::before {
+    font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f0e0";
+}
+
+.work-hours::before {
+    font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f017";
+}
+
+.address::before {
+    font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f2bb";
+}
+
+

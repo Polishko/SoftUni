@@ -1,0 +1,47 @@
+.site-intro {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+    margin-bottom: 4em;
+}
+
+.intro-content {
+    flex-basis: 55%;
+}
+
+.intro-image {
+    position: relative;
+    flex-basis: 35%;
+    overflow: hidden;
+}
+
+.intro-image::before,
+.intro-image::after {
+    display: block;
+    content: '';
+}
+
+.intro-image::before {
+    padding-top: 56.23%;
+}
+
+.intro-image img {
+    position: absolute;
+    display: block;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.intro-content p:not(:last-child) {
+    margin-bottom: 1.5em;
+}
+
+.intro-content a {
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+    padding: 0.5em;
+}
