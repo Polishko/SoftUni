@@ -1,18 +1,16 @@
-.bottom-footer {
+.site-footer {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
-    gap:1em;  
+    gap:1em;
+    padding: 0 2em;  
 }
 
-.site-add {
-    flex-basis: 20%;
-}
-.site-contacts {
-    flex-basis: 20%
-}
+.site-add,
+.site-contacts,
 .site-map {
-    flex-basis: 30%;
+    flex: 1 1 100%;
 }
 
 .site-map ul {
@@ -50,3 +48,14 @@
 }
 
 
+@media (min-width: 800px) {
+    .site-add {
+        flex-basis: 20%;
+    }
+    .site-contacts {
+        flex-basis: 20%
+    }
+    .site-map {
+        flex-basis: 30%;
+    }
+}

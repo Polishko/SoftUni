@@ -5,11 +5,19 @@ body {
     margin: 1em auto;
     min-height: 100vh;
     gap: 2em;
+    padding: 2em;
+}
+
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative /*For the responsive menu*/;
 }
 
 .site-content {
     flex: 1;
-    padding: 2em;
+    padding: 1em 2em;
 }
 
 .subscribe-form {
@@ -54,7 +62,7 @@ body {
 
 .team section,
 .testimonials section {
-    flex: 1 1 25%;
+    flex: 1 1 40%;
     text-align: center;
 }
 
@@ -66,7 +74,7 @@ body {
     display: flex;
     gap: 1em;
     margin-top: 1em;
-    min-width: 50%;
+    min-width: 70%;
 }
 
 .subscribe-form h3 {
@@ -86,6 +94,11 @@ body {
 }
 
 .subscribe-form div a {
+    text-decoration: none;
+    color: black;
+}
+
+.site-nav a {
     text-decoration: none;
     color: black;
 }
@@ -127,4 +140,16 @@ body {
 .team-member p:first-of-type {
     font-weight: bold;
     margin-top: 0.5em;
+}
+
+
+@media (min-width: 800px) {
+    .team section,
+    .testimonials section {
+        flex: 1 1 25%;
+    }
+
+    .subscribe-form div {
+        min-width: 50%;
+    }
 }
