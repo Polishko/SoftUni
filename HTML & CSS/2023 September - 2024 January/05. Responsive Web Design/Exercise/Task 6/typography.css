@@ -1,0 +1,87 @@
+* {
+    padding: 0;
+    margin: 0;
+    border-radius: inherit;
+}
+html {
+    font: 16/1.5 'Times New Roman', Times, serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(246, 244, 244);
+}
+
+.actor p {
+    padding: 0.5em;
+}
+
+.labels p {
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .actor {
+        display: flex;
+        border: 1.5px solid lightgray;
+        margin: 0 2em;
+    }
+
+    .labels {
+        flex-basis: 25%
+    }
+
+    .info {
+        flex-basis: 75%;
+    }
+
+    .actor:nth-child(1) {
+        margin-top: 2em;
+    }
+    .actor:nth-child(2) {
+        border-top: none;
+        background-color: white;
+    }
+
+    .actor p:not(.actor p:nth-last-child(1)) {
+        border-bottom: 1.5px solid lightgray;
+    }
+}
+
+@media (min-width: 600px) {
+
+    div {
+        display: flex;
+        border: 1px solid lightgray;
+        margin: 0 2em;
+    }
+
+    div p {
+        flex: 1 1 100%;
+    }
+    
+    div p:not(p:first-child) {
+        border-left: 1px solid lightgray;
+    }
+
+    div:not(.actor:last-of-type div:last-child) {
+        border-bottom: none;
+    }
+
+    .actor:first-of-type {
+        margin-top: 2em;
+    }
+
+    .actor:first-of-type .labels {
+        background-color: black;
+        color: white;
+    }
+
+    .actor:nth-of-type(odd) .info {
+        background-color: rgb(230, 227, 227);
+    }
+
+    .labels:not(.actor:first-child .labels) {
+        display: none;
+    }
+}
