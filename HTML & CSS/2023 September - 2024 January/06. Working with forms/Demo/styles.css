@@ -1,0 +1,65 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font: 14px/1.5 Verdana, sans-serif;
+}
+
+body {
+    padding: 2em;
+}
+
+.login .field {
+    padding: 2em;
+    border: 2px solid #000;
+}
+
+.field label {
+    border: 2pax solid blue;
+    padding: 1em;
+}
+
+.field label,
+.field input,
+.field span {
+    display: block;
+    width: 100% /*so that it takes all awailable width as a real block element*/
+}
+
+.login .field label {
+    font-weight: bold;
+}
+
+.login .field input {
+    border: 2px solid #999;
+    padding: 0.5em 0.75em; /*slightly more padding for sides because top down is affected by line height. This way paddings look equal on all sides.*/
+    border-radius: 0.3em;
+    outline: none; /*otherwise you dont see the focus color*/
+}
+
+.login .field input:focus {
+    border-color: purple;
+}
+
+.login .field input:invalid {
+    border-color: #C00;
+}
+
+.login .field .helper {
+    font-style: italic;
+}
+
+.login .field .helper.error {
+    color: #C00;
+}
+
+.login .field.button input {
+    background-color: aquamarine;
+}
+
+.login .field.button input:active {
+    background-color: lightpink;
+}
