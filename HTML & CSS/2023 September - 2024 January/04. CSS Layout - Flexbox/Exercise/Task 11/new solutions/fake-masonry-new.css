@@ -1,0 +1,56 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    margin: 1em auto;
+    background-color: rgb(238, 238, 238);
+    max-width: 80%;
+    min-width: 70%;
+}
+
+span {
+    display: block;
+    overflow: hidden;
+    max-width: 100%;
+}
+
+section, footer {
+    padding: 1em;
+}
+
+footer {
+    border-top: 1px solid rgb(167, 183, 199);
+    margin-top: auto;
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.fake {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    gap: 2em;
+    margin: 2em 0;
+    max-height: 200vh;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid rgb(167, 183, 199);
+    border-radius: 10px;
+    max-width: 15%;
+    max-height: 30%;
+}
