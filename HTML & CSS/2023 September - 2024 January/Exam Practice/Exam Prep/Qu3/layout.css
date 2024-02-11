@@ -1,0 +1,128 @@
+.site-content {
+    max-width: 1200px;
+    margin:1em auto;
+    border: 2px solid black;
+}
+
+.inner {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.inner h2,
+.inner p {
+    margin-bottom: 0.5em;
+}
+
+.inner span {
+    display: block;
+}
+
+.outer {
+    background-color: white;
+}
+
+.intro {
+    background-image: url(images/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.site-banner {
+    color:white;
+    padding-top: 0;
+    padding-bottom: 8em;
+}
+
+.site-banner h1 {
+    margin-bottom: 1em;
+}
+
+.header-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 2em;
+}
+
+.header-bar ul {
+    display: flex;
+}
+
+.header-bar li {
+    padding: 0.5em;
+}
+
+.header-bar a {
+    color: white;
+}
+
+.header-bar .media-logo {
+    max-width: 5%;
+
+}
+
+.banner-content {
+    display: flex;
+}
+
+.banner-content article {
+    max-width: 60%;
+}
+
+.company-description {
+    display: flex;
+    gap: 2em;
+    padding: 5em 0;
+}
+
+.company-description article {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.company-description span {
+    display: block;
+    margin-top: 1.5em;
+}
+
+.company-supporters {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    text-align: center;
+    padding: 2em 1.5em;
+}
+
+.media-sponsors {
+    display: flex;
+    justify-content: center;
+    gap: 1.5em;
+}
+
+.sponsor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 15%;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    background-color: #DDDDDD;
+}
+
+.sponsor img {
+    padding: 1em;
+}
+
+.closure-nav {
+    display: flex;
+    gap:4em;
+    padding: 2.5em 0 2.5em 0;
+}
+
+.closure-nav h3 {
+    font-size: 1.1em;
+    margin-bottom: 1em;
+}
