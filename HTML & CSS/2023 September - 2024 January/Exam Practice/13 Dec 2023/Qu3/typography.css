@@ -1,0 +1,10 @@
+@import url(https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap);
+
+html {
+    font: 18px/1.5 'Ubuntu';
+}
+
+.middle-section p {
+    font-size: 0.75em;
+    color: #C3BCB8;
+}

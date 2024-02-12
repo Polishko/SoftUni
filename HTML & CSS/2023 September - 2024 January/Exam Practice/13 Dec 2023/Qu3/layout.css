@@ -1,0 +1,119 @@
+body {
+    display: flex;
+    flex-direction: column;
+    max-width: 1900px;
+    min-width: 900px;
+    margin: 1em auto;
+}
+
+.site-top.container {
+    max-width: 100%;
+    border: 1px solid black;
+}
+
+.inner {
+    margin: 0 3em;
+}
+
+.site-top.inner {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1em;
+    padding-bottom: 1.2em;
+}
+
+.site-top.inner ul {
+    display: flex;
+    justify-items: space-between;
+}
+
+.site-top.inner li,
+.site-top.inner a {
+    display: block;
+}
+
+.site-top.inner span a {
+    background-color: #56DBB1;
+}
+
+.site-top.inner a {
+    text-decoration: none;
+    color: black;
+    background-color: #ECECEC;
+    border: 1px solid white;
+    padding: 0.5em;
+}
+
+.site-header {
+    display: flex;
+    align-items: last baseline;
+    gap: 1em;
+}
+
+.site-header h1 {
+    padding-right: 0.5em;
+    border-right: 0.5px solid rgb(171, 168, 168);
+}
+
+.banner {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.intro.outer {
+    background-color: #56DBB1;
+}
+
+.intro.inner {
+    padding: 6em 8em;
+    text-align: center;
+}
+
+.activities.inner {
+    display: flex;
+    justify-content: space-around;
+    padding: 5em;
+    gap: 1em;
+}
+
+.activity-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.activity-section h4 {
+    padding: 0.5em 0;
+}
+
+.activity-section p {
+    text-align: center;
+}
+
+.activity-section hr {
+    width:90%;
+    margin: 0.5em 0;
+}
+
+.media-activity {
+    display: flex;
+    justify-content: center;
+    width: 25%;
+}
+
+.middle-section,
+.footer-section {
+    width: 60%;
+    margin: 4em auto;
+    text-align: center;
+}
+
+.footer-section footer {
+    display: flex;
+    justify-content: center;
+    gap: 0.3em;
+}
+
+.footer-container {
+    background-color: #1B9772;
+}

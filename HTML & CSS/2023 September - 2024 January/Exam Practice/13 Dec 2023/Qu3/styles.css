@@ -1,0 +1,41 @@
+.activities-container.outer {
+    background-color: #353434;
+}
+
+.activities.inner h4 {
+    color: white;
+}
+
+.activities.inner p {
+    color: #7A7A7A;
+}
+
+.media-activity span {
+    display: none;
+}
+
+.media-activity {
+    background-color: #56DBB1;
+}
+
+.fa-solid {
+    color: white;
+    font-size: 3em;
+    padding: 0.2em 0;
+}
+
+.middle-section span {
+    display: inline-block;
+    padding: 0.5em;
+    margin-top: 1.5em;
+    background-color: #974D1B;
+    color: white;
+}
+
+.footer-section {
+    color: white;
+}
+
+.footer-section footer p span:not(.highlight){
+    opacity: 0.5;
+}
