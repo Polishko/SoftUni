@@ -1,0 +1,165 @@
+@media (max-width: 600px) {
+    
+    body {
+        max-width: 595px;
+        min-width: 380px;
+        margin: 0.5em;
+    }
+    
+    header,
+    main {
+        margin: 0.5em auto;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 100%;
+    }
+
+    .placeholder {
+        height: auto;
+        max-width: 100%;
+    }
+    
+    .parallax-window {
+        height: auto;
+        position: static;
+    }
+    
+    .row {
+        display: block;
+    }
+    
+    .tm-header {
+        position: static;
+    }
+    
+    .tm-header-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        padding: 0.2em 0 0.5em 0;
+    }
+    
+    .col-12 {
+        position: static;
+    }
+    
+    .tm-nav {
+        text-align: center;
+    }
+    
+    .tm-nav-ul {
+        justify-content: center;
+    }
+    
+    .col-md-6.col-12 {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        padding: 0 0 1.5em 0;
+        margin: 0;
+    }
+    
+    .tm-site-text-box {
+        padding-top: 0.5em;
+    }
+    
+    .tm-site-logo {
+        display: block;
+        margin: 0;
+        padding: 0;
+        width: 13%;
+    }
+    
+    .row.tm-welcome-section {
+        text-align: center;
+        margin: 0;
+        max-width: 100%;
+    }
+    
+    .tm-section-title {
+        margin: 1em auto;
+        padding: 0;
+        max-width: 80%;
+        font-size: 3rem;
+    }
+    
+    .row.tm-welcome-section p {
+        padding: 0 0.5em;
+        font-size: 1.6rem;
+        margin-bottom: 1.5em;
+    }
+    
+    .tm-paging-links {
+        max-width: 100%;
+    }
+    
+    .tm-paging-links ul {
+        font-size: 1.2rem;
+        display: flex;
+        justify-items: space-between;
+    }
+    
+    .row.tm-gallery {
+        margin: 0;
+        max-width: 80%;
+    }
+    
+    #tm-gallery-page-all {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+    }
+    
+    .col-lg-3.col-md-4.col-sm-6.col-12.tm-gallery-item {
+        margin: 0;
+        max-width: 100%;
+    }
+    
+    .tm-gallery-title {
+        text-align: center;
+        font-size: 2rem;
+    }
+    
+    .tm-gallery-description {
+        font-size: 1.2rem;
+    }
+    
+    .tm-gallery-price {
+        font-size: 1.8rem;
+    }
+    
+    .tm-cta-section {
+        max-width: 100%;
+    }
+    
+    .tm-cta-section.tm-section.tm-container-inner {
+        max-width: 100%;
+        padding: 0;
+    }
+
+    .tm-description-box {
+        max-width: 100%;
+        margin: 2em 0 0 0;
+    }
+    
+    .tm-mb-45 {
+        font-size: 1.5rem;
+        padding-right: 1.2em;
+    }
+    
+    .tm-footer.text-center {
+        font-size: 1.5rem;
+    }
+
+    .tm-description-figure {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+}
