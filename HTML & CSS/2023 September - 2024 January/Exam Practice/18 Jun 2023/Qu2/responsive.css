@@ -1,0 +1,133 @@
+@media (max-width: 600px) {
+    
+    html {
+        font-size: 12px;
+    }
+
+    body {
+        min-width: 350px;
+        margin: 0 auto;
+    }
+
+    .Anchor {
+        font-size: inherit;
+    }
+
+    .home-navbar-container {
+        padding: 1 2.5em;   
+    }
+
+    .home-features {
+        height: auto;
+    }
+    .home-cta-container {
+        margin-right: 1.5em;
+    }
+
+    .home-navbar {
+        justify-content: space-around;
+        gap: 1em;
+    }
+
+    .home-cta-btn {
+        padding: 0.5em 0.75em;
+        font-size: 1.3em;
+    }
+
+    .home-links-container {
+        font-size: 1.5em;
+    }
+
+    .home-hero {
+        flex-direction: column;
+    }
+
+    .home-image1 {
+        order: -1;
+        width: 100%;
+    }
+
+    .home-hero-text-container {
+        width: 100%;
+        margin: 1em 1em;
+        padding-top: 2em;
+    }
+
+    .home-text02 {
+        display: block;
+        font-size: 1.5em;
+    }
+
+    .home-cta-btn2 {
+        display: inline-block;
+        align-self: center;
+        font-size: 1.5em;
+        padding-right: 1em;
+        padding-left: 1em;
+    }
+
+    .home-features  {
+        flex-direction: column;
+        margin-bottom: 3em;
+    }
+
+    .home-heading-container {
+        width: 100%;
+    }
+
+    .home-text04 {
+        display: block;
+        font-size: 1.5em;
+    }
+
+    .home-cards-container {
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    .home-feature-card,
+    .home-feature-card1,
+    .home-feature-card3,
+    .home-feature-card2 {
+        width: 100%;
+    }
+
+    .home-image2,
+    .home-image3,
+    .home-image4 {
+        width: 80%;
+    }
+
+    .home-text05,
+    .home-text06,
+    .home-text07 {
+        font-size: 1.3em;
+    }
+
+    .home-stats {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .home-text08,
+    .home-text13,
+    .home-text17,
+    .home-text22 {
+        font-size: 4.5em
+    }
+
+    .home-text11,
+    .home-text15,
+    .home-text20,
+    .home-text24 {
+        font-size: 2em;
+    }
+
+
+    .home-text12,
+    .home-text16,
+    .home-text21,
+    .home-text25 {
+        font-size: 1.3em;
+    }
+}
