@@ -1,0 +1,136 @@
+@media (max-width: 600px) {
+    html {
+        font-size: 14px;
+    }
+    
+    body {
+        margin: 0.5em auto;
+    }
+    
+    header nav {
+        justify-content: center;
+        padding-top: 1em;
+    }
+    
+    header ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.2em;
+        font-size: 1.2em;
+    }
+    
+    .header-title {
+        padding: 2em 0;
+    }
+    
+    .header-title h1 {
+        font-size: 2.5em;
+    }
+    
+    .team-description ul {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .team-description ul li img {
+        display: block;
+        width: 90%;
+        height: 70%;
+        object-fit: cover;
+        margin-bottom: 0.5em;
+    }
+    
+    .team-description-wrapper {
+        width: 90%;
+    }
+    
+    .team-description-wrapper li {
+        flex: 0 1 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1.5em;
+    }
+    
+    .about-us,
+    .about-us p:nth-child(3) {
+        width: 100%;
+        margin: 0;
+        text-align: center;
+    }
+    
+    .about-us h3 {
+        font-size: 2em;
+    }
+    
+    .about-us p:nth-child(3) {
+        padding: 0 1.35em;
+        font-size: 1.3em;
+    }
+    
+    .choose-us ul {
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1.5em;
+    }
+    
+    .choose-us li {
+        flex: auto;
+        width: 70%;
+        font-size: 1.2em;
+    }
+    
+    .blog-news {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .blog-news p {
+        font-size: 1.2em;
+    }
+    
+    .blog-news ul {
+        flex-direction: column;
+        align-content: center;
+        width: 80%;
+    }
+    
+    .blog-news ul .item {
+        justify-content: space-between;
+        margin: 0;
+        max-height: 320px;
+        margin-bottom: 2em;
+    }
+    
+    .blog-news ul .item .avatar {
+        display: flex;
+        flex: 0 1 65%;
+        min-height: 320px;
+    }
+    
+    .blog-news ul .item .avatar img {
+        position: static;
+        min-height: 320px;
+        width: 100%;
+    }
+    
+    .blog-news .content {
+        display: flex;
+        flex-direction: column;
+        padding: 1em 1.4em;
+        flex: 0 1 45%;
+    }
+
+    .blog-news .content h4 {
+        font-size: 1.2em;
+    }
+    
+    .blog-list .item {
+        display: flex;
+    }
+
+}
