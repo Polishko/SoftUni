@@ -1,0 +1,45 @@
+.buttons {
+    display: flex;
+    gap: 2em;
+}
+
+.button.white,
+.button.black {
+    padding: 0.75em 2em;
+    border-radius: 0.3em;
+}
+
+.button.black {
+    background-color: black;
+    color: white;
+
+}
+
+.button.white {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+
+/*real buttons*/
+
+.email-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  input[type="email"] {
+    padding: 0.75em 1.2em;
+    margin-bottom: 2em;
+    border: 1px solid #ccc;
+    border-radius: 0.3em;
+  }
+  
+  button {
+    max-width: 60%;
+    padding: 1em 2em;
+    background-color: black;
+    color: #fff;
+    border: none;
+    border-radius: 0.3em;
+  }
