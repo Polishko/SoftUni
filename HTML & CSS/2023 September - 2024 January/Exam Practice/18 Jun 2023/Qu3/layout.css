@@ -1,0 +1,280 @@
+body {
+    max-width: 1920px;
+}
+
+.site-content {   
+    margin: 0.5em auto;
+}
+
+.outer {
+    padding: 0 7em;
+}
+
+.header.outer,
+.banner.outer,
+.suscribe.outer {
+    background-color: #ADE2DF;
+}
+
+.nav.inner {
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    padding: 2em 0;
+}
+
+.nav.inner .info ul {
+    display: flex;
+    justify-content: space-between;
+    gap: 4em;
+}
+
+.nav.inner .info ul li,
+.nav.inner .info ul a {
+    display: block;
+}
+
+
+.nav.inner .actions {
+    display: flex;
+    gap: 2em;
+}
+
+.nav.inner .actions > * {
+    padding: 0.75em 1.3em;
+    border-radius: 0.3em;
+}
+
+.nav.inner .actions span:nth-child(2) {
+    background-color: #ADE2DF;
+}
+
+.header.inner {
+    text-align: center;
+    padding-top: 8em;
+    padding-bottom: 7em;
+}
+
+.header.inner p {
+    margin-top: 1.5em;
+    margin-bottom: 2.5em;
+}
+
+.header.inner .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+}
+
+.buttons .download {
+    padding: 0.75em 1.3em;
+    border-radius: 0.3em;
+    background-color: black;
+    color: white;
+}
+
+.header.inner .fa-brands {
+    color: white;
+}
+
+.facts.inner {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding-top: 8em;
+    padding-bottom: 7em;
+    margin: 0 3.5em;
+}
+
+.facts.inner h2{
+    margin-bottom: 0.75em;
+}
+
+.facts.inner section {
+    padding: 0 2em 4.5em 2em;
+}
+
+.facts.inner section:first-child,
+.facts.inner section:last-child {
+    border-left: 1px solid #D9D9D9;
+    border-right: 1px solid #D9D9D9;
+}
+
+.banner.outer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner.outer .media-phone.outer {
+    border: 3px dashed #98B8B6;
+}
+
+.banner.outer .media-phone.outer {
+    padding: 1em 3em 1.5em 3em;
+    margin-left: 15em;
+}
+
+.section.inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    padding-right: 15em;
+}
+
+.section.inner a {
+    border-bottom: 1px solid black;
+    padding-bottom: 0.5em;
+}
+
+.add.outer {
+    background-color: #F3F5FA;
+}
+
+.add.inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1em;
+    padding-top: 5em;
+    padding-bottom: 5em;
+}
+
+.add.inner .button {
+    display: inline-block;
+    text-align: center;
+    padding: 0.5em 1.3em;
+    border-radius: 0.5em; 
+}
+
+.add.inner .action {
+    background-color: #ADE2DF;
+}
+
+.add.inner .contact {
+    background-color: black;
+    color: white;
+}
+
+.add.inner h4 {
+    text-align: center;
+}
+
+.plan-inner p {
+    margin-bottom: 1em;
+    margin-top: 0.5em;
+}
+
+.plan-inner h2 {
+    margin-bottom: 0.5em;
+}
+
+.plan-inner ul {
+    margin-top: 1.5em;
+    margin-bottom: 2em;
+}
+.offerings.outer {
+    margin-top: 4em;
+    padding-left: 0;
+    padding-right: 0;
+    border: 2px solid #D9D9D9;
+    border-radius: 0.5em;
+    background-color: white;
+}
+
+
+.offerings.inner {
+    width: 100%;
+    display: flex;
+}
+
+.offerings.inner > * {
+    display: flex;
+}
+
+.offerings.inner > *:not(:last-child) {
+    margin-top: 2em;
+}
+
+.offerings.inner > *:last-child {
+    padding-top: 2.9em;
+}
+
+.offerings.inner > *:nth-child(2) {
+    border-right: 1px solid #D9D9D9;
+    border-left: 1px solid #D9D9D9;
+}
+
+[class*="-inner"] {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.offerings.inner > * > * ul li {
+    list-style: none;
+  }
+
+.offerings.inner > * > * ul li:before {
+    content: '✓ ';
+  }
+
+[class*="-outer"] {
+    padding: 0.75em 1em;
+}
+
+[class*="plan-"] {
+    justify-content: space-between;
+}
+
+.option-outer {
+    background-color: #ADE2DF;
+}
+
+.option-inner .section p {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
+.suscribe.outer {
+    padding-top: 6em;
+    padding-bottom: 6em;
+}
+
+.suscribe.inner {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    margin-left: 28em;
+    margin-right: 28em;
+}
+
+.suscribe.inner p {
+    margin-bottom: 3em;
+}
+
+.footer.outer {
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+.footer.inner {
+    display: flex;
+    justify-content: space-between;
+}
+
+.social ul {
+    display: flex;
+    gap: 1em;
+}
+
+.social ul li,
+.social ul a {
+    display: block;
+}
+
+.social span {
+    display: none;
+}
