@@ -1,0 +1,116 @@
+@media (max-width: 600px) {
+    html {
+        font-size: 12px;
+    }
+    
+    body {
+        min-width: 380px;
+        margin: 0.5em auto;
+    }
+    
+    .navigation-max-width {
+        padding-top: 0.5em;
+        padding-bottom: 0;
+    }
+    
+    .home-container {
+        min-height: auto;
+    }
+    
+    .home-text,
+    .navigation-nav {
+        display: none;
+    }
+    
+    .home-portofolio.section-container {
+        padding-top: 4em;
+    } 
+    .home-text01 {
+        font-size: 3em;
+        margin: 0;
+    }
+    .home-tab-selector-cards-container {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1.5em;
+    }
+    
+    .home-about.section-container {
+        padding-top: 2em;
+        padding-bottom: 2em;
+        flex-direction: column;
+    }
+    
+    .home-image-container {
+        display: none;
+    }
+    
+    .home-process.section-container {
+        padding-top: 2em;
+        padding-bottom: 2em;
+    }
+    
+    .home-step {
+        align-items: flex-start;
+    }
+    
+    .home-text09.Heading2 {
+        font-size: 3em;
+        line-height: 1.3;
+    }
+    
+    .home-container1 {
+        margin-right: 4em;
+    }
+    .home-text10 {
+        margin-right: 0.5em;
+        font-size: 4em
+    }
+    
+    .home-text11 {
+        font-size: 1.5em;
+    }
+    
+    .button.button-lg.button-secondary {
+        font-size: 1em;
+        margin-bottom: 1em;
+        padding: 1.5em;
+    }
+    
+    .section-container {
+        max-width: 100%;
+        flex-direction: column;
+        padding-top: 1em;
+        padding-bottom: 1em;
+    }
+    
+    .max-content-container {
+        max-width: 100%;
+        flex-direction: column;
+    }
+    
+    .home-top-part,
+    .home-links-container {
+        flex-direction: column;
+    }
+    
+    .home-links-container {
+        gap: 1em;
+    }
+    
+    .home-product-container {
+        margin-bottom: 0.5em;
+        gap: 0.2em;
+    }
+    
+    .home-textinput.input {
+        font-size: 0.75em;
+        margin-bottom: 3em;
+    }
+    
+    .button-primary.button {
+        padding: 1.5em;
+        font-size: 0.75em;
+    }
+}
+
