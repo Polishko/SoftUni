@@ -1,0 +1,117 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font: 17px/1.5 'Open Sans';
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    display: block;
+    text-decoration: none;
+}
+
+.site {
+    display: flex;
+    max-width: 1345px;
+    margin: 0 auto;
+    border: 1px solid #808080;
+    border-radius: 0.7em;
+}
+
+.site > * {
+    flex-basis: 50%
+}
+
+.site img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.settings {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-bottom: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2em;
+    text-align: center;
+}
+
+.calculator .buttons {
+    display: flex;
+    align-self: center;
+    gap: 6em;
+}
+
+.calculator .buttons > * {
+    padding: 0.3em 0.9em;
+    border: 1px solid black;
+    border-radius: 0.5em;
+}
+
+.calculator .buttons > *:first-child {
+    background-color: #86D862;
+}
+
+.calculator .buttons > *:nth-child(2) {
+    background-color: #F6F7F8;
+}
+
+.form-group1,
+.form-group3 {
+    display: flex;
+    justify-content: space-around;
+    margin-right: 6em;
+    margin-left: 6em;
+}
+
+#gender {
+    padding-right: 8em;
+}
+
+#weight {
+    width: 100%;
+    padding: 0.5em 0.75em;
+
+}
+
+#feet,
+#inches {
+    width: 100%;
+    padding: 0.3em 0.5em;
+    border-radius: 0.2em;
+    border: 1px solid rgb(122, 119, 119)
+}
+
+.calculate {
+    display: block;
+    margin: 0 1em;
+    padding: 0.3em 0.5em;
+    border-radius: 1em;
+    background-color: #05A2D3;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em
+}
