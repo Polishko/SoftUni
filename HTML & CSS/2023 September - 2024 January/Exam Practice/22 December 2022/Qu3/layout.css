@@ -1,0 +1,216 @@
+.container {   
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.column-container {
+    display: flex;
+}
+
+.site-header {
+    background-color: #FFFFFF;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+}
+
+.site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-title a {
+    display: block;
+    width: 167px;
+    height: 64px;
+    overflow: hidden;
+    text-indent: -100vw;
+    background-image: url(images/creative-logo.svg);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+.taxes {
+    display: flex;
+    background-color: #54546D;
+    background-image: url(images/calculator-icon.svg);
+    background-size: 14%;
+    background-repeat: no-repeat;
+    background-position-y: center;
+    min-height: 25rem;
+}
+
+.taxes .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    transform: translateY(+30%);
+}
+
+.taxes .header h2 {
+    font-size: 2em;
+    color: white;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.taxes .column-container {
+    justify-content: space-between;
+    gap: 2em;
+}
+
+.taxes .column-container p {
+    font-size: 1.2em;
+}
+
+
+.taxes .column-container > * {
+    flex-basis: 30%;
+    text-align: center;
+}
+
+.taxes .info {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.taxes .column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+    background-color: #FFFFFF;
+    border-radius: 1em;
+}
+
+.taxes .column a {
+    display: block;
+    align-self: center;
+    padding: 0.75em 1.5em;
+    margin-top: 1em;
+    border-radius: 1em;
+    background-color: #9A5DC6;
+    color: white;
+}
+
+.taxes  .plan-container {
+    align-self: stretch;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding: 1em 1em 1.2em 1em;
+}
+
+.taxes .info h2 {
+    padding-top: 1em;
+    margin-bottom: 0.75em;
+}
+
+.taxes .info p {
+    margin-bottom: 1.5em;
+}
+.taxes .plan-container.first {
+    background-image: linear-gradient(to right, #039B3D, #49D47E);
+}
+
+.taxes .plan-container.second {
+    background-image: linear-gradient(to right, #4C6C88, #629ACF);
+}
+
+.taxes .plan-container.third {
+    background-image: linear-gradient(to right, #4C39A7, #8C7DE1);
+}
+
+.taxes .plan-container.first,
+.taxes .plan-container.second,
+.taxes .plan-container.third {
+    border-radius: 0 0 1em 1em;
+    color: white;
+}
+
+.taxes .plan-container.second .plan,
+.taxes .plan-container.third .plan{
+    padding-left: 2em;
+    padding-right: 2em;
+    text-align: center;
+}
+.taxes .plan-container.second .plan:first-child,
+.taxes .plan-container.third .plan:first-child {
+    border-right: 1px solid white;
+}
+
+.attendance .container {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    width: 60%;
+    margin-top: 15em;
+    margin-bottom: 8em;
+   
+}
+
+.attendance .container > p {
+    font-size: 1.5em;
+}
+
+.attendance .container table {
+    font-size: 1.5em;
+    border-collapse: collapse;
+}
+
+.attendance .container tr:nth-child(odd) {
+    background-color: #E6E6E6;
+    border-radius: 0.5em;
+}
+
+.attendance .container td {
+    padding: 0.7em 0.6em;
+}
+
+.attendance .container td img {
+    width: 18%;
+}
+
+.attendance .container td:first-child {
+    width: 65%;
+}
+
+.attendance .container td:not(.attendance .container td:first-child) {
+    text-align: center;
+}
+
+.attendance .container td span {
+    display: none;
+}
+
+.financing .container {
+    margin-bottom: 8em;
+}
+
+.financing .container h2 {
+    margin-bottom: 1.5em
+}
+
+.financing .container p {
+    font-size: 1.2em;
+}
+
+.financing .container .column-container {
+    gap: 8em;
+}
+
+.financing .container .column > p:first-child {
+    margin-bottom: 1em;
+}
+
+.site-footer {
+    background-color: #54546D;
+    color: #908FAB;
+    text-align: center;
+    padding: 1.7em 0;
+    font-size: 1.2em;
+}

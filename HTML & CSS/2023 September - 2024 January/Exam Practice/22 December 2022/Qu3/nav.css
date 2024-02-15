@@ -1,0 +1,14 @@
+nav ul {
+    display: flex;
+}
+
+nav ul li,
+nav ul a {
+    display: block;
+}
+
+.site-header nav ul {
+    justify-content: space-between;
+    gap: 1em;
+    font-size: 1.2rem;
+}
