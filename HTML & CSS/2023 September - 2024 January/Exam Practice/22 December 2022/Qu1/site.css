@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Poppins';
+    font-size: 20;
+    line-height: 1.5;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2em;
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.main.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    max-width: 1640px;
+    margin: 0 auto;
+}
+
+.main.container .header h1,
+.main.container .header p {
+    text-align: center;
+}
+
+.main.container .header p {
+    margin-bottom: 0.3em;
+}
+
+.main.container .header h1 span {
+    color: #327DC4;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+}
+
+.cards > * {
+    flex-basis: 30%;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    border-radius: 0.75em;
+    background-color: #819DAF;
+}
+
+.media {
+    width: 100%;
+    border-radius: 0.75em;
+    overflow: hidden;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em;
+}
+
+.button {
+    display: block;
+    text-decoration: none;
+    align-self: flex-start;
+    color: white;
+    background-color: #327DC4;
+    padding: 0.5em 1.5em;
+    border: 1px solid #4052C6;
+    box-shadow: 0 0 0.3em white;
+    border-radius: 2em;
+    
+
+}
