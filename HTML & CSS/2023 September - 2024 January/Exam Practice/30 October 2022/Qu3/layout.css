@@ -1,0 +1,118 @@
+
+header {
+    display: flex;
+    justify-content: space-around;
+    padding: 1em 0;
+    background-color: #D01919;
+    color: #FFFFFF;
+}
+
+header h1 {
+    display: none;
+}
+
+.container {   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1670px;
+    margin: 0 auto;
+    padding-top: 2.1rem;
+}
+
+.banner {
+    background-image: url(image/fitness-main.jpg);
+    background-position-y: -13rem;
+    color: #FFFFFF;
+}
+
+
+.banner h2 {
+    letter-spacing: 0.1em;
+    margin-bottom: 2.5rem;
+}
+
+.banner p {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.banner .button {
+    margin-bottom: 5rem;
+    padding: 0.5em 1.2em;
+    border-radius: 0.7em;
+    background-color: #D01919;
+    font-weight: bold;
+}
+
+.column-container {
+    display: flex;
+    justify-content: center;
+}
+
+.container .column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.welcome .container,
+.coaches .container {
+    padding: 2rem 0 4.5rem 0;
+}
+
+.welcome .container h3,
+.coaches .container h3 {
+    padding-bottom: 0.5rem;
+}
+
+.welcome .container h4,
+.coaches .container h5 {
+    color: #D01919;
+}
+
+.welcome .column-container,
+.coaches .column-container {
+    gap: 4rem;
+}
+
+.welcome .column-container,
+.coaches .column-container > * {
+    flex: 0 0 25%;
+}
+
+.welcome .icon {
+    width: 20%;
+    height: auto;
+}
+
+
+.coaches .image {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    border-radius: 0.3em;
+}
+
+.welcome .column {
+    gap: 1.8rem;
+}
+
+.coaches .column {
+    gap: 0.5rem;
+}
+
+.coaches {
+    background-color: #D9D9D9;
+}
+
+.coaches .column p {
+    color: #A6A1A5
+}
+
+footer {
+    text-align: center;
+    padding: 0.6rem 0;
+    background-color: #D01919;
+}
