@@ -22,6 +22,7 @@ header h1 {
 
 .banner {
     background-image: url(image/fitness-main.jpg);
+    background-size: cover;
     background-position-y: -13rem;
     color: #FFFFFF;
 }
