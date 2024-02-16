@@ -1,0 +1,123 @@
+@import url(https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Courgette&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css);
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font: 16px/1.5 Courgette;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    background-color: #F5F5F5;
+    min-height: 100vh;
+}
+
+h1 { font-size: 3.25em; }
+h2 { font-size: 1.56em; }
+
+h1 {
+    text-align: center;
+}
+
+h1, h2 {
+    letter-spacing: 1.5px;
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1061px;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+
+header h2 {
+    position: absolute;
+    text-align: right;
+    bottom: -20%;
+    right: 30%;
+    color: #CB2027;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    gap: 1.3rem;
+    margin-top: 2.31rem;
+}
+
+main > * {
+    flex-basis: 30%;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FFFFFF;
+    border-radius: 0.5em;
+    padding-bottom: 0.5rem;
+}
+
+.card .text {
+    flex-basis: 60%;
+    padding: 0 1rem;
+}
+
+.card .text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card .text p:first-child {
+    border-top: 1px solid #CB2027;
+} 
+
+.card .text p {
+    margin-bottom: 0.5rem;
+    padding-top: 0.5rem;
+}
+
+.media {
+    margin-bottom: 0.5rem;
+}
+
+
+.button {
+    justify-self: flex-end;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+.button .fa-solid {
+    color: #CB2027;
+    cursor: pointer;
+}
