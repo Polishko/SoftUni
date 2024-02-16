@@ -1,0 +1,114 @@
+@import url(https://fonts.googleapis.com/css2?family=Mulish&display=swap);
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font: 13px/1.5 'Mulish';
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    background-image: url(images/background.png);
+    background-size: cover;
+}
+
+h1 {
+    font-size: 1.75rem;
+    text-align: center;
+    color: #333333;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 3.1rem;
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+label, input {
+    display: block;
+    font: inherit;
+}
+
+label {
+    margin-bottom: 0.5rem;
+}
+
+input {
+    margin-bottom: 1.2rem;
+    background-color: #F8F8F8;
+}
+
+.container {
+    min-width: 850px;
+    border-radius: 3rem;
+    box-shadow: 1.5rem 1rem 2rem rgba(0, 0, 0, 0.5);
+    margin: 0 auto;
+    padding: 7rem 0 3rem 3.8rem;
+    background-image: url(images/form-background.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.main-form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.name,
+.checkbox {
+    display: flex;
+    align-items: flex-start;
+}
+
+.name > * {
+    flex-basis: 50%;
+}
+
+.name {
+    gap: 1.5rem;
+}
+
+.checkbox {
+    gap: 0.5rem;
+}
+
+.submit {
+    align-self: center;
+}
+
+.name input,
+.email input,
+.password input,
+.password-confirm input {
+    width: 100%;
+    padding: 0.5rem 0;
+    border: 1px solid #CCCCCC;
+    border-radius: 1.5rem;
+}
+
+.submit input {
+    cursor: pointer;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    background-color: #AE3C33;
+    color: white;
+    border-radius: 1.5em;
+    border: none;
+    padding: 0.75rem 2rem;
+    margin-top: 1.5rem;
+}
+
