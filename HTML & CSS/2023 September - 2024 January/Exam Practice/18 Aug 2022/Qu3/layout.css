@@ -1,0 +1,135 @@
+
+.site {   
+    max-width: 1097px;
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    background-image: url(image/image.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: -24.75rem;
+}
+
+header .title {
+    align-self: flex-start;
+    margin: 2rem 0 0 3rem;
+    padding: 2rem 5.6rem 1.6rem 1rem;
+    box-shadow: 0px 4px 8px rgb(92, 90, 91);
+} 
+
+header .title h1 {
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid black;
+}
+
+header .title p {
+    margin-top: 0.8rem;
+}
+
+header .article {
+    align-self: flex-end;
+    margin: 0 2.7rem 21rem 0rem;
+    padding: 7rem 0.9rem 3.8rem 1rem;
+    position: relative;
+    text-align: right;
+    background: rgb(156,146,138);
+    background: linear-gradient(90deg, rgba(156,146,138,1) 0%, rgba(201,199,198,1) 100%);
+    color: white;
+    box-shadow: 0px 4px 12px rgb(72, 71, 72);
+    text-shadow: 2px 2px 2px rgb(57, 56, 56);
+}
+
+header .article .quote {
+    display: inline-block;
+    font-size: 6rem;
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    color: #8D8581;
+}
+
+.content,
+main {
+    display: flex; 
+}
+
+.content {
+    justify-content: space-between;
+}
+
+.inner {
+    padding-left: 4.6rem;
+}
+
+main {
+    padding-top: 3.75rem;
+    padding-bottom: 2rem;;
+    flex-direction: column;
+    flex: 0 1 70%;
+    background-color: #F2F0F3;
+}
+
+main h2 {
+    text-transform: uppercase;
+}
+
+main h2.services {
+    margin-bottom: 2rem;
+}
+
+main li {
+    list-style: none;
+}
+
+aside {
+    display: flex;
+    flex: 0 1 30%;
+    background-color: #BAB1AD;
+}
+
+.container-1 .services {
+    padding-right: 5.1rem;
+}
+
+.container-1 .services span {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.container-1 .services li {
+    margin-bottom: 2rem;
+}
+
+.container-2 .contacts {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1em;
+    margin-top: 1.6rem;
+    margin-bottom: 2rem;
+}
+
+.container-2 .contacts span {
+    font-weight: bold;
+    font-style: italic;
+}
+
+.aside-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 3.75rem 0 3.12rem 1.43rem;
+}
+
+.aside-inner .item:not(.figures ) {
+    position: relative;
+}
+
+.aside-inner .item span {
+    position: absolute;
+    top: 6rem;
+}
+

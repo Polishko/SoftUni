@@ -1,0 +1,8 @@
+nav ul {
+    display: flex;
+}
+
+nav ul li,
+nav ul a {
+    display: block;
+}
