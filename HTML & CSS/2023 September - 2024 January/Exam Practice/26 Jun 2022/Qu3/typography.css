@@ -1,0 +1,9 @@
+@import url(https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap);
+
+html {
+    font: 18px/1.5 'PT Sans';
+}
+
+h1 { font-size: 3.33rem;}
+h2 { font-size: 1.67rem;}
+h3 { font-size: 1.22rem;}
