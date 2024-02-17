@@ -1,0 +1,125 @@
+@import url(https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css);
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font: 18/1.5 'Open Sans';
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #E9E9E9;
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.site {
+    display: flex;
+    min-width: 879px;
+    border-radius: 0.3rem;
+    box-shadow: 2px 2px 8px rgba(100, 100, 100, 0.5);
+    overflow: hidden;
+}
+
+[class*="container"] {
+    flex: 1 1 50%;
+    padding: 1.78rem;
+    background-color: #FAFAFA;
+}
+
+.container-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 9rem;
+    background: linear-gradient(rgba(43, 43, 43, 0.9), rgba(50, 50, 50, 0.5)), url(image/cover.jpg);
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.container-1 h1,
+.container-1 h2 {
+    text-align: center;
+    font-weight: normal;
+}
+
+.container-1 .logo {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.container-1 ul {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.container-1 ul li {
+    list-style: none;
+}
+
+.container-1 ul span {
+    display: none;
+}
+
+.container-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #9999B2;
+
+}
+
+.container-2 .fill form {
+    border-bottom: 1px solid #9999B2;
+    margin-top: 1rem;
+}
+
+.container-2 input {
+    margin-top: 1.44rem;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+}
+
+.container-2 input::placeholder {
+    padding-left: 0.5rem;
+}
+
+.container-2 .submit {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    font-weight: bold;
+}
+
+.container-2 .submit a {
+    color: #9999B2;
+}
+
+.container-2 .submit button {
+    padding: 0.75em 1.75em;
+    border-radius: 1em;
+    background-color: black;
+    border: 1px solid black;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+}
