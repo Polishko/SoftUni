@@ -1,0 +1,253 @@
+@media (max-width: 800px) {
+
+    body {
+        max-width: 800px;
+        border: 1px solid green;
+
+    }
+
+    body {
+        font-size: 12px;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    hr {
+        height: 1px;
+    }
+
+    header nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header nav p {
+        font-size: 1.2rem;
+        margin-bottom: 0.5em;
+        text-shadow: 2px 2px 1px rgba(150, 150, 150, 0.5);
+    }
+
+    header ul {
+        flex-direction: column;
+        align-items: center;
+        padding-left: 0;
+        
+    }
+
+    header nav ul li {
+        font-size: 0.75rem;
+    }
+
+    header div {
+        padding: 6.5em 0 6.5em 3em;
+    }
+
+    header div h1 {
+        font-size: 2.5rem;
+    }
+
+    .trainings {
+        flex-direction: column;
+        padding-top: 2.5em;
+    }
+
+    .trainings div {
+        width: 60%;
+    }
+
+    .trainings div img {
+        width: 22%;
+        height: auto;
+    }
+
+    .trainings div h3 {
+        font-size: 0.75rem
+    }
+
+    .trainings div p {
+        font-size: 0.6rem;
+    }
+
+    .classes, .instructors {
+        padding: 5em 0;
+    }
+
+    .instructors {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .instructors > p  {
+       padding: 0.9rem 0;
+       font-size: 0.75rem;
+       width: 96%;
+    }
+
+    .instructors ul {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        width: 75%;
+        align-self: center;
+        
+    }
+
+    .instructors-pic div {
+        width: 75%;
+    }
+
+    .instructors-pic h3 {
+        padding: 1rem 0 0.1rem 0;
+        font-size: 0.75rem;
+    }
+
+    .instructors-pic p {
+        font-size: 0.6rem;
+    }
+    
+    .instructors-pic li {
+        padding-bottom: 0.5rem;
+    }
+
+    .getInTouch {
+        flex-wrap: wrap;
+    }
+
+    .classes {
+        padding: 4em 0;
+    }
+
+    .classes h2 {
+        padding-bottom: 1rem;
+    }
+
+    .classes hr {
+        height: 1px;
+        margin-bottom: 1rem;
+    }
+
+    .classes li {
+        padding-bottom: 0.3rem;
+        width: 45%
+    }
+
+    .classes li > p {
+        font-size: 2rem;
+        padding-right: 0.7rem;
+    }
+
+    .classes li div h3 {
+        font-size: 0.9rem;
+    }
+
+    .classes li div p {
+        font-size: 0.6rem;
+    }
+
+    .getInTouch {
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    .getInTouch hr {
+        height: 2px;
+        margin-bottom: 1rem;
+        width: 15%;
+    }
+
+    .getInTouch h2 {
+        padding-bottom: 0.5rem;
+    }
+
+    .getInTouch .form {
+        display: flex;
+        flex-direction: column;
+        width: 100%
+    }
+
+    .getInTouch form input,
+    .getInTouch textarea  {
+        width: 70%;       
+        border-radius: 0.2rem;
+        padding-left: 0.5rem;
+        font-size: 11px;
+        margin-bottom: 0.5rem;
+    }
+
+    .getInTouch form input {
+        height: 1.7rem;
+    }
+    .getInTouch textarea {
+        height: 4.7rem;
+    }
+
+    .getInTouch button {
+        padding: 0.5rem 1.7rem;
+        color: white;
+        font-size: 0.7rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 0.2rem;
+        background: #afbaff;
+        margin-bottom: 1.3rem;
+    }
+
+    .map {
+        margin-bottom: 1rem;
+    }
+
+    .map img {
+        position: static;
+        width: 100%;
+        height: auto;
+        border: 1px solid black;
+        padding: 1rem;
+        transform: none;
+        
+    }
+
+    .site-footer {
+        display: flex;
+        flex-direction: column;
+    }
+    .site-footer .wrapper {
+        flex-direction: row;
+        flex-wrap: wrap;
+        font-size: 8px;
+    }
+
+    .site-footer .about {
+        flex-basis: 100%;
+    }
+    .site-footer .wrapper h3 {
+        font-size: 0.75rem;
+    }
+
+    .about hr {
+        height: 0.1px;
+        margin-bottom: 1rem;
+    }
+
+    .about header > p {
+        padding-bottom: 0.8rem;
+    }
+
+    .about > p {
+        padding-bottom: 1rem;
+    }
+
+    .map:after {
+        display: none;
+    }
+
+    .site-footer .sitemap ul {
+        flex-direction: column;
+    }
+
+    .sitemap h3,
+    .contacts h3 {
+        padding-bottom: 1rem;
+    }
+
+}
