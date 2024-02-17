@@ -1,0 +1,112 @@
+@media (max-width: 600px) {
+    body {
+        min-width: 370px;
+        margin: 0 auto;
+    }
+    
+.left-to-right:first-child {
+    min-height: 820px;
+}
+    
+    main .left-to-right article {
+        padding: 40px 46px;
+        color: #6c6c6c;
+        border-radius: 20%;
+        background-color: white;
+        justify-content: center;
+    }
+    
+    main .left-to-right article {
+        height: auto;
+        width: 90%;
+    }
+    
+    main .left-to-right article > p {
+        font-size: 1.2rem;
+    }
+    
+    main .left-to-right article button {
+        display: none;
+    }
+    
+    header h1 {
+        font-size: 2.5rem;
+    }
+    
+    header p {
+        font-size: 1.5rem;
+    }
+    
+    header button {
+        display: none;
+    }
+    
+    .left-to-right:first-child {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 600px;
+        padding: 80px 75px 75px 75px;
+    }
+    
+    main section:nth-child(2) {
+        flex-direction: column;
+    }
+    
+    main section:nth-child(2) button {
+        display: none;
+    }
+    
+    main section:nth-child(2) article > p {
+        font-size: 1.2rem;
+    }
+    
+    main section:nth-child(2) article img {
+        width: 100%
+    }
+    
+    main section:nth-child(4) {
+        flex-direction: column;
+    }
+    form {
+        width: 100%;
+    }
+    
+    
+    main section:nth-child(2) article, main section:nth-child(4) article {
+       margin-left: 0;
+    }
+    
+    section form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    section form label input {
+        width: 80%;
+    }
+    section form label input,
+    section form label input, section form textarea {
+        font-size: 1.3rem;
+        width: 100%;
+    }
+    
+    section form label {
+        width: 80%;
+        display: flex;
+    }
+    
+    form input[type="submit"] {
+        margin-top: 2.5rem;
+        font-size: 1.5rem
+    }
+    
+    section:nth-child(4) article {
+        align-items: center;
+    }
+    
+    main section:nth-child(4) article img {
+        width: 72%;
+    }
+}
