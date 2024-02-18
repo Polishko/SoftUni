@@ -1,0 +1,38 @@
+@import url(https://fonts.googleapis.com/css2?family=Karla&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Cormorant+Infant&display=swap);
+@import url();
+
+html {
+    font: 18px/1.2 'Karla';
+    color: #352B2A;
+}
+
+h2, h3 {
+    font-family: 'Cormorant Infant';
+}
+
+h2 { font-size: 5rem;}
+h3 { font-size: 4rem;}
+h4 { font-size: 1.4rem;}
+
+.testimonial blockquote p {
+    font-family: 'Cormorant Infant';
+    font-size: 4.1rem;
+    line-height: 1;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+p {
+    font-size: 22px;
+}
+
+.button,
+.site-footer p {
+    font-size: 0.88rem;
+}
+
+.button {
+    font-size: 0.88rem;
+    color: black;
+}

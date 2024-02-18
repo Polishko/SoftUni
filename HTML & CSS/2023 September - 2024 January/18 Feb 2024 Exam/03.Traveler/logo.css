@@ -1,0 +1,19 @@
+.logo {
+    width: 112px;
+    height: 78px;
+    overflow: hidden;
+    text-indent: -100vw;
+    background-image: url('images/logo.webp');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+.site-header .logo {
+    margin-bottom: 15.67rem;
+}
+
+.site-footer .logo {
+    margin-bottom: 1.8rem;
+}
