@@ -1,10 +1,16 @@
-function sortMinMax(myArray) {
-    myArray.sort((a, b) => a - b);
-    finalArray = [];
+function sortMinMax(inputArray) {
+    let myArray = inputArray.sort((a, b) => a - b);
+    let finalArray = [];
 
     while (myArray.length > 0) {
-        finalArray.push(myArray.shift());
-        finalArray.push(myArray.pop());
+        let firstNum = myArray.shift();
+        let lastNum = myArray.pop();
+
+        finalArray.push(firstNum);
+
+        if (lastNum) {
+            finalArray.push(lastNum);
+        }
     }
 
     return finalArray;
