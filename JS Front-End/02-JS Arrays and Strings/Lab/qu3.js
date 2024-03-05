@@ -1,12 +1,17 @@
 function differenceEvenOdd(myArray) {
-    let evenNums = myArray.filter(num => num % 2 === 0);
-    let oddNums = myArray.filter(num => num % 2 !== 0);
-
-    let evenSum = evenNums.reduce((acc, curr) => acc + curr, 0);
-    let oddSum = oddNums.reduce((acc, curr) => acc + curr, 0);
-    
-    console.log(evenSum - oddSum);
+    let result = myArray.reduce((sum, num) => num % 2 === 0 ? sum + num : sum - num, 0);
+    console.log(result);
 }
+
+// function differenceEvenOdd(myArray) {
+//     let evenNums = myArray.filter(num => num % 2 === 0);
+//     let oddNums = myArray.filter(num => num % 2 !== 0);
+
+//     let evenSum = evenNums.reduce((acc, curr) => acc + curr, 0);
+//     let oddSum = oddNums.reduce((acc, curr) => acc + curr, 0);
+    
+//     console.log(evenSum - oddSum);
+// }
 
 // function differenceEvenOdd(myArray) {
 //     let evenSum = 0;
