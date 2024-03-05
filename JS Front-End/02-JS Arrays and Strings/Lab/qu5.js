@@ -7,6 +7,18 @@ function replaceWord(text, word) {
     console.log(text);
 }
 
+// function replaceWord(text, word) {
+//     let idx = text.indexOf(word);
+
+//     while (idx >= 0) {
+//         let replacement = '*'.repeat(word.length);
+//         text = text.replace(word, replacement);
+
+//         idx = text.indexOf(word);
+//     }
+
+//     console.log(text);
+// }
 
 // replaceWord('A small sentence with some words', 'small');
 // replaceWord('Find the hidden word', 'hidden');
