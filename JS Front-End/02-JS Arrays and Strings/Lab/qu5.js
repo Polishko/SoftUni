@@ -1,11 +1,22 @@
-function replaceWord(text, word) {
-    while (text.includes(word)) {
-        let replacement = '*'.repeat(word.length);
-        text = text.replace(word, replacement);
-    }
+// Replacing all matches using RegExp
 
-    console.log(text);
+function replaceWord(text, word) {
+    const pattern = new RegExp(word, 'g');
+    const result = text.replace(pattern, '*'.repeat(word.length));
+
+    console.log(result);
 }
+
+// Other solutions
+
+// function replaceWord(text, word) {
+//     while (text.includes(word)) {
+//         let replacement = '*'.repeat(word.length);
+//         text = text.replace(word, replacement);
+//     }
+
+//     console.log(text);
+// }
 
 // function replaceWord(text, word) {
 //     let idx = text.indexOf(word);
