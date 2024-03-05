@@ -4,5 +4,14 @@ function replaceWord(text, word) {
     console.log(count);
 }
 
-replaceWord('This is a word and it also is a sentence', 'is');
-replaceWord('softuni is great place for learning new programming languages', 'softuni');
+// function replaceWord(text, word) {
+//     let result = text
+//         .split(' ')
+//         .filter(ele => ele === word)
+//         .length;
+
+//     console.log(result);
+// }
+
+// replaceWord('This is a word and it also is a sentence', 'is');
+// replaceWord('softuni is great place for learning new programming languages', 'softuni');
