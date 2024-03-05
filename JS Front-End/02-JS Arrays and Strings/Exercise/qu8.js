@@ -1,8 +1,3 @@
-// One line solution from lecture
-function splitter(myString) {
-    console.log(myString.split(/(?=[A-Z])/).join(', '));
-}
-
 // A much better alternative that can catch exact matches while the one below has extra regex to avoid catching substrings
 function splitter(myString) {
     const regexp = /[A-Z][a-z]*/g;
