@@ -1,13 +1,22 @@
 function hashedWords(myString)  {
-    let regexp = /#\b[A-Za-z]+\b/g;
-    let myArray = myString.match(regexp);
+    const regexp = /#([A-Za-z]+)/g;
+    const matches = myString.matchAll(regexp);
 
-    if (myArray) {
-        myArray.forEach(word => {
-            console.log(word.substring(1));
-        });
+    for (const match of matches) {
+        console.log(match[1]);
     }
 }
+
+// function hashedWords(myString)  {
+//     let regexp = /#\b[A-Za-z]+\b/g;
+//     let myArray = myString.match(regexp);
+
+//     if (myArray) {
+//         myArray.forEach(word => {
+//             console.log(word.substring(1));
+//         });
+//     }
+// }
 
 
 // function hashedWords(myString) {
