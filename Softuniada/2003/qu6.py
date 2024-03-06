@@ -15,7 +15,7 @@ def select_piece(pieces_list):
             max_start = current_start
             max_end = i
 
-        if current_sum < 0: #avoid negative num and restart sequence
+        if current_sum < 0: #avoid negative sum and restart sequence
             current_sum = 0
             current_start = i + 1
 
