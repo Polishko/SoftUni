@@ -11,11 +11,10 @@ function sortArrays(inputArray) {
     let arrayCollection = Array.from(collection);
     let sortedCollection = arrayCollection.sort((a, b) => a[1] - b[1]);
 
-    for (pair of sortedCollection) {
-        toPrint = pair[0].slice(1, pair[0].length - 1).split(',');
-        toPrint = toPrint.map((element) => parseFloat(element));
-        console.log(`[${toPrint.join(', ')}]`);
-    }
+    sortedCollection.forEach((pair) => {
+        let array = JSON.parse(pair[0]);
+        console.log(`[${array.join(', ')}]`)
+    })
 }
 
 // sortArrays(["[-3, -2, -1, 0, 1, 2, 3, 4]",
