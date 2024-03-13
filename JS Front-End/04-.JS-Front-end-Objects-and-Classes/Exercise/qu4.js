@@ -1,5 +1,7 @@
+
+
 function addMovies(processesArray) {
-    class Movie {
+    class Movie {     // can be solved without using class for the object 
         constructor(name, director, date) {
             this.name = name;
             this.director = director;
@@ -33,7 +35,7 @@ function addMovies(processesArray) {
     }
     
     for (let movie of movies) {
-        if (movie.name && movie.director && movie.date) {
+        if (movie.name && movie.director && movie.date) {  // can use filter 
             console.log(JSON.stringify(movie));
         }
     }
