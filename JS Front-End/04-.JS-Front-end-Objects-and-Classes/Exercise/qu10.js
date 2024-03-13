@@ -1,3 +1,14 @@
+// Maybe better to use getter here
+// class Vehicle {
+//     #parts = {};
+// get parts() {
+//     return this.#parts;
+// }
+
+// set parts(value) {
+//     here set engine. power, etc
+// }
+
 class Vehicle {
     constructor(type, model, parts, fuel) {
         this.type = type;
