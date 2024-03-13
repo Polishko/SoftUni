@@ -1,5 +1,5 @@
 # alternative from lecture
-function fancy(employeeNames) {
+function listEmployees(employeeNames) {
     employeeNames.map(name => ({ name, personalNumber: name.length }))
     .forEach((employee) => console.log(`Name: ${employee.name} -- Personal Number: ${employee.personalNumber}`));
 }
