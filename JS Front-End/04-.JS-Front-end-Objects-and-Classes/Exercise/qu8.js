@@ -1,3 +1,7 @@
+// lecture note: can be also solved with Set()
+// No need for so many checks because no such edge cases in Judge
+// Just set this while iterating carsInLot[carPlate] = (direction === 'IN') so its either true or false and then you filter only true ones
+
 function getCarRecords(inputArray) {
     let carsInLot = {};
     for (let info of inputArray) {
