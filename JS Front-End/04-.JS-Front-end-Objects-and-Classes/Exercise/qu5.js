@@ -1,3 +1,6 @@
+// without class make a list of heroes and add heros as object created dinamically in the for loop
+// for every row of input array map it to split it, map again to take deconstructed form and return the object
+
 function createInventory(infoArray) {
     class Hero {
         constructor(name, level, items) {
