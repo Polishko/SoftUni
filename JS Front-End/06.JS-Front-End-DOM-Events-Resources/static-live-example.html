@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id = "container">
+        <p class = "paragraph by-" id = "by-id">initial</p>
+        <p class = "paragraph by-class">initial</p>
+        <p class = "paragraph by-query-select">initial</p>
+        <p class = "paragraph by-query-select-all">initial</p>
+    </div>
+    <script>
+
+        // Changes to single elements
+
+        // retrieve single elements
+        const paraByID = document.getElementById('by-id'); //static element
+        const paraByClass = document.getElementsByClassName('by-class')[0];// live collection but ref to element is static?
+        const paraByQuerySelect = document.querySelector('.by-query-select'); // static element 
+        const paraByQuerySelectAll = document.querySelectorAll('.by-query-select-all')[0]; //static collection but elements are live?
+       
+        // print initial state of single element
+        console.log(paraByID.textContent);
+        console.log(paraByClass.textContent);
+        console.log(paraByQuerySelect.textContent);
+        console.log(paraByQuerySelectAll.textContent);
+
+        // create and add new element span to each p
+        const newSpan = document.createElement('span');
+        paraByID.appendChild(newSpan);
+        paraByClass.appendChild(newSpan);
+        paraByQuerySelect.appendChild(newSpan);
+        paraByQuerySelectAll.appendChild(newSpan);
+        
+        // add content to span
+        newSpan.textContent = " changed";
+
+        // print final state of single elements after span and content addition
+        console.log(paraByID.textContent);
+        console.log(paraByClass.textContent);
+        console.log(paraByQuerySelect.textContent);
+        console.log(paraByQuerySelectAll.textContent); //changed
+
+        // Changes to whole list of elements
+
+        // retrieve the collections
+        const elementsbyClass = document.getElementsByClassName('paragraph'); // live collection
+        const elementsbyQuerySelect = document.querySelectorAll('[class*="by-"]'); // static collection
+
+        //print initial state of collections
+        console.log(elementsbyClass.length); // 4
+        console.log(elementsbyQuerySelect.length); // 4
+
+        // Create new paragraph and add to container
+        const newParagraph = document.createElement('p');
+        newParagraph.className = 'paragraph'; // ensure the correct class name so it is recognized by the live collection 'elementsbyClass'
+        document.getElementById('container').appendChild(newParagraph);
+
+        //print final state of collections
+        console.log(elementsbyClass.length); // 5 --> changed
+        console.log(elementsbyQuerySelect.length); // 4
+
+        
+
+        
+    </script>
+</body>
+</html>
