@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .orange { background: orange; }
+        .green { background: green; }
+        .yellow { background: yellow; }
+
+    </style>
+</head>
+<body>
+    <div class="orange">
+        <div class="green">
+            <div class="yellow">He-he</div>
+        </div>
+       </div>
+    <script>
+        const divElements = document.querySelectorAll("div");
+        
+        // 1. bubbling from innermost to uppermost:
+
+        // function logText(e) {
+        //     console.log(this, "clicked"); // currentTarget element
+        // }
+        
+        // divElements.forEach((el) => el.addEventListener("click", logText));
+
+        // div.yellow clicked
+        // div.green clicked
+        // div.orange clicked
+
+        //2. capturing from outermost to innermost:
+
+        // divElements.forEach((el) => el.addEventListener("click", logText, {
+        //     capture: true // default is false
+        // }));
+
+        // div.orange clicked
+        // div.green clicked
+        // div.yellow clicked
+
+        // 3. bubbling with event propagation stopped after first trigger on innermost
+
+        // function logText(e) {
+        //     e.stopPropagation(); // prevents further propagation of the current event
+        //     console.log(this, "clicked");
+        // }
+
+        // divElements.forEach((el) => el.addEventListener("click", logText));
+
+        // div.yellow clicked
+
+        // 4. capturing with event propagation stopped after first trigger on outermost
+      
+        function logText(e) {
+            e.stopPropagation();
+            console.log(this, "clicked");
+        }
+
+        divElements.forEach((el) => el.addEventListener("click", logText, {
+            capture: true
+        }));
+
+        // div.orange clicked
+
+
+        
+    </script>
+</body>
+</html>
