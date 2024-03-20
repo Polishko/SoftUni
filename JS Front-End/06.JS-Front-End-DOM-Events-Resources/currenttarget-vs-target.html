@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Example</title>
+    <style>
+        .container {
+            border: 1px solid black;
+            padding: 20px;
+            margin: 20px;
+        }
+        .inner {
+            border: 1px solid red;
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="inner">
+        <button>Click me</button>
+    </div>
+</div>
+
+<script>
+    document.querySelector('.container').addEventListener('click', function(event) {
+        console.log('Current Target:', event.currentTarget);
+        console.log('Target:', event.target);
+    });
+</script>
+
+</body>
+</html>
