@@ -1,6 +1,6 @@
 function solve() {
-   let divCollection = document.querySelectorAll('.product > *'); // All relevant divs collected
-   let textarea = document.querySelector('textarea'); // The area to be filled retrieved
+   let divCollection = document.querySelectorAll('.product > *'); // All relevant divs
+   let textarea = document.querySelector('textarea'); // The area to be filled
    let products = []; // The products purchased
    let totalCost = 0;
    let checkOutButton = document.querySelector('.checkout');
@@ -18,10 +18,10 @@ function solve() {
      let idx = i % 4;
 
      if (idx === 0) {
-      result.push({}); // Create new object when previous object's attributes and values are retrieved
+      result.push({}); // Create a new object after previous object's all attributes and values (div's) are retrieved
      }
 
-     // Add the event listener to the button in object
+     // Add the event listener to the button div in the object
      if (idx === 2) {
       divElement.addEventListener('click', function(e) {
          textarea.disabled = false;
@@ -38,7 +38,7 @@ function solve() {
       });
      }
 
-     // Get the current object in the result array and add the div element to the relevant attribute 
+     // Update the current object in the result array with the current div element 
      let currentObject = result[result.length - 1];
      currentObject[attributes.get(idx)] = divElement;
 
