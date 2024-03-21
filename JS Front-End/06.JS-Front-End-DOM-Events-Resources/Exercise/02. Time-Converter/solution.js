@@ -14,6 +14,7 @@ function attachEventsListeners() {
             const targetID = button.id.replace('Btn', '');
             const inputValue = Number(document.getElementById(targetID).value);
 
+            // Optional: if entered value is not number ignore
             if (!isNaN(inputValue)) {
                 const factor = inputValue / conversionArray[targetID];
 
@@ -27,6 +28,7 @@ function attachEventsListeners() {
         });
     }   
 
+    // Optional: remove entries for new conversion
     for (let input of inputItems) {
         input.addEventListener('input', function(e) {
             const inputValue = Number(input.value);
