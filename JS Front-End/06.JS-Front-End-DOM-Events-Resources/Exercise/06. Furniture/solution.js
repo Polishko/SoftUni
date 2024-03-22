@@ -44,6 +44,7 @@ function solve() {
               break;
             case 'decFactor':
               newRow.querySelector('td:nth-of-type(4)').appendChild(newEle);
+              break;
           }
         }
       }
