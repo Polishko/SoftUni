@@ -83,19 +83,3 @@ function solve() {
     secondTextArea.value = (result1 + result2 + result3);
   });
 }
-
-
-// function solve() {
-  
-//   // console.log(arrayObjectsElement)
-//   const generateButton = document.querySelector('#exercise button:nth-of-type(1)');
-//   // console.log(generateButton.textContent)
-//   // const tableBody = document.querySelector('tbody');
-
-//   generateButton.addEventListener('click', function(e) {
-//     const arrayObjectsElement = document.querySelector('#exercise textarea:nth-of-type(1)').value;
-//     let secondTextArea = document.querySelector('#exercise textarea:nth-of-type(2)');
-//     secondTextArea.disabled = false;
-//     secondTextArea.value = arrayObjectsElement;
-//   });
-// }
