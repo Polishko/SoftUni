@@ -68,8 +68,7 @@ function solve() {
     };
 
     checkButton.addEventListener('click', function(e) { 
-        tableStyle(isGameWon(getAllTd(allRows)));
-             
+        tableStyle(isGameWon(getAllTd(allRows)));     
     });
 
     clearButton.addEventListener('click', function(e) {
