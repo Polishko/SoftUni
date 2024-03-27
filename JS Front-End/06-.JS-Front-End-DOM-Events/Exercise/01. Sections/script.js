@@ -2,8 +2,8 @@ function create(words) {
    let mainDiv = document.getElementById('content');
 
    for (const word of words) {
-      let divItem = document.createElement('div');
-      let pItem = document.createElement('p');
+      const divItem = document.createElement('div');
+      const pItem = document.createElement('p');
       pItem.textContent = word;
       pItem.style.display = 'none';
 
@@ -15,4 +15,6 @@ function create(words) {
 
       mainDiv.appendChild(divItem); 
    }
+
+   // or use map on each word with all actions above and return the div
 }
