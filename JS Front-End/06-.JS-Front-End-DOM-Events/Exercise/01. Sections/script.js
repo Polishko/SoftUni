@@ -16,5 +16,5 @@ function create(words) {
       mainDiv.appendChild(divItem); 
    }
 
-   // or use map on each word with all actions above and return the div
+   // or use map on each word with all actions above and return the div then add the event listener to each div. But I think for loop is better, it does all in one cycle.
 }
