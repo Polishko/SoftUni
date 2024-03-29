@@ -20,7 +20,7 @@ function attachEvents() {
         .then((data) => {
             allPosts = Object.entries(data);
                      
-            for (obj of allPosts) {
+            for (let obj of allPosts) {
                 const option = document.createElement('option');
                 option.value = obj[1].id; // Mistake in problem explanation: it says use object key or obj[0]
                 option.textContent = obj[1].title;
@@ -43,7 +43,7 @@ function attachEvents() {
             const filteredComments = commentsArray.filter((obj) => obj[1].postId === idPost);
             
             ulElement.innerHTML = '';
-            for (comment of filteredComments) {
+            for (let comment of filteredComments) {
                 const liElement = document.createElement('li');
                 liElement.textContent = comment[1].text;
                 ulElement.appendChild(liElement);
