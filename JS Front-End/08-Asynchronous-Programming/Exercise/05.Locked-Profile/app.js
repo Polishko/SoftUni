@@ -1,6 +1,6 @@
 function lockedProfile() {
     function createProfileCard(dataKey, num) {
-            const fragment = document.createDocumentFragment();
+        const fragment = document.createDocumentFragment();
         // Main div
         const profileDiv = document.createElement('div');
         profileDiv.className = 'profile';
@@ -13,7 +13,7 @@ function lockedProfile() {
         const lockLabel = document.createElement('label');
         lockLabel.textContent = 'Lock';
         profileDiv.appendChild(lockLabel);
-
+        
         const inputLock = document.createElement('input');
         inputLock.type = 'radio';
         inputLock.name = `user${num}Locked`;
@@ -30,7 +30,7 @@ function lockedProfile() {
         inputUnlock.name = `user${num}Locked`;
         inputUnlock.value = 'unlock';
         profileDiv.appendChild(inputUnlock);
-
+        // br hr elements
         const brEle = document.createElement('br');
         profileDiv.appendChild(brEle);
         const hr1 = document.createElement('hr');
@@ -73,37 +73,33 @@ function lockedProfile() {
         inputAge.setAttribute('disabled', 'true');
         inputAge.setAttribute('readonly', 'true');
         userDiv.appendChild(inputAge);
-        
+        // Append Email Age div
         profileDiv.appendChild(userDiv);
         // Add button
         const buttonEle = document.createElement('button');
         buttonEle.textContent = 'Show more';
         profileDiv.appendChild(buttonEle);
-
-        // Button event listener
-
-        buttonEle.addEventListener('click', function(e) {
-            const unlock = profileDiv.querySelector('input[value="unlock"]');
-            const hiddenInputs = userDiv.querySelectorAll('input');
-            const hiddenLabels = userDiv.querySelectorAll('label');
         
-            if (unlock.checked) {
+        // Button event listener
+        buttonEle.addEventListener('click', function(e) {       
+            if (inputUnlock.checked) {
                 if (buttonEle.textContent === 'Show more') {
-                    hiddenInputs.forEach(input => input.style.display = 'inline-block');
-                    hiddenLabels.forEach(label => label.style.display = 'inline-block');
+                    inputEmail.style.display = 'inline-block';
+                    emailLabel.style.display = 'inline-block';
+                    inputAge.style.display = 'inline-block';
+                    ageLabel.style.display = 'inline-block';
                     buttonEle.textContent = 'Hide it';
                 } else {
-                    hiddenInputs.forEach(input => input.style.display = 'inline-block');
-                    hiddenLabels.forEach(label => label.style.display = 'inline-block');
+                    inputEmail.style.display = 'none';
+                    emailLabel.style.display = 'none';
+                    inputAge.style.display = 'none';
+                    ageLabel.style.display = 'none';
                     buttonEle.textContent = 'Show more';
                 }
             }
         });
-
         
         fragment.appendChild(profileDiv);
-
-
 
         return fragment;
     }
@@ -122,7 +118,6 @@ function lockedProfile() {
                 const profileCard = createProfileCard(data[key], count);
                 mainEle.appendChild(profileCard); 
             }
-
         })
         .catch((error) => error)
     }
