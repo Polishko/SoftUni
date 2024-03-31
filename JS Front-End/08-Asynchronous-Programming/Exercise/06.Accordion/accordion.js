@@ -1,12 +1,13 @@
 function solution() {
-    const BASE_ERL = 'http://localhost:3030/jsonstore/advanced/articles/';
+    const BASE_URL = 'http://localhost:3030/jsonstore/advanced/articles/';
     const mainSection = document.getElementById('main');
 
-    // Load headings
-    fetch(`${BASE_ERL}list`)
+    // Load content
+    fetch(`${BASE_URL}list`)
     .then((response) => response.json())
     .then((data) => {
         // console.log(data);
+        //Load visible content
         data.forEach(obj => {
             const articleDiv = document.createElement('div');
             articleDiv.className = 'accordion'; 
@@ -25,7 +26,8 @@ function solution() {
             articleDiv.appendChild(headDiv);
             mainSection.appendChild(articleDiv);
 
-            fetch(`${BASE_ERL}details/${button.id}`)
+            // Load hidden content
+            fetch(`${BASE_URL}details/${button.id}`)
                 .then((response) => response.json())
                 .then((data) => {
                     // console.log(data);
@@ -37,34 +39,21 @@ function solution() {
                     articleDiv.appendChild(extraDiv);
                 })
                 .catch((error) => console.log(error.message))
-
-                button.addEventListener('click', function(e) {
-                    const hiddenDiv = document.querySelector('.extra')
-                    if (button.textContent === 'More') {
-                        hiddenDiv.style.display = 'block';
-                        button.textContent = 'Less';
-                    } else {
-                        hiddenDiv.style.display = 'none';
-                        button.textContent = 'More';
-                    }         
-                });
-        })
-
-        
+            
+            // Add button event listener
+            button.addEventListener('click', function(e) {
+                const hiddenDiv = document.querySelector('.extra')
+                if (button.textContent === 'More') {
+                    hiddenDiv.style.display = 'block';
+                    button.textContent = 'Less';
+                } else {
+                    hiddenDiv.style.display = 'none';
+                    button.textContent = 'More';
+                }         
+            });
+        })    
     })
     .catch((error) => console.log(error.message))
-
-     
 }
 
 solution();
-
-// <!-- <div class="accordion">
-// <div class="head">
-//     <span>Scalable Vector Graphics</span>
-//     <button class="button" id="ee9823ab-c3e8-4a14-b998-8c22ec246bd3">More</button>
-// </div>
-// <div class="extra">
-//     <p>Scalable Vector Graphics .....</p>
-// </div>
-// </div> -->
