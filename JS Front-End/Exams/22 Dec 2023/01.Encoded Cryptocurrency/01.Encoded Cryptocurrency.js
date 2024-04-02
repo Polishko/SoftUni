@@ -43,12 +43,12 @@ function decryptMessage(inputArray) {
 // "Buy"])
 // );
 
-decryptMessage((["PZDfA2PkAsakhnefZ7aZ", 
-"TakeEven",
-"TakeEven",
-"TakeEven",
-"ChangeAll?Z?X",
-"ChangeAll?A?R",
-"Reverse?PRX",
-"Buy"])
-);
+// decryptMessage((["PZDfA2PkAsakhnefZ7aZ", 
+// "TakeEven",
+// "TakeEven",
+// "TakeEven",
+// "ChangeAll?Z?X",
+// "ChangeAll?A?R",
+// "Reverse?PRX",
+// "Buy"])
+// );
