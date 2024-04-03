@@ -63,7 +63,7 @@ function enableEditButton() {
     addPresentButton.disabled = true;
 }
 
-function getIdByPresent(gift) {
+function getIdByPresent(gift) { // Unique gift names assumed
     return fetch(BASE_URL)
         .then(res => res.json())
         .then(res => Object.entries(res).find(e => e[1].gift === gift)[1]._id);
@@ -113,7 +113,6 @@ async function loadPresents() {
 
             attachGiftButtonEvents();
         }
-        // enableAddButton();
     } catch (error) {
         console.log(error);
     }
