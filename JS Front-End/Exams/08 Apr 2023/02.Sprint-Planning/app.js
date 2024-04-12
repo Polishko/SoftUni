@@ -28,23 +28,23 @@ function solve() {
         const currentTask = getInputs();
         if (currentTask) {
             taskInfoElement.value = `task-${taskCounter += 1}`;
+            currentTask.id = taskInfoElement.value;
             createTask(currentTask);
-            applyTotalSprintPoints();
+            updateTotalSprintPoints();
             clearInputs();
         }
     });
 
-    deleteTaskButton.addEventListener('click', function(e) {
-        const taskId = document.getElementById('task-id').value;
+    deleteTaskButton.addEventListener('click', function() {
+        const taskId = taskInfoElement.value;
         const taskTarget = document.getElementById(taskId);
         taskTarget.remove();
-        applyTotalSprintPoints();
+        updateTotalSprintPoints();
         clearInputs();
         enableInputs();
         enableCreateTask();
     });
 
-    // check inputs
     function getInputs() {
         if (titleInput.value !== '' && descriptionInput.value !== ''
             && labelInput.value !== '' && estimationInput.value !== '' && assigneeInput.value !== '') {
@@ -60,7 +60,7 @@ function solve() {
 
     function createTask(task) {
         const taskArticle = document.createElement('article');
-        taskArticle.id = document.getElementById('task-id').value;
+        taskArticle.id = task.id;
         taskArticle.className = 'task-card';
         tasksSection.appendChild(taskArticle);
 
@@ -99,11 +99,11 @@ function solve() {
 
         totalSprintPoints += task.estimationPoints;
 
-        deleteButton.addEventListener('click', () => prepareForDeletion(task, taskArticle.id));
+        deleteButton.addEventListener('click', () => prepareForDeletion(task));
     }
 
-    function prepareForDeletion(task, id) {
-        updateInputs(task, id);
+    function prepareForDeletion(task) {
+        updateInputs(task);
         enableDeleteTask();
         disableInputs();
         totalSprintPoints -= task.estimationPoints;
@@ -119,13 +119,13 @@ function solve() {
         createTaskButton.removeAttribute('disabled');
     }
 
-    function updateInputs(task, id) {
+    function updateInputs(task) {
         titleInput.value = task.title;
         descriptionInput.value = task.description;
         labelInput.value = task.label;
         estimationInput.value = task.estimationPoints;
         assigneeInput.value = task.assignee;
-        taskInfoElement.value = id;
+        taskInfoElement.value = task.id;
     }
 
     function disableInputs() {
@@ -144,7 +144,7 @@ function solve() {
         assigneeInput.removeAttribute('disabled');
     }
 
-    function applyTotalSprintPoints(task) {
+    function updateTotalSprintPoints() {
         const pointsPa = document.getElementById('total-sprint-points');
         pointsPa.textContent = `Total Points ${totalSprintPoints}pts`;
     }
