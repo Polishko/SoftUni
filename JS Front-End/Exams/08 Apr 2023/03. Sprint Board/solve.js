@@ -1,4 +1,3 @@
-// TODO:
 function attachEvents() {
     // Main variables
     const baseURL = 'http://localhost:3030/jsonstore/tasks';
@@ -124,7 +123,6 @@ function attachEvents() {
     function createTask(task) {
         const taskLi = document.createElement('li');
         taskLi.className = 'task';
-        taskLi.setAttribute('data-id', task._id);
 
         const taskTitle = document.createElement('h3');
         taskTitle.textContent = task.title;
