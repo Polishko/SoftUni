@@ -33,10 +33,11 @@ function Intro(props) {
 function SkillList() {
   return (
     <div className="skill-list ">
-      <Skill name="Python" icon="💪" style={{ background: "#B9D7A3" }} />
-      <Skill name="HTML+CSS" icon="💪" style={{ background: "#1F55E5" }} />
-      <Skill name="JavaScript" icon="💪" style={{ background: "#EBD314" }} />
-      <Skill name="GitHub" icon="💪" style={{ background: "#ED4329" }} />
+     <Skill name="Python" icon="💪" style={{ background: "#B9D7A3" }} />
+      <Skill name="HTML+CSS" icon="👌" style={{ background: "#1F55E5" }} />
+      <Skill name="JavaScript" icon="👌" style={{ background: "#EBD314" }} />
+      <Skill name="GitHub" icon="👍" style={{ background: "#ED4329" }} />
+      <Skill name="React" icon="👶" style={{ background: "#ED4329" }} />
     </div>
   );
 }
