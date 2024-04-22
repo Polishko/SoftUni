@@ -71,16 +71,16 @@ function Header() {
 }
 
 function Menu() {
-  const pizzas = pizzaData; // If you check below if pizzas when no pizzas then you get empty list
+  const pizzas = pizzaData; // If you make a check below if there are pizzas and when there are no pizzas then you render an empty list
   // const pizzas = [];
-  const numPizzas = pizzas.length; // if you check this when no pizzas you get no list: more correct
+  const numPizzas = pizzas.length; // if you check this when there are no pizzas dont render a list: more correct
 
   return (
     <main className="menu">
       <h2>Our menu</h2>
 
       {/* Conditional rendering with && */}
-      {/* {numPizzas > 0 && ( // check > 0 because if 0 and check only numPizzas will return 0
+      {/* {numPizzas > 0 && ( // check if > 0 because if no pizzas then you render 0
         <ul className="pizzas">
         {pizzas.map((pizza) => (
           <Pizza pizzaObj={pizza} key={pizza.name} />
@@ -90,14 +90,14 @@ function Menu() {
 
       {/* Conditional rendering with ternary op */}
       {numPizzas > 0 ? ( // check > 0 because if 0 and check only numPizzas will return 0
-        <>
+        <> // A react fragment allowing to render more than one element
           <p>
             Authentic Italian cuisine. 6 creative dishes to choose from. All
             from our stone oven, all organic, all delicious.
           </p>
           <ul className="pizzas">
             {pizzas.map((pizza) => (
-              <Pizza pizzaObj={pizza} key={pizza.name} />
+              <Pizza pizzaObj={pizza} key={pizza.name} /> //React asks for key
             ))}
             {/*so JS in { then in there we have markup for Pizza and in it another JS in {}} */}
           </ul>
