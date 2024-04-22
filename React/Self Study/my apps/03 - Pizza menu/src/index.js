@@ -71,15 +71,34 @@ function Header() {
 }
 
 function Menu() {
+  const pizzas = pizzaData; // If you check below if pizzas when no pizzas then you get empty list
+  // const pizzas = [];
+  const numPizzas = pizzas.length; // if you check this when no pizzas you get no list: more correct
+
   return (
     <main className="menu">
       <h2>Our menu</h2>
-      <ul className="pizzas">
-        {pizzaData.map((pizza) => (
-          <Pizza pizzaObj={pizza} key={pizza.name} />
-        ))}
-        {/*so JS in { then in there we have markup for Pizza and in it another JS in {}} */}
-      </ul>
+      {/* Conditional rendering with && */}
+      {/* {numPizzas > 0 && ( // check > 0 because if 0 and check only numPizzas will return 0
+        <ul className="pizzas">
+          {pizzas.map((pizza) => (
+            <Pizza pizzaObj={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      )} */}
+
+      {/* Conditional rendering with ternary op */}
+      {numPizzas > 0 ? ( // check > 0 because if 0 and check only numPizzas will return 0
+        <ul className="pizzas">
+          {pizzas.map((pizza) => (
+            <Pizza pizzaObj={pizza} key={pizza.name} />
+          ))}
+          {/*so JS in { then in there we have markup for Pizza and in it another JS in {}} */}
+        </ul>
+      ) : (
+        <p>We're still working on our menu. Please come back later :)</p>
+      )}
+
       {/* <Pizza
         name="Pizza Spinaci"
         ingredients="Tomato, mozarella, spinach, and ricotta cheese"
@@ -96,16 +115,17 @@ function Menu() {
   );
 }
 
-function Pizza(props) {
+function Pizza({ pizzaObj }) {
+  if (pizzaObj.soldOut) return null; // Conditional renderin with multiple returns
+
   return (
     <li className="pizza">
-      {" "}
       {/*Each pizza is li element of ul in menu */}
-      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name}></img>
+      <img src={pizzaObj.photoName} alt={pizzaObj.name}></img>
       <div>
-        <h3>{props.pizzaObj.name}</h3>
-        <p>{props.pizzaObj.ingredients}</p>
-        <span>{props.pizzaObj.price + 3}</span>
+        <h3>{pizzaObj.name}</h3>
+        <p>{pizzaObj.ingredients}</p>
+        <span>{pizzaObj.price + 3}</span>
       </div>
     </li>
   );
@@ -122,9 +142,30 @@ function Footer() {
   //   else alert("Sorry, we're closed."); {} oprtional for single statement if
 
   return (
-    <footer>{new Date().toLocaleDateString()}. We're currently open!</footer>
+    <footer className="footer">
+      {isOpen ? (
+        <Order closedHour={closedHour} />
+      ) : (
+        <p>
+          We're happy to welcome you between {openHour}:00 to {closedHour}:00
+        </p>
+      )}
+    </footer>
   );
   //   return React.createElement("footer", null, "We're currently open!"); //Demonstration no JSX null is props
+}
+
+function Order({ closedHour, openHour }) {
+  return (
+    <div className="order">
+      <p>
+        We're open from {openHour}:00 to {closedHour}:00. Come visit us or order
+        online.
+      </p>
+
+      <button className="btn">Open</button>
+    </div>
+  );
 }
 
 // App component rendered as a root component
