@@ -12,7 +12,7 @@ export default function App() {
 }
 
 function Counter() {
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(1);
   const [count, setCount] = useState(0);
 
   const date = new Date();
@@ -67,10 +67,13 @@ function Counter() {
         <span>{message}</span>
         <span>{date.toDateString()}</span>
       </p>
-      <button onClick={handleReset}>Reset</button>
+      {(count !== 0 || step !== 1) && (
+        <button onClick={handleReset}>Reset</button>
+      )}
     </>
   );
 }
+
 
 // import "./styles.css";
 // import { useState } from "react";
