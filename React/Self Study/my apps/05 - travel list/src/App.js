@@ -1,11 +1,5 @@
 import { useState } from "react";
 
-// const initialItems = [
-//   { id: 1, description: "Passports", quantity: 2, packed: false },
-//   { id: 2, description: "Socks", quantity: 12, packed: true },
-//   { id: 3, description: "Charger", quantity: 1, packed: false },
-// ];
-
 export default function App() {
   const [items, setItems] = useState([]); // Lifted state
 
@@ -34,7 +28,7 @@ export default function App() {
         onDeleteItem={handleDeleteItem}
         onToggleItem={handleToggleItem}
       />
-      <Stats />
+      <Stats items={items} />
     </div>
   );
 }
@@ -124,10 +118,28 @@ function Item({ item, onDeleteItem, onToggleItem }) {
   );
 }
 
-function Stats() {
+function Stats({ items }) {
+  if (!items.length) {
+    // early return
+    return (
+      <p className="stats">
+        <em>Start adding some items to your packing list 🚀</em>
+      </p>
+    );
+  }
+
+  const numItems = items.length; // derived state
+  const numPacked = items.filter((item) => item.packed).length;
+  const percentage = Math.round((numPacked * 100) / numItems);
+
   return (
     <footer className="stats">
-      <em>💼 You have X items on your list, and you already packed X (X%)</em>
+      <em>
+        {percentage < 100
+          ? `💼 You have ${numItems} items on your list, and you already packed 
+        ${numPacked} (${percentage}%)`
+          : "You got everything! Ready to go ✈"}
+      </em>
     </footer>
   );
 }
