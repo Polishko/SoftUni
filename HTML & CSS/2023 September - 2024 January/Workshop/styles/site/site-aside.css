@@ -1,0 +1,27 @@
+.site-aside {
+  color: #43d9ad;
+  opacity: 0.8;
+  border-top: 1px solid var(--clr-border-layout);
+  text-align: right;
+  font-size: 0.5rem;
+  padding: 0.5em 0.5em;
+  margin: 0;
+}
+
+.site-aside p {
+  padding: 0;
+  margin: 0;
+}
+
+.site-aside a {
+  display: inline-block;
+  text-decoration: none;
+  color: #e99287;
+  z-index: 10;
+}
+
+.site-aside a:hover,
+.site-aside a:focus {
+  text-decoration: underline;
+  color: #fff;
+}

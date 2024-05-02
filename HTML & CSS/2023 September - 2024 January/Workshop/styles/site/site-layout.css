@@ -1,0 +1,58 @@
+body {
+  padding: 2em;
+  background-color: var(--clr-body-bgrd);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.site {
+  background-color: var(--clr-site-bgrd);
+  color: #fff;
+  border: 1px solid var(--clr-border-layout);
+  max-width: 1200px;
+  width: 100%;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.site-content {
+  position: relative;
+  z-index: 10;
+}
+
+.site::after {
+  display: block;
+  position: absolute;
+  content: "";
+  top: 2em;
+  left: 57%;
+  z-index: 1;
+  width: 440px;
+  height: 440px;
+  border-radius: 15rem;
+  background: linear-gradient(
+      197.37deg,
+      #7450db -0.38%,
+      rgba(138, 234, 240, 0) 101.89%
+    ),
+    linear-gradient(
+      115.93deg,
+      #3e88f6 4.86%,
+      rgba(62, 180, 246, 0.33) 38.05%,
+      rgba(62, 235, 246, 0) 74.14%
+    ),
+    radial-gradient(
+      56.47% 76.87% at 6.92% 7.55%,
+      rgba(62, 136, 246, 0.7) 0%,
+      rgba(62, 158, 246, 0.182) 52.16%,
+      rgba(62, 246, 246, 0) 100%
+    ),
+    linear-gradient(306.53deg, #2ee4e3 19.83%, rgba(46, 228, 227, 0) 97.33%);
+  background-blend-mode: normal, normal, normal, normal, normal, normal;
+  filter: blur(50px);
+}
+/* https://toolbox.signalsupply.co/apps/gradientblobcss */
