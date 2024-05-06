@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const initialCats = [
   {
     id: 118836,
@@ -7,7 +9,7 @@ const initialCats = [
   },
 
   {
-    id: 118836,
+    id: 245672,
     name: "Kaju",
     image: "https://cataas.com/cat?u=933372",
     happiness: 50,
@@ -21,22 +23,47 @@ const initialCats = [
   },
 ];
 
-function Button({ children, className }) {
-  return <button className={className}>{children}</button>;
+function Button({ children, className, onClick }) {
+  return (
+    <button className={className} onClick={onClick}>
+      {children}
+    </button>
+  );
 }
 
 export default function App() {
-  const cats = initialCats;
+  const [cats, setCats] = useState(initialCats);
+  const [showAddCat, setShowAddCat] = useState(false);
+
+  function handleShowAddCat() {
+    setShowAddCat((show) => !show);
+  }
+
+  function handleAddCat(cat) {
+    setCats((cats) => [...cats, cat]);
+  }
+
   return (
     <div className="app">
-      <CatList cats={cats} />
+      <div className="container-1">
+        <CatList cats={cats} />
+
+        {showAddCat && <AddNewCat onAddCat={handleAddCat} />}
+
+        <Button
+          className={!showAddCat ? "button add pink" : "button add blue"}
+          onClick={handleShowAddCat}
+        >
+          {!showAddCat ? "Add cat" : "Close"}
+        </Button>
+      </div>
     </div>
   );
 }
 
 function CatList({ cats }) {
   return (
-    <ul>
+    <ul className="cat-list">
       {cats.map((cat) => (
         <Cat cat={cat} key={cat.id} />
       ))}
@@ -56,12 +83,51 @@ function Cat({ cat }) {
           {cat.name}'s happiness level is {cat.happiness}
         </p>
       </div>
-      <Button className="button feed">Feed</Button>
-      <Button className="button clean-litter">Clean litter</Button>
+      <Button className="button feed green">Feed</Button>
+      <Button className="button clean-litter blue">Clean litter</Button>
     </li>
   );
 }
 
-function AddNewCat() {
-  <form></form>;
+function AddNewCat({ onAddCat }) {
+  const [name, setName] = useState("");
+  const [image, setImage] = useState("https://cataas.com/cat");
+
+  const id = crypto.randomUUID();
+
+  const newCat = {
+    id,
+    name,
+    image: `${image}?u=${id}`,
+    happiness: 100,
+  };
+
+  function handleAddCat(e) {
+    e.preventDefault();
+
+    if (!name || !image) return;
+
+    onAddCat(newCat);
+
+    setName("");
+    setImage("https://cataas.com/cat");
+  }
+
+  return (
+    <form className="add-cat" onSubmit={handleAddCat}>
+      <label>Cat name</label>
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <label>Cat image</label>
+      <input
+        type="text"
+        value={image}
+        onChange={(e) => setImage(e.target.value)}
+      />
+      <Button className="button add pink">Add</Button>
+    </form>
+  );
 }
