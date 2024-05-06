@@ -1,8 +1,25 @@
 :root {
-  --color-dark-1: rgb(4, 36, 4);
-  --color-light-1: rgb(37, 155, 37);
-  --color-dark-2: rgb(5, 53, 245);
+  --color-dark: rgb(6, 33, 114);
+  --color-light-1: rgb(83, 218, 83);
   --color-light-2: rgb(44, 165, 181);
+  --color-light-3: rgb(245, 5, 129);
+  --color-selected: #fff4e6;
+  --color-selected-dark: #f1e0cf;
+  --color-light-4: #ffe8cc;
+  --color-light-5: #ffa94d;
+  --color-adopt: rgb(174, 5, 174);
+}
+
+.green {
+  background-color: var(--color-light-1);
+}
+
+.blue {
+  background-color: var(--color-light-2);
+}
+
+.pink {
+  background-color: var(--color-light-3);
 }
 
 * {
@@ -20,20 +37,65 @@ html {
 body {
   height: 100vh;
   color: #495057;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  max-width: 900px;
 }
 
 .app {
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
   margin: 2em 2em;
+  gap: 2em;
+}
+
+.shelter-cats {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 70%;
+  flex-wrap: wrap;
+}
+
+.selected {
+  background-color: var(--color-selected);
+  border-radius: 3em;
+}
+
+.manage-cat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  background-color: var(--color-selected-dark);
+  border-radius: 3em;
+  align-self: flex-start;
+  padding: 1em;
+}
+
+.manage-cat h3 {
+  align-self: center;
+}
+
+.shelter-stats {
+  margin-top: 1em;
+  text-align: center;
+}
+
+.all-adopted {
+  margin-top: 1em;
+  font-weight: bold;
+  font-size: 2em;
+  text-align: center;
+}
+
+.shelter-cats h3 {
+  text-align: center;
+  margin-bottom: 1em;
 }
 
 .cat {
-  width: 70%;
   display: flex;
   gap: 1em;
-  justify-items: center;
+  justify-content: center;
   align-items: center;
   margin-bottom: 1em;
 }
@@ -41,14 +103,17 @@ body {
 .cat-img {
   display: flex;
   flex-basis: 15%;
+  max-height: 100px;
   justify-items: center;
+  align-items: flex-start;
+  overflow: hidden;
+  border-radius: 1em;
 }
 
 .cat-img img {
   width: 100%;
-  height: auto; /* Set the width of the image to fill its container */
-  border-radius: 20px; /* Add rounded corners to the image */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+  height: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .cat-info {
@@ -56,33 +121,62 @@ body {
   text-align: center;
 }
 
+.add-cat {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  gap: 0.5em;
+  background-color: #cdcecf;
+  padding: 1em 1.5em;
+  border-radius: 1em;
+}
+
+.add-cat label {
+  font-weight: bold;
+}
+
+.add-cat input[type="text"] {
+  height: 2em;
+  border: 1px solid #ccc;
+}
+
+.manage-1,
+.manage-2 {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1em;
+  align-content: center;
+}
+
 .button {
   border: none;
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
+  color: #fff;
+  border-radius: 1em;
+  padding: 0.8em 1.2em;
+}
+
+.button:hover:not(.no-hover) {
+  background-color: var(--color-dark);
+}
+
+.no-hover {
+  pointer-events: none;
 }
 
 .button.feed {
   background-color: var(--color-light-1);
-  color: #dedcdc;
-  border-radius: 1em;
-  padding: 0.8em 1.8em;
 }
 
-.button.feed:hover {
-  background-color: var(--color-dark-1);
-  color: #fff;
+.button.add-close,
+.button.add-cat {
+  align-self: center;
+  margin-top: 0.7em;
 }
 
-.button.clean-litter {
-  background-color: var(--color-light-2);
-  border-radius: 5em;
-  color: #dedcdc;
-  padding: 0.6em 0.8em;
-}
-
-.button.clean-litter:hover {
-  background-color: var(--color-dark-2);
-  color: #fff;
+.button.adopt {
+  background-color: var(--color-adopt);
 }
