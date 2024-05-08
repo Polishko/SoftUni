@@ -186,11 +186,11 @@ function Cat({ cat, onSelection, showAddCat, selectedCat }) {
           </p>
 
           {cat.hunger === 100 && cat.litterDirtyness === 100 && (
-            <p>{cat.name} is unhappy 😿! Feed cat and change litter!</p>
+            <p>{cat.name} is unhappy 😿! Feed the cat and change litter!</p>
           )}
 
           {cat.hunger === 100 && cat.litterDirtyness < 100 && (
-            <p>{cat.name} is unhappy 😿! Feed cat!</p>
+            <p>{cat.name} is unhappy 😿! Feed the cat!</p>
           )}
 
           {cat.hunger < 100 && cat.litterDirtyness === 100 && (
@@ -313,7 +313,7 @@ function ShelterStats({ cats, adopted }) {
     <div className="shelter-stats">
       <h3>Shelter information</h3>
       <p>Cats in shelter: {countCats}</p>
-      <p>Adoted cats: {adopted}</p>
+      <p>Adopted cats: {adopted}</p>
     </div>
   );
 }
