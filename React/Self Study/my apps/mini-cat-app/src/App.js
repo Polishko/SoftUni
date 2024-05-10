@@ -26,14 +26,6 @@ const initialCats = [
   },
 ];
 
-function Button({ children, className, onClick }) {
-  return (
-    <button className={className} onClick={onClick}>
-      {children}
-    </button>
-  );
-}
-
 export default function App() {
   const [cats, setCats] = useState(initialCats);
   const [showAddCat, setShowAddCat] = useState(false);
@@ -124,18 +116,15 @@ export default function App() {
           selectedCat={selectedCat}
         />
 
+        {!selectedCat && (
+          <ToggleAddCloseButton
+            showAddCat={showAddCat}
+            handleShowAddCat={handleShowAddCat}
+          />
+        )}
+
         {showAddCat && <AddNewCat onAddCat={handleAddCat} />}
 
-        {!selectedCat && (
-          <Button
-            className={
-              !showAddCat ? "button add-close pink" : "button add-close blue"
-            }
-            onClick={handleShowAddCat}
-          >
-            {!showAddCat ? "Add cat" : "Close and manage cats"}
-          </Button>
-        )}
         <ShelterStats cats={cats} adopted={adopted} setAdopted={setAdopted} />
       </div>
 
@@ -186,11 +175,11 @@ function Cat({ cat, onSelection, showAddCat, selectedCat }) {
           </p>
 
           {cat.hunger === 100 && cat.litterDirtyness === 100 && (
-            <p>{cat.name} is unhappy 😿! Feed the cat and change litter!</p>
+            <p>{cat.name} is unhappy 😿! Feed cat and change litter!</p>
           )}
 
           {cat.hunger === 100 && cat.litterDirtyness < 100 && (
-            <p>{cat.name} is unhappy 😿! Feed the cat!</p>
+            <p>{cat.name} is unhappy 😿! Feed cat!</p>
           )}
 
           {cat.hunger < 100 && cat.litterDirtyness === 100 && (
@@ -203,19 +192,11 @@ function Cat({ cat, onSelection, showAddCat, selectedCat }) {
         </div>
       </div>
 
-      <Button
-        className={showAddCat ? "button disabled no-hover" : "button blue"}
-        onClick={(e) => {
-          if (showAddCat) {
-            e.preventDefault();
-            e.stopPropagation();
-          } else {
-            onSelection(cat);
-          }
-        }}
-      >
-        Manage
-      </Button>
+      <AddCatButton
+        showAddCat={showAddCat}
+        cat={cat}
+        onSelection={onSelection}
+      />
     </li>
   );
 }
@@ -276,26 +257,21 @@ function ManageCat({
       <h3>{selectedCat?.name}</h3>
 
       <div className="manage-1">
-        <Button
-          className="button feed green"
-          onClick={() => onFeed(selectedCat)}
-        >
-          Feed
-        </Button>
-        <Button
-          className="button clean-litter blue"
-          onClick={() => onLitterClean(selectedCat)}
-        >
-          Clean
-        </Button>
+        {/* Component composition example for the FeedButton but too much abstraction */}
+        {/* <FeedButton>
+          <Button
+            className="button feed green"
+            onClick={() => onFeed(selectedCat)}
+          >
+            Feed
+          </Button>
+        </FeedButton> */}
+        <FeedButton onFeed={onFeed} selectedCat={selectedCat} />
+        <CleanButton onLitterClean={onLitterClean} selectedCat={selectedCat} />
       </div>
       <div className="manage-2">
-        <Button className="button adopt blue" onClick={onAdoptCat}>
-          Adopt
-        </Button>
-        <Button className="button pink" onClick={onCloseSelected}>
-          Close
-        </Button>
+        <AdoptButton onAdoptCat={onAdoptCat} />
+        <CloseButton onCloseSelected={onCloseSelected} />
       </div>
     </div>
   );
@@ -313,7 +289,90 @@ function ShelterStats({ cats, adopted }) {
     <div className="shelter-stats">
       <h3>Shelter information</h3>
       <p>Cats in shelter: {countCats}</p>
-      <p>Adopted cats: {adopted}</p>
+      <p>Adoted cats: {adopted}</p>
     </div>
   );
 }
+
+// New code starts
+// All button components
+function Button({ children, className, onClick }) {
+  return (
+    <button className={className} onClick={onClick}>
+      {children}
+    </button>
+  );
+}
+
+function ToggleAddCloseButton({ showAddCat, handleShowAddCat }) {
+  return (
+    <Button
+      className={
+        !showAddCat ? "button add-close pink" : "button add-close blue"
+      }
+      onClick={handleShowAddCat}
+    >
+      {!showAddCat ? "Add cat" : "Close and manage cats"}
+    </Button>
+  );
+}
+
+function AddCatButton({ showAddCat, cat, onSelection }) {
+  return (
+    <Button
+      className={showAddCat ? "button disabled no-hover" : "button blue"}
+      onClick={(e) => {
+        if (showAddCat) {
+          e.preventDefault();
+          e.stopPropagation();
+        } else {
+          onSelection(cat);
+        }
+      }}
+    >
+      Manage
+    </Button>
+  );
+}
+
+function FeedButton({ onFeed, selectedCat }) {
+  return (
+    <Button className="button feed green" onClick={() => onFeed(selectedCat)}>
+      Feed
+    </Button>
+  );
+}
+
+// FeedButton with component composition
+// function FeedButton({ children }) {
+//   return children;
+// }
+
+function CleanButton({ onLitterClean, selectedCat }) {
+  return (
+    <Button
+      className="button clean-litter blue"
+      onClick={() => onLitterClean(selectedCat)}
+    >
+      Clean
+    </Button>
+  );
+}
+
+function AdoptButton({ onAdoptCat }) {
+  return (
+    <Button className="button adopt blue" onClick={onAdoptCat}>
+      Adopt
+    </Button>
+  );
+}
+
+function CloseButton({ onCloseSelected }) {
+  return (
+    <Button className="button pink" onClick={onCloseSelected}>
+      Close
+    </Button>
+  );
+}
+
+// New code ends
