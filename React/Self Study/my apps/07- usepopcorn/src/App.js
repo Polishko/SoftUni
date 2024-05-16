@@ -59,9 +59,7 @@ function Logo() {
   );
 }
 
-function Search() {
-  const [query, setQuery] = useState("");
-
+function Search({ query, setQuery }) {
   return (
     <input
       className="search"
@@ -189,12 +187,28 @@ function WatchedMovie({ movie }) {
 const KEY = "8d22a2eb";
 
 export default function App() {
+  const [query, setQuery] = useState("terminator");
   const [watched, setWatched] = useState([]);
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   // const query = "terminator";
-  const query = "rspofks";
+  // const tempQuery = "rspofks";
+  // const tempQuery = "terminator";
+
+  // useEffect(function () {
+  //   console.log("After initial render");
+  // }, []);
+
+  // useEffect(function () {
+  //   console.log("After each render");
+  // });
+
+  // useEffect(function() {
+  //   console.log("With each change in query")
+  // }, [query])
+
+  // console.log("During render");
 
   // useEffect(function () {
   //   fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=${query}`)
@@ -202,35 +216,46 @@ export default function App() {
   //     .then((data) => setMovies(data.Search));
   // }, []);
 
-  useEffect(function () {
-    async function fetchMovies() {
-      try {
-        setIsLoading(true);
-        const res = await fetch(
-          `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
-        );
-        if (!res.ok)
-          throw new Error("Something went wrong with fetching movies");
+  useEffect(
+    function () {
+      async function fetchMovies() {
+        try {
+          setIsLoading(true);
+          setError(""); //reset error even before fetching
+          const res = await fetch(
+            `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+          );
+          if (!res.ok)
+            throw new Error("Something went wrong with fetching movies");
 
-        const data = await res.json();
-        if (data.Response === "False")
-          // This was the response but will also work when response is bool false
-          throw new Error("Movie not found");
+          const data = await res.json();
+          if (data.Response === "False")
+            // This was the response but will also work when response is bool false
+            throw new Error("Movie not found");
 
-        setMovies(data.Search);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
+          setMovies(data.Search);
+        } catch (err) {
+          setError(err.message);
+        } finally {
+          setIsLoading(false);
+        }
       }
-    }
-    fetchMovies();
-  }, []);
+
+      if (query.length < 3) {
+        //Assumung no movie name containing words with less than 3 letters
+        setMovies([]); // so that we don't get the error no movies
+        setError("");
+        return; //so that no fetch call is made
+      }
+      fetchMovies();
+    },
+    [query]
+  );
 
   return (
     <>
       <NavBar>
-        <Search />
+        <Search query={query} setQuery={setQuery} />
         <NumResults movies={movies} />
       </NavBar>
       <Main>
