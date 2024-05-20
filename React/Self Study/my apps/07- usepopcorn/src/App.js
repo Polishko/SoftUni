@@ -179,6 +179,14 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     [selectedId]
   );
 
+  useEffect(
+    function () {
+      if (!title) return; // otherwise shows undefined
+      document.title = `Movie | ${title}`;
+    },
+    [title]
+  ); // change page title based on movie details or the currect movie, run on mount
+
   return (
     <div className="details">
       {isLoading ? (
