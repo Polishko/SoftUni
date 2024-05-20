@@ -74,6 +74,13 @@ export default function App() {
     return () => clearInterval(dirdinessTimer);
   }, []);
 
+  useEffect(
+    function () {
+      if (cats?.length === 0) setAdopted(0);
+    },
+    [cats]
+  );
+
   function handleFeed(currCat) {
     setCats((prevCats) =>
       prevCats.map((cat) =>
@@ -289,7 +296,7 @@ function ShelterStats({ cats, adopted }) {
     <div className="shelter-stats">
       <h3>Shelter information</h3>
       <p>Cats in shelter: {countCats}</p>
-      <p>Adoted cats: {adopted}</p>
+      <p>Adopted cats: {adopted}</p>
     </div>
   );
 }
