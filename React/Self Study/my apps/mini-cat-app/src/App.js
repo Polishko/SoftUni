@@ -31,6 +31,18 @@ export default function App() {
   const [showAddCat, setShowAddCat] = useState(false);
   const [selectedCat, setSelectedCat] = useState(null);
   const [adopted, setAdopted] = useState(0);
+  const [allAdopted, setAllAdopted] = useState(() => {
+    const storedAdopted = localStorage.getItem("allAdopted");
+    return storedAdopted ? parseInt(storedAdopted) : 0;
+    // try {
+    //   const parsedAdopted = JSON.parse(storedAdopted);
+    //   console.log("Parsed Adopted:", parsedAdopted);
+    //   return parsedAdopted !== null ? parseInt(parsedAdopted) : 0;
+    // } catch (error) {
+    //   console.error("Parsing Error:", error);
+    //   return 0;
+    // }
+  });
 
   function handleShowAddCat() {
     setShowAddCat((show) => !show);
@@ -39,6 +51,13 @@ export default function App() {
   function handleAddCat(cat) {
     setCats((cats) => [...cats, cat]);
   }
+
+  useEffect(
+    function () {
+      localStorage.setItem("allAdopted", JSON.stringify(allAdopted));
+    },
+    [allAdopted]
+  );
 
   useEffect(() => {
     const hungerTimer = setInterval(() => {
@@ -109,6 +128,7 @@ export default function App() {
     setAdopted((curr) => curr + 1);
     setCats((cats) => cats.filter((cat) => cat.id !== selectedCat.id));
     setSelectedCat(null);
+    setAllAdopted((allAdopted) => allAdopted + 1);
   }
 
   return (
@@ -132,7 +152,12 @@ export default function App() {
 
         {showAddCat && <AddNewCat onAddCat={handleAddCat} />}
 
-        <ShelterStats cats={cats} adopted={adopted} setAdopted={setAdopted} />
+        <ShelterStats
+          cats={cats}
+          adopted={adopted}
+          setAdopted={setAdopted}
+          allAdopted={allAdopted}
+        />
       </div>
 
       {selectedCat && (
@@ -259,6 +284,33 @@ function ManageCat({
   onCloseSelected,
   onAdoptCat,
 }) {
+  useEffect(
+    function () {
+      const callback = function (e) {
+        if (e.code === "Escape") {
+          onCloseSelected();
+        }
+      };
+
+      document.addEventListener("keydown", callback);
+      return function () {
+        document.removeEventListener("keydown", callback);
+      };
+    },
+    [onCloseSelected]
+  );
+
+  useEffect(
+    function () {
+      if (!selectedCat.name) return;
+      document.title = selectedCat.name;
+      return function () {
+        document.title = "Mini cat adoption center";
+      };
+    },
+    [selectedCat.name]
+  );
+
   return (
     <div className="manage-cat">
       <h3>{selectedCat?.name}</h3>
@@ -284,12 +336,15 @@ function ManageCat({
   );
 }
 
-function ShelterStats({ cats, adopted }) {
+function ShelterStats({ cats, adopted, allAdopted }) {
   const countCats = cats?.length;
 
   if (!countCats)
     return (
-      <p className="all-adopted">Congratulations! All cats are adopted!</p>
+      <>
+        <p className="all-adopted">Congratulations! All cats are adopted!</p>
+        <p className="all-adopted">All time adopted cats: {allAdopted}</p>
+      </>
     );
 
   return (
