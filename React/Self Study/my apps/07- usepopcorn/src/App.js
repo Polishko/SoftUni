@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import StarRating from "./StarRating";
 
 const average = (arr) =>
@@ -14,6 +14,38 @@ function Logo() {
 }
 
 function Search({ query, setQuery }) {
+  // focusing on this element on mount
+  // how not to do it
+  // useEffect(function () {
+  //   const el = document.querySelector(".search");
+  //   el.focus();
+  // }, []);
+
+  // selecting and focusing on element
+  // const inputEl = useRef(null);
+
+  // useEffect(function () {
+  //   inputEl.current.focus();
+  // }, []);
+
+  const inputEl = useRef(null);
+
+  useEffect(
+    function () {
+      function callback(e) {
+        if (document.activeElement === inputEl.current) return; //when you havent selected a movie but have your list you still don't want to close the list
+
+        if (e.code === "Enter") {
+          inputEl.current.focus(); // Focus on the search element
+          setQuery(""); // remove loaded list obtained by last search
+        }
+      }
+      document.addEventListener("keydown", callback);
+      return () => document.removeEventListener("keydown", callback);
+    },
+    [setQuery]
+  );
+
   return (
     <input
       className="search"
@@ -21,6 +53,7 @@ function Search({ query, setQuery }) {
       placeholder="Search movies..."
       value={query}
       onChange={(e) => setQuery(e.target.value)}
+      ref={inputEl}
     />
   );
 }
