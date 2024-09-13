@@ -5,9 +5,13 @@ from .models import Task
 
 # Create your views here.
 def index(request):
-    tasks = Task.objects.all()
+    title_filter = request.GET.get("title_filter", "")
+    tasks = Task.objects.filter(name__icontains=title_filter)
+
+    # tasks = Task.objects.all()
 
     context = {
+        'title_filter': title_filter,
         'tasks': tasks
     }
 

@@ -6,6 +6,31 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const inputField = document.getElementById('title_filter');
+            const submitButton = document.getElementById('submit');
+
+            // focus on input field and move cursor to end
+            inputField.focus()
+            const length = inputField.value.length;
+            inputField.setSelectionRange(length, length)
+
+            // Add debounce to wait user enter complete search text
+            let debounceTimeout;
+            function debounce(func, delay) {
+                return function(...args) {
+                    clearTimeout(debounceTimeout);
+                    debounceTimeout = setTimeout(() => func.apply(this, args), delay);
+                };
+            }
+
+            // Simulate sumbit on each input
+            inputField.addEventListener('input', debounce(function() {
+                submitButton.click();
+            }, 500))
+        })
+    </script>
 </head>
 <body>
     <h1>ToDos</h1>
@@ -13,6 +38,12 @@
     {% if tasks %}
         <p>You have {{ tasks|length }} tasks.</p>
     {% endif %}
+
+    <form method="get" action="/">
+        <label for="title_filter">Search:</label>
+        <input type="text" name="title_filter" value="{{ title_filter }}" id="title_filter" placeholder="Search">
+        <button id="submit" type="submit">Submit</button>
+    </form>
 
     <ul>
         {% for task in tasks %}
