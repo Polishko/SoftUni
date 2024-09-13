@@ -6,11 +6,11 @@ from .models import Task
 # Create your views here.
 def index(request):
     tasks = Task.objects.all()
-    print(tasks)
 
     result = '\n'.join([
+        '<h1>TASKS</h1>',
         '<ul>',
-        *[f'<li>{task}<li>' for task in tasks],
+        *[f"<li>{task.name}</li>" for task in tasks],
         '</ul>'
     ])
     return HttpResponse(result)
