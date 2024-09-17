@@ -1,7 +1,10 @@
 from django.urls import path
-from urlsAndViews.departments.views import index
+from urlsAndViews.departments import views
 
 
 urlpatterns = [
-    path('', index),
+    path('', views.index),
+    path('<param>/', views.view_with_name),
 ]
+
+
