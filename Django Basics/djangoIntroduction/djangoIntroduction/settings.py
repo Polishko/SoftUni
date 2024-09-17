@@ -89,6 +89,7 @@ DATABASES = {
         'PORT': config('DB_PORT', default='5432'),
     },
 }
+print(f"DB_HOST: {config('DB_HOST')}")
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
