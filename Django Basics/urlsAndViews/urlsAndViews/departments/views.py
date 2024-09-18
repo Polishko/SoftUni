@@ -1,5 +1,7 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import render
+
+from urlsAndViews.departments.models import Department
 
 
 # Create your views here.
@@ -18,3 +20,11 @@ def view_with_name(request, param):
 
 def view_with_int_pk(request, pk):
     return HttpResponse(f'<h1>Int pk with pk: {pk}</h1>')
+
+
+def view_with_slug(request, pk, slug):
+    try:
+        department = Department.objects.get(pk=pk, slug=slug)
+        return HttpResponse(f'<h1>Department with slug: {department}</h1>')
+    except Department.DoesNotExist:
+        raise Http404('No such department!')
