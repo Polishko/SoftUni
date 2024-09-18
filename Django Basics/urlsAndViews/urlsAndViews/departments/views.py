@@ -14,8 +14,8 @@ def index(request):
 #     return HttpResponse(f'<h1>Kwargs: {kwargs}</h1>')
 
 # catch with url variable name
-def view_with_name(request, param):
-    return HttpResponse(f'<h1>Variable: {param}</h1>')
+def view_with_name(request, variable):
+    return HttpResponse(f'<h1>Variable: {variable}</h1>')
 
 
 def view_with_int_pk(request, pk):
@@ -28,3 +28,7 @@ def view_with_slug(request, pk, slug):
         return HttpResponse(f'<h1>Department with slug: {department}</h1>')
     except Department.DoesNotExist:
         raise Http404('No such department!')
+
+
+def show_archive(request, archive_year):
+    return HttpResponse(f'<h1>The year is: {archive_year}</h1>')
