@@ -4,10 +4,13 @@ from viewsAndUrls.departments import views
 
 
 urlpatterns = [
-    path('', views.index),
+    path('', views.index, name='home'),
+    path('reverse/', views.reverse_view),
+    path('softuni/', views.redirect_to_softuni),
+    path('redirect-to-view/', views.redirect_to_view, name='redirect-view'),
     path('simple/', views.simple_view),
     path('numbers/', include([
-        path('<int:pk>/', views.view_with_int_pk),
+        path('<int:pk>/', views.view_with_int_pk, name='num_pk'),
         path('<int:pk>/<slug:slug>', views.view_with_slug),
 
     ])),
