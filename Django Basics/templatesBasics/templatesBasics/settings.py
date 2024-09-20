@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-MY_APPS = []
+MY_APPS = ['templatesBasics.forumApp']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
