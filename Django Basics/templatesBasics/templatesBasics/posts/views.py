@@ -38,14 +38,14 @@ def dashboard(request):
             },
             {
                 'title': 'How to create a Django project 2?',
-                'author': 'Nalan',
+                'author': '',
                 'content': 'I know a little about creating a Django project.',
                 'created_at': datetime.now(),
             },
             {
                 'title': 'How to create a Django project 3?',
                 'author': 'Nalan',
-                'content': 'I know a little about creating a Django project.',
+                'content': '',
                 'created_at': datetime.now(),
             },
 
