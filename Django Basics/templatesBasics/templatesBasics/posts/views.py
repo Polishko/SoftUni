@@ -12,7 +12,9 @@ def  index(request):
             'age': 46,
             'height': 160,
         },
-        'ids': ['21348', '485769', '619074']
+        'ids': ['21348', '485769', '619074'],
+        'some_text': 'hello, my name is Nalan, and I`m learning programming.',
+        'empty_text': ''
     }
 
     return render(request, 'base.html', context)
