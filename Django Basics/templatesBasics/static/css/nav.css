@@ -12,7 +12,7 @@ ul.menu {
   list-style: none;
   margin: 0;
   width: 70px;
-  padding: 0;
+  /*padding: 0;*/
   margin-right: auto;
   background-color: #05043e;
   display: flex;
