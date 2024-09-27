@@ -14,37 +14,7 @@
 <body>
     {% include 'nav.html'%}
     
-    <h1>Hello user</h1>
-    
-{#    Django form#}
-    <form action="/" method="post">
-        {% csrf_token %}
-        {{ my_form }}
-        {{ my_form.errors }}
-        <button>Submit</button>
-    </form>
-    
- {#html form with post req#}
-{#    <form action="/" method="post">#}
-{#        {% csrf_token %}#}
-{#        #}
-{#        <input type="text" name="person_name">#}
-{#        <input type="number" name="age">#}
-{#        #}
-{#        <button>Submit</button>#}
-{#        <input type="submit" value="Submit">#}
-{#    </form>#}
-    
-    {#html form with get req#}
-{#    <form action="/" method="get">#}
-{#      #}
-{#        <input type="text" name="person_name">#}
-{#        <input type="number" name="age">#}
-{#        #}
-{#        <button>Submit</button>#}
-{#        <input type="submit" value="Submit">#}
-{#    </form>#}
-    
- </body>
+   
+</body>
     <script src='https://unpkg.com/akar-icons-fonts'></script>
 </html>

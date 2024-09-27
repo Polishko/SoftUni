@@ -1,13 +1,22 @@
 from datetime import datetime
+from lib2to3.fixes.fix_input import context
 
+from django.http import HttpResponse
 from django.shortcuts import render
+
+from forumApp.posts.forms import PersonForm
 
 
 # Create your views here.
 def  index(request):
+    form = PersonForm(request.POST or None)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            print(form.cleaned_data['person_name'])
 
     context = {
-        'my_form': '',
+        'my_form': form,
     }
 
     return render(request, 'base.html', context)
