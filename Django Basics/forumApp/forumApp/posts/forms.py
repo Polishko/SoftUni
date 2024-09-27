@@ -11,6 +11,18 @@ class PostBaseForm(forms.ModelForm):
         # or
         # fields = ['language']
 
+        # widgets = {
+        #     'title': forms.NumberInput,
+        # }
+        #
+        # help_texts = {
+        #     'title': 'Please add title.',
+        # }
+        #
+        # labels = {
+        #     'title': 'This is the post title.'
+        # }
+
 
 # class Post(forms.Form):
 #     TITLE_MAX_LENGTH = 100
