@@ -16,13 +16,24 @@
     
     <h1>Hello user</h1>
 
-    <form action="/" method="get">
+    <form action="/" method="post">
+        {% csrf_token %}
+        
         <input type="text" name="person_name">
         <input type="number" name="age">
         
         <button>Submit</button>
         <input type="submit" value="Submit">
     </form>
+
+{#    <form action="/" method="get">#}
+{#      #}
+{#        <input type="text" name="person_name">#}
+{#        <input type="number" name="age">#}
+{#        #}
+{#        <button>Submit</button>#}
+{#        <input type="submit" value="Submit">#}
+{#    </form>#}
     
  </body>
     <script src='https://unpkg.com/akar-icons-fonts'></script>
