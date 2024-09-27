@@ -12,6 +12,10 @@ class PersonForm(forms.Form):
         initial = 'Nalan',
         widget=forms.TextInput(attrs={'placeholder': 'Search'}),
         max_length=10,
+        required=True,
+        error_messages={
+            'required': 'Please enter a value!'
+        }
     )
     age = forms.IntegerField()
 
