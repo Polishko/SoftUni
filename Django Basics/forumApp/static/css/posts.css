@@ -18,6 +18,10 @@ h1 {
     color: #333;
 }
 
+#post-url {
+    text-decoration: none;
+}
+
 .no-posts {
     text-align: center;
 }
@@ -36,6 +40,19 @@ h1 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.post:hover {
+    box-shadow: none;
+}
+
+.post .header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.icons a {
+    text-decoration: none;
+}
+
 .post h2 {
     margin: 0;
     color: #555;
@@ -51,12 +68,4 @@ h1 {
     justify-content: end;
     font-size: 0.9em;
     color: #999;
-}
-
-.cycle1 {
-    color: red;
-}
-
-.cycle2 {
-    color: blue;
 }
