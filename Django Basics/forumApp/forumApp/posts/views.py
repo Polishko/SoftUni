@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-from forumApp.posts.forms import PostBaseForm, PostCreateForm, PostDeleteForm
+from forumApp.posts.forms import PostBaseForm, PostCreateForm, PostDeleteForm, SearchForm
 from forumApp.posts.models import Post
 
 
@@ -15,8 +15,17 @@ def  index(request):
     return render(request, 'base.html', context)
 
 def dashboard(request):
+    form = SearchForm(request.GET)
+    posts = Post.objects.all()
+
+    if request.method == 'GET' and form.is_valid():
+        query = form.cleaned_data['query']
+        posts = posts.filter(title__icontains=query)
+
+
     context = {
-        'posts': Post.objects.all()
+        'posts': posts,
+        'form': form,
     }
 
     return render(request, 'posts/dashboard.html', context)

@@ -15,7 +15,8 @@
 </head>
 <body>
     <div class="posts">  
-        <div class="post">  
+        <div class="container">
+            <div class="post">  
             <div class="header">  
                 <h2>{{ post.title|capfirst }}</h2>  
                 <div class="icons">  
@@ -35,6 +36,7 @@
             <div class="post-meta">  
                 <span>Posted by {{ post.author|default:"anonymous" }} on {{ post.created_at|date:"d-M-Y" }}</span>  
             </div>  
+        </div>
         </div>  
     </div>
 </body>
