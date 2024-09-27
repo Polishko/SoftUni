@@ -1,6 +1,9 @@
 from datetime import datetime
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+from forumApp.posts.forms import PostBaseForm
+from forumApp.posts.models import Post
 
 
 # Create your views here.
@@ -14,27 +17,21 @@ def  index(request):
 
 def dashboard(request):
     context = {
-        'posts':[
-            {
-                'title': 'How to create a Django project 1?',
-                'author': 'Nalan',
-                'content': 'I know **a little** about <i>creating</i> a Django project.',
-                'created_at': datetime.now(),
-            },
-            {
-                'title': 'How to create a Django project 2?',
-                'author': '',
-                'content': '###I know a little about creating a Django project.',
-                'created_at': datetime.now(),
-            },
-            {
-                'title': 'How to create a Django project 3?',
-                'author': 'Nalan',
-                'content': '',
-                'created_at': datetime.now(),
-            },
-
-        ]
+        'posts': Post.objects.all()
     }
 
     return render(request, 'posts/dashboard.html', context)
+
+def add_post(request):
+    form = PostBaseForm(request.POST or None)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'posts/add_form.html', context)
