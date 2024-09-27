@@ -18,20 +18,24 @@
         
         <div class="posts">
             {% for post in posts %}
-                <div class="post">
-    
+                <a id="post-url" href="{% url 'details-post' post.pk%}">
+
+                    <div class="post">
+
                     <h2>{{ post.title|capfirst }}</h2>
-    
+
                     {% if not post.content %}
                         {% lorem 3 p %}
                     {% else %}
                         {{ post.content|markdown }}
                     {% endif %}
-    
-                <div class="post-meta">
-                    <span>Posted by {{ post.author|default:'anonymous' }} on {{ post.created_at|date:'d-M-Y' }}</span>
+
+                    <div class="post-meta">
+                        <span>Posted by {{ post.author|default:'anonymous' }} on {{ post.created_at|date:'d-M-Y' }}</span>
+                    </div>
                 </div>
-            </div>
+                </a>
+
             {% empty %}
                 <h1>No Posts</h1>
             {% endfor %}

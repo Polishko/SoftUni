@@ -1,6 +1,5 @@
-from datetime import datetime
-
-from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
 
 from forumApp.posts.forms import PostBaseForm, PostCreateForm, PostDeleteForm
 from forumApp.posts.models import Post
@@ -36,8 +35,8 @@ def add_post(request):
 
     return render(request, 'posts/add_form.html', context)
 
-def delete_post(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+def delete_post(request, pk: int):
+    post = Post.objects.get(pk=pk)
     form = PostDeleteForm(request.POST or None, instance=post)
 
     if request.method == 'POST' and form.is_valid():
@@ -52,3 +51,15 @@ def delete_post(request, pk):
     return render(request, 'posts/delete-post.html', context)
 
 
+def edit_post(request, pk: int):
+    return HttpResponse(f'Here will come edit content for post {pk}')
+
+
+def details_page(request, pk: int):
+    post = Post.objects.get(pk=pk)
+
+    context = {
+        'post': post
+    }
+
+    return render(request, 'posts/details-post.html', context)
