@@ -56,6 +56,25 @@ Field lvl vs model lvl, model level are constraints and field lvl are values ent
 ![image](https://github.com/user-attachments/assets/f778fb6c-f23b-4815-9822-ce5c6e4f5c1e)
 
 
+Real-app example from ChatGPT with full validation on DB level and App-level, including models, forms and custom fields.
+
+![image](https://github.com/user-attachments/assets/5026b805-398e-4a59-8d63-d0d354ed26d2)
+![image](https://github.com/user-attachments/assets/c944d4bc-97da-4f9a-9b26-0ad23f6e02de)
+![image](https://github.com/user-attachments/assets/cf8200b4-929d-48f6-80f5-bc16b4b8458e)
+![image](https://github.com/user-attachments/assets/2145c24c-c0e4-4d7b-bf9c-2694f410df41)
+![image](https://github.com/user-attachments/assets/d15108a7-6845-4d46-b9c1-a016ee9765a2)
+
+![image](https://github.com/user-attachments/assets/512398e4-a0a0-4b1d-b6ae-c9f8ccce32f6)
+![image](https://github.com/user-attachments/assets/c549629b-5815-4bd4-98c8-fff7479337fd)
+
+![image](https://github.com/user-attachments/assets/e9989460-39dd-4712-b728-4a446b859254)
+
+![image](https://github.com/user-attachments/assets/3051dd95-7335-42fa-a502-db7a5ad6f318)
+
+
+
+
+
 
 
 
