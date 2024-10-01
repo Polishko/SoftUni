@@ -31,7 +31,7 @@
             {% if not post.content %}  
                 <p>{% lorem 3 p %}</p>  
             {% else %}  
-                <p>{{ post.content|markdown }}</p>  
+                <p>{{ post.content|markdown:'some text' }}</p>  
             {% endif %}  
             <div class="post-meta">  
                 <span>Posted by {{ post.author|default:"anonymous" }} on {{ post.created_at|date:"d-M-Y" }}</span>  
