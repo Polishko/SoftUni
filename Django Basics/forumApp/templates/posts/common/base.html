@@ -1,6 +1,7 @@
 {% load static %}
 {% load markdown_extras %}
 {% load current_time %}
+{% load user_tag %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +23,12 @@
     {% block content %}
 {#        <p>Hello world!</p>#}
     {% endblock %}
+    <div>
+{#        1. user provided by the tag function that gets the context as arg#}
+{#        {% user_info %}#}
+{#          2. user provided by the template#}
+{#        {% user_info request.user %}#}
+    </div>
    
 </body>
     <script src='https://unpkg.com/akar-icons-fonts'></script>
