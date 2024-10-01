@@ -18,9 +18,9 @@
     <p>
     {% with posts|length as post_count  %}
         {% if posts|length == 1 %}
-            Search in {{ post_count }} total post.
+            {{ text }} {{ post_count }} total post.
         {% else %}
-            Search in {{ post_count }} total posts.
+            {{ text }} {{ post_count }} total posts.
         {% endif %}
     {% endwith %}
     </p>

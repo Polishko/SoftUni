@@ -6,7 +6,7 @@
 {#    {% include 'posts/common/nav.html' %}#}
     <div class="container">
     
-    {% include 'posts/search-form.html' %}
+    {% include 'posts/search-form.html' with text='Search in ' %}
         
         <div class="posts">
             {% for post in posts %}
