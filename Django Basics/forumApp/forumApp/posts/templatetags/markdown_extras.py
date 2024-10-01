@@ -11,6 +11,7 @@ register = template.Library()
 
 # we register a filter named markdown in our library
 @register.filter(name='markdown')
-def markdown_format(text):
+def markdown_format(text, my_param):
     # markdown.markdown adds the markdown
+    print('My param is', my_param)
     return mark_safe(markdown.markdown(text))

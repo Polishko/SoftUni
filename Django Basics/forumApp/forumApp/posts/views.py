@@ -73,7 +73,7 @@ def edit_post(request, pk: int):
 
         if form.is_valid():
             form.save()
-            redirect('dashboard')
+            return redirect('dashboard')
 
     else:
         form = PostEditForm(instance=post)
