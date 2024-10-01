@@ -7,7 +7,7 @@
 * The @register.inclusion_tag(template-name.html) tells Django, when the following custom tag is used render the template-name.html template. Provides modularity, reusability.
 
 * Filter functions
-* 
+  
 ![image](https://github.com/user-attachments/assets/b46c571c-70d5-437a-a446-0a927b4ebb20)
 
 {{ post.content|markdown:'This is the param' }}
