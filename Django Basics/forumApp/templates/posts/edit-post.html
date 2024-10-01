@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load markdown_extras %}
+
+{% block styles %}
+    {{ block.super }}
+    <style>
+        h1 {
+        color: #95a3b9;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+    <h1>Edit post</h1>
+    <form action="{% url 'edit-post' post.pk %}" method="post">
+        {{ form }}
+        {% csrf_token %}
+        <button class="button-9">Submit</button>
+    </form>
+{% endblock %}

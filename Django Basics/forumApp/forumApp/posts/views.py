@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-from forumApp.posts.forms import PostBaseForm, PostCreateForm, PostDeleteForm, SearchForm
+from forumApp.posts.forms import PostBaseForm, PostCreateForm, PostDeleteForm, SearchForm, PostEditForm
 from forumApp.posts.models import Post
 
 
@@ -42,7 +42,7 @@ def add_post(request):
         'form': form,
     }
 
-    return render(request, 'posts/add_form.html', context)
+    return render(request, 'posts/add_post.html', context)
 
 def delete_post(request, pk: int):
     post = Post.objects.get(pk=pk)
@@ -61,8 +61,29 @@ def delete_post(request, pk: int):
 
 
 def edit_post(request, pk: int):
-    return HttpResponse(f'Here will come edit content for post {pk}')
+    post = Post.objects.get(pk=pk)
 
+    if request.method == 'POST':
+        '''
+        instance=post: This tells Django that the form is bound to the existing post instance.
+        By providing the instance argument,
+        Django knows this form should update the existing post rather than creating a new one.
+        '''
+        form = PostEditForm(request.POST, instance=post)
+
+        if form.is_valid():
+            form.save()
+            redirect('dashboard')
+
+    else:
+        form = PostEditForm(instance=post)
+
+    context = {
+        'form': form,
+        'post': post,
+    }
+
+    return render(request, 'posts/edit-post.html', context)
 
 def details_page(request, pk: int):
     post = Post.objects.get(pk=pk)
