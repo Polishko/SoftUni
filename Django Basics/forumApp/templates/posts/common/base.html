@@ -1,5 +1,6 @@
 {% load static %}
 {% load markdown_extras %}
+{% load current_time %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +18,7 @@
 </head>
 <body>
     {% include 'posts/common/nav.html' %}
+    <p>Last refresh: {% current_time '%D' %}</p>
     {% block content %}
 {#        <p>Hello world!</p>#}
     {% endblock %}

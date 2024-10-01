@@ -19,7 +19,7 @@
                     {% if not post.content %}
                         {% lorem 3 p %}
                     {% else %}
-                        {{ post.content|markdown }}
+{#                        {{ post.content|markdown }}#}
 {#                        Below we set the my_param parameter that the custom filter takes#}
 {#                        {{ value|filter:argument }} value is arg1 and arg is arg2 in markdown_format(text, my_param)#}
                         {{ post.content|markdown:'This is the param' }}
