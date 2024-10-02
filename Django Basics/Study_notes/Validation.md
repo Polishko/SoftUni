@@ -72,6 +72,62 @@ Real-app example from ChatGPT with full validation on DB level and App-level, in
 ![image](https://github.com/user-attachments/assets/3051dd95-7335-42fa-a502-db7a5ad6f318)
 
 
+Some more information
+* Form and Model field validation
+
+  ![image](https://github.com/user-attachments/assets/7fba022c-bb79-49bf-b2ef-9d1e6d3f6b33)
+
+* Custom field validation
+
+![image](https://github.com/user-attachments/assets/c5de24c2-8f97-4ca9-885a-8059f53e647b)
+
+ ![image](https://github.com/user-attachments/assets/dfa3a64b-594f-425c-a895-7889e57a8b19)
+
+* Calling full-clean?
+
+  ![image](https://github.com/user-attachments/assets/82c747ec-24af-44c0-ad34-d977c85bee81)
+
+  ![image](https://github.com/user-attachments/assets/d012bd40-4dab-47a5-9e05-0a8fb6913fe7)
+
+
+* Has to_python really have to do anything with validating? (short answer: no! but you might need to)
+
+![image](https://github.com/user-attachments/assets/fb8b8e5c-cec1-4b57-ba7d-005caf612d61)
+
+* Validation of constraints
+
+![image](https://github.com/user-attachments/assets/b518dbde-16b8-4431-bd80-5256ffb56306)
+
+* Form vs. Model Error Messages
+
+  ![image](https://github.com/user-attachments/assets/cff254c0-f30c-4fab-ac57-21d9fcfbb0f5)
+
+  ![image](https://github.com/user-attachments/assets/6d78c371-00b7-44b4-88d4-621dc8947d98)
+
+![image](https://github.com/user-attachments/assets/eafe3970-470b-41a5-b067-77e4206dcc9d)
+
+![image](https://github.com/user-attachments/assets/ab2850c6-a98b-4a31-9e1c-23fc91a29aa3)
+
+![image](https://github.com/user-attachments/assets/54a39227-58f6-4cd7-afce-511cab4142f9)
+
+* More on clean() and full-clean()
+
+![image](https://github.com/user-attachments/assets/10bd9432-a31d-447e-9f45-36e634ca2683)
+
+![image](https://github.com/user-attachments/assets/86c4ece7-fbdb-4912-8086-c0f6eb2d0f96)
+
+![image](https://github.com/user-attachments/assets/8a24b340-8705-4ec5-93c4-86e28e7756f3)
+
+![image](https://github.com/user-attachments/assets/91e5eddc-9a5f-4cc6-a6f6-00f6286a6b53)
+
+![image](https://github.com/user-attachments/assets/d0aaaa3d-4554-4a8d-88e4-48864bca62ea)
+
+
+
+  
+
+
+
 
 
 
