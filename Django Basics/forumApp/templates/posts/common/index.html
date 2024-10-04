@@ -5,4 +5,10 @@
     {% uppercase %}
         <h1>Hello user!</h1>
     {% enduppercase %}
+
+    <form method="POST" action="/">
+        {% csrf_token %}
+        {{ my_form }}
+        <button>Submit</button>
+    </form>
 {% endblock %}

@@ -1,3 +1,4 @@
+from django.forms import modelform_factory
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
@@ -5,11 +6,29 @@ from forumApp.posts.forms import PostBaseForm, PostCreateForm, PostDeleteForm, S
 from forumApp.posts.models import Post
 
 
-# Create your views here.
+PostForm = modelform_factory(
+        Post,
+        fields=('title', 'content', 'author'),
+        error_messages={
+            'title': {
+                'required': 'Title is required',
+            }
+        }
+    )
 def  index(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+
+    else:
+        form = PostForm()
+
 
     context = {
-        'my_form': '',
+        'my_form': form,
     }
 
     return render(request, 'posts/common/index.html', context)
