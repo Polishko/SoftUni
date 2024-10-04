@@ -1,7 +1,20 @@
 from django.core.exceptions import ValidationError
 from django.utils.deconstruct import deconstructible
 
+'''
+Function alternative (simple but not scalable, we can't provide args
+in the model because we only give ref to the funct)
+'''
+def bad_language_validator(text):
+    bad_words = ['bad_word1', 'bad_word2', 'bad_word3']
 
+    for bad_word in bad_words:
+        if bad_word.lower() in text.lower():
+            raise ValidationError('The text contains bad language!')
+
+'''
+Class alternative: allows defining the bad words when we create an instance of the class in the model
+'''
 @deconstructible
 class BadLanguageValidator:
 
