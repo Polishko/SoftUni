@@ -127,6 +127,16 @@ Some more information
 
   ![image](https://github.com/user-attachments/assets/9c725582-209b-42c2-8f8d-f91f62276964)
 
+ * For form validation: Make use of model's field validators (in modelform) or use clean_field?\
+
+ ![image](https://github.com/user-attachments/assets/cdf66360-f725-491b-af80-521bb0d4fd79)
+
+ ![image](https://github.com/user-attachments/assets/15fd921a-d84a-43bc-ae11-e6d623d519b3)
+
+![image](https://github.com/user-attachments/assets/b2c53f1f-61a3-4c93-b397-6d94d59673bf)
+
+![image](https://github.com/user-attachments/assets/89bf9020-3454-47bb-939b-b272b227e9cd)
+
 
 * Why modify the save to include the clean()? Won't full-clean during form validation take care of including the clean() validation logic?
 
