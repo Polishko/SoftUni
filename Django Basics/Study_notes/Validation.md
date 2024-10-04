@@ -123,8 +123,39 @@ Some more information
 ![image](https://github.com/user-attachments/assets/d0aaaa3d-4554-4a8d-88e4-48864bca62ea)
 
 
+* For model validation: Field validators or validation using clean()?
 
+  ![image](https://github.com/user-attachments/assets/9c725582-209b-42c2-8f8d-f91f62276964)
+
+
+* Why modify the save to include the clean()? Won't full-clean during form validation take care of including the clean() validation logic?
+
+![image](https://github.com/user-attachments/assets/8af94138-1c4e-42ae-899b-af0a14e64cdb)
+
+![image](https://github.com/user-attachments/assets/7c7f8b6f-6783-47ec-a221-8224189fca6c)
+
+- The admin panel isn't considered a Django ModelForm!
+
+  ![image](https://github.com/user-attachments/assets/c734ebfc-31e2-4b13-a4c1-48317ff5e1e7)
+
+
+* When using clean() for validation in the model:
+
+  ![image](https://github.com/user-attachments/assets/7b206700-a176-4e38-81eb-40da76910cf4)
+
+  Actually better call full_clean
   
+![image](https://github.com/user-attachments/assets/2c4fc1e8-a855-44f3-9f3c-2f3ba9eae4ac)
+
+
+* When modifying the save in the form itself (eg. sending an email before saving data)
+
+  ![image](https://github.com/user-attachments/assets/d8581e64-4231-4366-ba97-ede091dbc60a)
+
+* What is the returned instance used commonly for?
+
+  ![image](https://github.com/user-attachments/assets/fc278fdf-0d16-422d-8d9b-276001e0b665)
+
 
 
 
