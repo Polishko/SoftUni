@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ValidationError
 
 from forumApp.posts.mixins import DisableFieldsMixin
 from forumApp.posts.models import Post
@@ -8,6 +9,8 @@ class PostBaseForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = '__all__'
+
+
 
 class PostCreateForm(PostBaseForm):
     class Meta(PostBaseForm.Meta):
@@ -21,12 +24,43 @@ class PostCreateForm(PostBaseForm):
             }
         }
 
-class PostEditForm(PostBaseForm):
-    class Meta(PostBaseForm.Meta):
+    def clean_author(self):
+        author = self.cleaned_data.get('author')
+
+        if author and author[0] != author[0].upper():
+            raise ValidationError('Author name should start with uppercase letter.')
+
+        return author
+
+    def clean(self):
+        cleaned_data = super().clean()
+        title = cleaned_data.get('title')
+        content = cleaned_data.get('content')
+
+        if title and content and title.lower() in content.lower():
+            raise ValidationError('Title cannot be included in the post.')
+
+        return cleaned_data
+
+    def save(self, commit=True):
+        post = super().save(commit=False)
+
+        if commit:
+            post.capitalize()
+            post.save()
+
+        return post
+
+
+
+
+class PostEditForm(PostCreateForm):
+    class Meta(PostCreateForm.Meta):
         error_messages = PostCreateForm.Meta.error_messages
 
+
 class PostDeleteForm(PostBaseForm, DisableFieldsMixin):
-    disabled_fields = ('title',)
+    disabled_fields = ('__all__',)
 
 
 class SearchForm(forms.Form):
