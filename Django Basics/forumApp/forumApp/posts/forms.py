@@ -9,10 +9,20 @@ class PostBaseForm(forms.ModelForm):
         fields = '__all__'
 
 class PostCreateForm(PostBaseForm):
-    pass
+    class Meta(PostBaseForm.Meta):
+        error_messages = {
+            'title': {
+                'required': 'Please enter a title.',
+                'max-limit': f'Please follow the {Post.TITLE_MAX_LENGTH} char limit for the title; it`s too long.'
+            },
+            'author': {
+                'required': 'Please add an author for the post.'
+            }
+        }
 
 class PostEditForm(PostBaseForm):
-    pass
+    class Meta(PostBaseForm.Meta):
+        error_messages = PostCreateForm.Meta.error_messages
 
 class PostDeleteForm(PostBaseForm):
     def __init__(self, *args, **kwargs):
@@ -25,7 +35,11 @@ class PostDeleteForm(PostBaseForm):
 class SearchForm(forms.Form):
     query = forms.CharField(
         label='',
-        required=False,
+        required=True,
+        error_messages= {
+            'required': 'Please write something to search.',
+            'max_length': 'You can only enter 100 characters!'
+        },
         max_length=100,
         widget=forms.TextInput(
             attrs={
