@@ -44,9 +44,9 @@ class PostCreateForm(PostBaseForm):
 
     def save(self, commit=True):
         post = super().save(commit=False)
+        post.title.capitalize()
 
         if commit:
-            post.capitalize()
             post.save()
 
         return post
