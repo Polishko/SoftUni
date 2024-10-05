@@ -21,6 +21,7 @@ ul.menu {
   padding: 0.75rem;
   border-radius: 10px;
   box-shadow: 0 10px 50px 0 rgba(5, 4, 62, 0.25);
+  z-index: 10000;
 }
 
 ul.menu li.menu-item:nth-child(6) {
