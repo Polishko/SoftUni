@@ -1,8 +1,7 @@
 from django.forms import modelform_factory
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-from forumApp.posts.forms import PostBaseForm, PostCreateForm, PostDeleteForm, SearchForm, PostEditForm, CommentFormSet
+from forumApp.posts.forms import PostCreateForm, PostDeleteForm, SearchForm, PostEditForm, CommentFormSet, PostBaseForm
 from forumApp.posts.models import Post, Comment
 
 PostForm = modelform_factory(
@@ -16,14 +15,14 @@ PostForm = modelform_factory(
     )
 def  index(request):
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostBaseForm(request.POST)
 
         if form.is_valid():
             form.save()
             return redirect('dashboard')
 
     else:
-        form = PostForm()
+        form = PostBaseForm()
 
 
     context = {
@@ -49,7 +48,7 @@ def dashboard(request):
     return render(request, 'posts/dashboard.html', context)
 
 def add_post(request):
-    form = PostCreateForm (request.POST or None)
+    form = PostCreateForm (request.POST or None, request.FILES or None)
 
     if request.method == 'POST':
         if form.is_valid():

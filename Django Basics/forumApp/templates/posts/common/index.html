@@ -1,6 +1,6 @@
 {% extends 'posts/common/base.html' %}
 {% load uppercase %}
-{% load crispy_forms_tags %}
+{#{% load crispy_forms_tags %}#}
 
 {% block content %}
     {% uppercase %}
@@ -11,9 +11,9 @@
         {{ my_form }}
     </form>
 
-    <form method="POST" action="/">
-        {% csrf_token %}
-        {% crispy my_form %}
-        <button>Submit</button>
-    </form>
+{#    <form method="POST" action="/">#}
+{#        {% csrf_token %}#}
+{#        {% crispy my_form %}#}
+{#        <button>Submit</button>#}
+{#    </form>#}
 {% endblock %}

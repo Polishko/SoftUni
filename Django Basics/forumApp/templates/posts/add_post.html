@@ -12,9 +12,10 @@
 {% block content %}
     {{ block.super }}
     <h1>Add post</h1>
-    <form action="{% url 'add-post' %}" method="post">
-        {{ form }}
+    <form action="{% url 'add-post' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <button class="button-9">Submit</button>
+        {{ form }}
+        <button type="submit" class="button-9">Submit</button>
     </form>
+    
 {% endblock %}
