@@ -31,7 +31,14 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-MY_APPS = ['forumApp.posts']
+MY_APPS = [
+    'forumApp.posts',
+]
+
+THIRD_PARTY_APPS = [
+    'crispy_forms',
+    'crispy_bootstrap4',
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -40,7 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-] + MY_APPS
+] + MY_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
