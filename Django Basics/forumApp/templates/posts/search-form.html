@@ -1,3 +1,4 @@
+{% load crispy_forms_tags %}
 
 <form class="search-bar" action="{% url 'dashboard' %}" method="get">
     {{ form }}
@@ -14,3 +15,5 @@
     {% endwith %}
     </p>
 </form>
+
+{#{% crispy form form.helper %}#}

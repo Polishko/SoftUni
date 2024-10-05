@@ -1,14 +1,19 @@
 {% extends 'posts/common/base.html' %}
 {% load uppercase %}
+{% load crispy_forms_tags %}
 
 {% block content %}
     {% uppercase %}
         <h1>Hello user!</h1>
     {% enduppercase %}
 
+    <form action="">
+        {{ my_form }}
+    </form>
+
     <form method="POST" action="/">
         {% csrf_token %}
-        {{ my_form }}
+        {% crispy my_form %}
         <button>Submit</button>
     </form>
 {% endblock %}

@@ -1,3 +1,4 @@
+from crispy_forms.helper import FormHelper
 from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import formset_factory, modelformset_factory
@@ -79,6 +80,13 @@ class SearchForm(forms.Form):
             }
         )
     )
+
+    # Using crispy helper example
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #
+    #     self.helper = FormHelper()
+    #     self.helper.method = 'post'
 
 class CommentForm(forms.ModelForm):
     class Meta:
