@@ -111,7 +111,7 @@ def details_page(request, pk: int):
     if request.method == 'POST':
         if comment_formset.is_valid():
             for comment_form in comment_formset:
-                if comment_form.cleaned_data['author'] and comment_form.cleaned_data['content']:
+                if comment_form.cleaned_data.get('author') and comment_form.cleaned_data.get('content'):
                     comment = comment_form.save(commit=False)
                     comment.post = post
                     comment.save()
