@@ -35,7 +35,30 @@
             {% endif %}  
             <div class="post-meta">  
                 <span>Posted by {{ post.author|default:"anonymous" }} on {{ post.created_at|date:"d-M-Y" }}</span>  
-            </div>  
+            </div>
+            
+            <form method="post" class="form-inline">
+                {% csrf_token %}
+                
+                {{ comment_formset.management_form }}
+                
+                <div class="input-group">
+                    {% for form in comment_formset %}
+                        <div class="form-row">
+{#                            form.as_p critical so that hidden fields for TOTAL_FORMS and #}
+{#                            INITIAL_FORMS when dealing with formsets are rendered correctly#}
+                            {{ form.as_p }}
+                            
+{#                            <div class="input-group-append">#}
+{#                                {{ form.content }}#}
+{#                            </div>#}
+                            
+                        </div>
+                    {% endfor %}
+                    
+                    <button class="btn btn-primary ml-2" type="submit">Submit</button>
+                </div>
+            </form>
         </div>
         </div>  
     </div>

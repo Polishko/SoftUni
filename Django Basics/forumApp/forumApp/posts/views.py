@@ -2,9 +2,8 @@ from django.forms import modelform_factory
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-from forumApp.posts.forms import PostBaseForm, PostCreateForm, PostDeleteForm, SearchForm, PostEditForm
-from forumApp.posts.models import Post
-
+from forumApp.posts.forms import PostBaseForm, PostCreateForm, PostDeleteForm, SearchForm, PostEditForm, CommentFormSet
+from forumApp.posts.models import Post, Comment
 
 PostForm = modelform_factory(
         Post,
@@ -106,8 +105,25 @@ def edit_post(request, pk: int):
 def details_page(request, pk: int):
     post = Post.objects.get(pk=pk)
 
+    # Pass the queryset to allow for editing of associated comments
+    comment_formset = CommentFormSet(request.POST or None, queryset=Comment.objects.filter(post=post))
+
+    if request.method == 'POST':
+        if comment_formset.is_valid():
+            for comment_form in comment_formset:
+                if comment_form.cleaned_data['author'] and comment_form.cleaned_data['content']:
+                    comment = comment_form.save(commit=False)
+                    comment.post = post
+                    comment.save()
+        else:
+            print(comment_formset.errors)
+
+
+        return redirect('details-post', pk=post.id)
+
     context = {
-        'post': post
+        'post': post,
+        'comment_formset': comment_formset
     }
 
     return render(request, 'posts/details-post.html', context)

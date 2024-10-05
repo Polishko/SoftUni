@@ -1,8 +1,9 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from django.forms import formset_factory, modelformset_factory
 
 from forumApp.posts.mixins import DisableFieldsMixin
-from forumApp.posts.models import Post
+from forumApp.posts.models import Post, Comment
 
 
 class PostBaseForm(forms.ModelForm):
@@ -78,3 +79,44 @@ class SearchForm(forms.Form):
             }
         )
     )
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('author', 'content')
+
+        labels = {
+            'author': '',
+            'content': ''
+        }
+
+        error_messages = {
+            'author': {
+                'required': 'You can`t submit without author!'
+            },
+
+            'content': {
+                'required': 'You can`t leave the content empty!'
+            },
+
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['author'].widget.attrs.update({
+            'class': 'form-control',
+            'placeholder': 'Your name'
+        })
+
+        self.fields['content'].widget.attrs.update({
+            'class': 'form-control',
+            'placeholder': 'Add comment...'
+        })
+
+CommentFormSet = modelformset_factory(
+    Comment,
+    form=CommentForm,
+    fields=('author', 'content'),  # Specify the fields you want to include in the formset
+    extra=1
+)
