@@ -84,6 +84,9 @@
 
   ![image](https://github.com/user-attachments/assets/b01f38b3-c0f1-4a09-86d1-83a7867c163c)
 
+* About when to call the super()
+
+  ![image](https://github.com/user-attachments/assets/c80f9958-8627-4ca7-8ba6-4ec431fd7408)
 
 
 
