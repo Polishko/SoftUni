@@ -100,6 +100,9 @@
 
 ![image](https://github.com/user-attachments/assets/9cbaf172-440e-4663-87aa-437f908745c9)
 
+* get_queryset()
+
+  ![image](https://github.com/user-attachments/assets/de6223ae-6e55-4b3a-b367-eb8c1fe642fc)
 
 
 
