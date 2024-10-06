@@ -88,6 +88,18 @@
 
   ![image](https://github.com/user-attachments/assets/c80f9958-8627-4ca7-8ba6-4ec431fd7408)
 
+* The get_object() method
+
+  ![image](https://github.com/user-attachments/assets/30775ee8-4307-48f1-b603-a3afce9471f7)
+
+  ![image](https://github.com/user-attachments/assets/ac8044e9-ade9-45ac-8d04-4fe71bd21a72)
+
+  ![image](https://github.com/user-attachments/assets/330c4b8a-f4c0-4aff-91c4-ac2ca25a24f8)
+
+
+  ![image](https://github.com/user-attachments/assets/204d8252-8d4e-4533-a6eb-b3e234a84d3a)
+
+
 
 
 
