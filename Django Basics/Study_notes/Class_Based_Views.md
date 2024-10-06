@@ -64,6 +64,9 @@
 
   ![image](https://github.com/user-attachments/assets/c6727600-ca8d-464b-8cc5-26a8cd9faef5)
 
+* ModelFormMixin
+
+  ![image](https://github.com/user-attachments/assets/0de80cc9-3f3b-4dae-ad8d-d610d4f03100)
 
 
 
