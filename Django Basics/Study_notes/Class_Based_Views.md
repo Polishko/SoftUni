@@ -68,6 +68,14 @@
 
   ![image](https://github.com/user-attachments/assets/0de80cc9-3f3b-4dae-ad8d-d610d4f03100)
 
+* Some questions
+
+  ![image](https://github.com/user-attachments/assets/d4b0f278-73ee-4f29-a535-e1f1af784f9c)
+
+  ![image](https://github.com/user-attachments/assets/53a5ea02-9270-42ff-86d9-c1548eb8c0d2)
+
+  ![image](https://github.com/user-attachments/assets/1d8cc113-ee02-401b-a2b6-6706996e8276)
+
 
 
 
