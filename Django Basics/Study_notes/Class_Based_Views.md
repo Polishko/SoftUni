@@ -76,6 +76,15 @@
 
   ![image](https://github.com/user-attachments/assets/1d8cc113-ee02-401b-a2b6-6706996e8276)
 
+* More on methods in CBVs
+
+  ![image](https://github.com/user-attachments/assets/057ade8b-536f-4d9b-bdff-aac6eb3e2b12)
+
+  ![image](https://github.com/user-attachments/assets/ba684a29-5c82-4eff-ae01-ec0eb19a19ec)
+
+  ![image](https://github.com/user-attachments/assets/b01f38b3-c0f1-4a09-86d1-83a7867c163c)
+
+
 
 
 
