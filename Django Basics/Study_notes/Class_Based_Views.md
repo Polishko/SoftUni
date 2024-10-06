@@ -104,6 +104,11 @@
 
   ![image](https://github.com/user-attachments/assets/de6223ae-6e55-4b3a-b367-eb8c1fe642fc)
 
+* get_template_names()
+
+  ![image](https://github.com/user-attachments/assets/c18595f6-97f8-48ec-90e5-c34f8abdfb29)
+
+![image](https://github.com/user-attachments/assets/5090d190-5b6f-4878-aed7-f2cfb0ab5526)
 
 
 
