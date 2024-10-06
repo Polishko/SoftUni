@@ -112,6 +112,9 @@
 
 ![image](https://github.com/user-attachments/assets/4de4bbbe-983c-45ba-94f1-f419f74ac45d)
 
+* about the render_to_response() method
+
+  ![image](https://github.com/user-attachments/assets/fbe49446-bc03-405a-87ce-20df5e8f3d34)
 
 
 
