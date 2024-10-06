@@ -60,6 +60,9 @@
 
 ![image](https://github.com/user-attachments/assets/a715a8f7-b60a-4940-8ec5-1afbcb733faa)
 
+* success_url() vs. get_success_url()
+
+  ![image](https://github.com/user-attachments/assets/c6727600-ca8d-464b-8cc5-26a8cd9faef5)
 
 
 
