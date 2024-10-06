@@ -116,6 +116,24 @@
 
   ![image](https://github.com/user-attachments/assets/fbe49446-bc03-405a-87ce-20df5e8f3d34)
 
+* Decorators vs. Mixins
+
+  Decorators:
+ ▪ Use decorators when you want to apply specific functionality 
+to an entire view
+ ▪ They are often used for tasks like authentication, permission 
+checks, caching, etc.
+  Mixins:
+ ▪ Use mixins when you want to modularize and share specific 
+pieces of functionality across multiple views
+ ▪ They are great for promoting code reuse and maintaining a 
+clean, organized codebase
+
+* Validating in dispatch
+  
+  ![image](https://github.com/user-attachments/assets/cc7b4807-f7ed-4733-9c2e-65a51b86bab8)
+
+![image](https://github.com/user-attachments/assets/0598fcf4-3e5e-4ee5-952c-631b11fd0f6a)
 
 
 
