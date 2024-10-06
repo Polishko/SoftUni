@@ -54,6 +54,10 @@
 
 ![image](https://github.com/user-attachments/assets/480ae623-e54f-4204-b6fc-701bea1ab50b)
 
+* Example Create view
+
+![image](https://github.com/user-attachments/assets/6492f2c2-2b8a-44ce-b114-c5e1a8608e17)
+
 
 
 
