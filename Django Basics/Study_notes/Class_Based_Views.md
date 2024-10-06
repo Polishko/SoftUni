@@ -46,6 +46,16 @@
 
   ![image](https://github.com/user-attachments/assets/99968694-5a5d-4d46-831b-dc07a2e71d62)
 
+* Form view
+
+  ![image](https://github.com/user-attachments/assets/daf77d3b-10ab-436f-a071-13c6ae6bdd04)
+
+![image](https://github.com/user-attachments/assets/e973f03c-3409-4e4f-b52a-4448c75f7c8e)
+
+![image](https://github.com/user-attachments/assets/480ae623-e54f-4204-b6fc-701bea1ab50b)
+
+
+
 
 
 
