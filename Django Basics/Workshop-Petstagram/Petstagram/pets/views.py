@@ -7,6 +7,19 @@ from Petstagram.pets.models import Pet
 
 
 # Create your views here.
+
+def pet_add_page(request):
+    form = PetCreateForm(request.POST or None)
+
+    if form.is_valid():
+        form.save()
+        return redirect('profile-details', pk=1)
+
+    context = {'form': form}
+
+    return render(request, template_name='pets/pet-add-page.html', context=context)
+
+
 def pet_details_page(request, username: str, pet_slug: str):
     pet = Pet.objects.get(slug=pet_slug)
     # pet = get_object_or_404(Pet, slug=pet_slug)
@@ -17,18 +30,6 @@ def pet_details_page(request, username: str, pet_slug: str):
         'all_photos': all_photos
     }
     return render(request, template_name='pets/pet-details-page.html', context=context)
-
-
-def pet_add_page(request):
-    form = PetCreateForm(request.POST or None)
-
-    if request.method == 'POST' and form.is_valid():
-        form.save()
-        return redirect('profile-details', pk=1)
-
-    context = {'form': form}
-
-    return render(request, template_name='pets/pet-add-page.html', context=context)
 
 
 def pet_edit_page(request, username: str, pet_slug: str):
