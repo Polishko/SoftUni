@@ -2,6 +2,7 @@ from lib2to3.fixes.fix_input import context
 
 from django.shortcuts import render, get_object_or_404, redirect
 
+from Petstagram.common.forms import CommentForm
 from Petstagram.photos.forms import PhotoCreateForm, PhotoEditForm
 from Petstagram.photos.models import Photo
 
@@ -22,11 +23,13 @@ def photo_details_page(request, pk: int):
     photo = get_object_or_404(Photo, pk=pk)
     comments = photo.comment_set.all()
     likes = photo.like_set.all()
+    comment_form = CommentForm()
 
     context = {
         'photo': photo,
         'comments': comments,
         'likes': likes,
+        'comment_form': comment_form,
     }
 
     return render(request, template_name='photos/photo-details-page.html', context=context)

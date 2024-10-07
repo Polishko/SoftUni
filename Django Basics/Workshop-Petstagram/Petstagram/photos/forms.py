@@ -5,7 +5,7 @@ from Petstagram.photos.models import Photo
 
 class PhotoBaseForm(forms.ModelForm):
     class Meta:
-        model: Photo
+        model= Photo
         fields = '__all__'
 
 

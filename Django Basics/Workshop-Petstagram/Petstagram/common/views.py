@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect, resolve_url
+from django.shortcuts import render, redirect, resolve_url, get_object_or_404
 from pyperclip import copy
 
-
+from Petstagram.common.forms import CommentForm, SearchForm
 from Petstagram.common.models import Like
 from Petstagram.photos.models import Photo
 
@@ -9,9 +9,16 @@ from Petstagram.photos.models import Photo
 # Create your views here.
 def show_home_page(request):
     all_photos = Photo.objects.all()
+    comment_form = CommentForm()
+    search_form = SearchForm(request.GET)
+
+    if search_form.is_valid():
+        all_photos = all_photos.filter(tagged_pets__name__icontains=search_form.cleaned_data['pet_name'])
 
     context = {
-        'photos': all_photos
+        'photos': all_photos,
+        'comment_form': comment_form,
+        'search_form': search_form,
     }
 
     return render(request, template_name='common/home-page.html', context=context)
@@ -39,4 +46,16 @@ def copy_link_to_clipboard(request, photo_id):
     copy(full_url)
 
     # Redirect back to the previous page
+    return redirect(f"{request.META.get('HTTP_REFERER', '/')}#{photo_id}")
+
+def add_comment(request, photo_id):
+    if request.method == 'POST':
+        photo = get_object_or_404(Photo, pk=photo_id)
+        form = CommentForm(request.POST)
+
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.to_photo = photo
+            comment.save()
+
     return redirect(f"{request.META.get('HTTP_REFERER', '/')}#{photo_id}")
