@@ -24,29 +24,35 @@ def show_home_page(request):
     return render(request, template_name='common/home-page.html', context=context)
 
 
-def like_functionality(request, photo_id):
+def like_functionality(request, photo_id: int):
     photo = Photo.objects.get(id=photo_id)
     # Better: photo = get_object_or_404(Photo, pk=photo_id)
-    liked_object = Like.objects.filter(to_photo=photo_id).first()
+    liked_object = Like.objects.filter(
+        to_photo_id=photo_id
+    ).first()
 
     if liked_object:
         liked_object.delete()
     else:
-        like = Like(to_photo=photo)
+        like = Like(to_photo_id=photo.id)
         like.save()
 
-    return redirect((request.META['HTTP_REFERER']) + f'#{photo_id}')
+    # return redirect((request.META['HTTP_REFERER']) + f'#{photo_id}')
+    return redirect((request.META.get('HTTP_REFERER', '/')) + f'#{photo_id}')
 
 
 def copy_link_to_clipboard(request, photo_id):
     # Get the full URL of the photo
-    full_url = f"{request.META['HTTP_HOST']}{resolve_url('photo-details', photo_id)}"
+    # full_url = f"{request.META['HTTP_HOST']}{resolve_url('photo-details', photo_id)}"
 
     # Use pyperclip to copy to the clipboard (or another clipboard library you're using)
-    copy(full_url)
+    # copy(full_url)
+
+    copy(request.META.get('HTTP_HOST') + resolve_url('photo-details', photo_id))
 
     # Redirect back to the previous page
-    return redirect(f"{request.META.get('HTTP_REFERER', '/')}#{photo_id}")
+    # return redirect(f"{request.META.get('HTTP_REFERER', '/')}#{photo_id}")
+    return redirect((request.META.get('HTTP_REFERER', '/')) + f'#{photo_id}')
 
 def add_comment(request, photo_id):
     if request.method == 'POST':

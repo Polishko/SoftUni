@@ -8,7 +8,7 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ['text']
         widgets = {
-            'text': forms.Textarea(attrs={'placehodler': 'Add comment...'}),
+            'text': forms.Textarea(attrs={'placeholder': 'Add comment...'}),
         }
 
 class SearchForm(forms.Form):

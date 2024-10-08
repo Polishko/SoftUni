@@ -19,6 +19,10 @@ class Comment(models.Model):
     )
 
     class Meta:
+        # Since we will always sort based on this better to add Index
+        indexes = [
+            models.Index(fields=['-date_time_of_publication'])
+        ]
         ordering = ['-date_time_of_publication']
 
 class Like(models.Model):
