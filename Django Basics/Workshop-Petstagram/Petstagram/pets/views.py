@@ -12,11 +12,14 @@ from Petstagram.pets.models import Pet
 def pet_add_page(request):
     form = PetCreateForm(request.POST or None)
 
-    if form.is_valid():
-        form.save()
-        return redirect('profile-details', pk=1)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('profile-details', pk=1)
 
-    context = {'form': form}
+    context = {
+        'form': form
+    }
 
     return render(request, template_name='pets/pet-add-page.html', context=context)
 
@@ -37,29 +40,25 @@ def pet_details_page(request, username: str, pet_slug: str):
 
 def pet_edit_page(request, username: str, pet_slug: str):
     pet = get_object_or_404(Pet, slug=pet_slug)
-    form = PetDeleteForm(request.POST or None, instance=pet)
+    form = PetEditForm(request.POST or None, instance=pet)
 
-    if request.method == 'POST' and form.is_valid():
+    if request.method == 'POST':
+        if form.is_valid():
             form.save()
             return redirect('pet-details', username, pet_slug)
 
-    # if request.method == 'GET':
-    #     # form = PetEditForm(instance=pet, initial=pet.__dict__)
-    #     form = PetEditForm(instance=pet)
-    # else:
-    #     form = PetEditForm(request.POST, instance=pet)
-    #     if form.is_valid():
-    #         form.save()
-    #         return redirect('pet-details', username, pet_slug)
 
-    context = {'form': form}
+    context = {
+        'form': form,
+        'pet': pet,
+    }
 
     return render(request, template_name='pets/pet-edit-page.html', context=context)
 
 
 def pet_delete_page(request, username: str, pet_slug: str):
     pet = get_object_or_404(Pet, slug=pet_slug)
-    form = PetDeleteForm(request.POST or None, instance=pet)
+    form = PetDeleteForm(instance=pet)
 
     if request.method == 'POST':
         pet.delete()
@@ -67,6 +66,7 @@ def pet_delete_page(request, username: str, pet_slug: str):
 
     context = {
         'form': form,
+        'pet': pet,
     }
 
     return render(request, template_name='pets/pet-delete-page.html', context=context)

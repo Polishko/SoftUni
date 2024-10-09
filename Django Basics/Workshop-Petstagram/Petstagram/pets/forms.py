@@ -9,7 +9,7 @@ class PetBaseForm(forms.ModelForm):
         fields = ['name', 'date_of_birth', 'personal_photo']
         widgets = {
             'name': forms.TextInput(attrs={'placeholder': 'Pet name'}),
-            'date_of_birth': forms.DateInput(attrs={'placeholder': 'Date'}),
+            'date_of_birth': forms.DateInput(attrs={'type': 'date', 'placeholder': 'Select a date'}),
             'personal_photo': forms.TextInput(attrs={'placeholder': 'Pet image'}),
         }
         labels = {
@@ -25,5 +25,6 @@ class PetEditForm(PetBaseForm):
     pass
 
 class PetDeleteForm(PetBaseForm, DisableFieldsMixin):
+    pass
     disabled_fields = ('__all__',)
     readonly_fields = ('__all__',)

@@ -11,11 +11,14 @@ from Petstagram.photos.models import Photo
 def photo_add_page(request):
     form = PhotoCreateForm(request.POST or None, request.FILES or None)
 
-    if form.is_valid():
-        form.save()
-        return redirect('home')
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('home')
 
-    context = {'form': form}
+    context = {
+        'form': form,
+    }
 
     return render(request, template_name='photos/photo-add-page.html', context=context)
 
@@ -38,11 +41,15 @@ def photo_edit_page(request, pk: int):
     photo = get_object_or_404(Photo, pk=pk)
     form = PhotoEditForm(request.POST or None, instance=photo)
 
-    if request.method == 'POST' and form.is_valid():
-        form.save()
-        return redirect('photo-details', pk)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('photo-details', pk)
 
-    context = {'form': form}
+    context = {
+        'form': form,
+        'photo': photo,
+    }
 
     return render(request, template_name='photos/photo-edit-page.html', context=context)
 
