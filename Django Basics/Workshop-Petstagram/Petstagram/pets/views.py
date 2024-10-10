@@ -1,72 +1,77 @@
-from lib2to3.fixes.fix_input import context
-
-from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
 from Petstagram.common.forms import CommentForm
 from Petstagram.pets.forms import PetCreateForm, PetEditForm, PetDeleteForm
 from Petstagram.pets.models import Pet
+from Petstagram.photos.models import Photo
 
 
-# Create your views here.
-
-def pet_add_page(request):
-    form = PetCreateForm(request.POST or None)
-
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            return redirect('profile-details', pk=1)
-
-    context = {
-        'form': form
-    }
-
-    return render(request, template_name='pets/pet-add-page.html', context=context)
+class AddPetView(CreateView):
+    model = Pet
+    form_class = PetCreateForm
+    template_name = 'pets/pet-add-page.html'
+    success_url = reverse_lazy('profile-details', kwargs={'pk': 1})
 
 
-def pet_details_page(request, username: str, pet_slug: str):
-    pet = Pet.objects.get(slug=pet_slug)
-    # pet = get_object_or_404(Pet, slug=pet_slug)
-    all_photos = pet.photo_set.all()
-    comment_form = CommentForm()
+class PetDetailView(DetailView):
+    model = Pet
+    template_name = 'pets/pet-details-page.html'
+    context_object_name = 'pet'
+    # if your model has a field called 'slug',
+    # Django will automatically use it when you only provide slug_url_kwarg without specifying slug_field
+    # slug_field = 'slug'
+    slug_url_kwarg = 'pet_slug'
 
-    context = {
-        'pet': pet,
-        'all_photos': all_photos,
-        'comment_form': comment_form,
-    }
-    return render(request, template_name='pets/pet-details-page.html', context=context)
-
-
-def pet_edit_page(request, username: str, pet_slug: str):
-    pet = get_object_or_404(Pet, slug=pet_slug)
-    form = PetEditForm(request.POST or None, instance=pet)
-
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            return redirect('pet-details', username, pet_slug)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['all_photos'] = self.object.photo_set.all()
+        context['comment_form'] = CommentForm()
+        return context
 
 
-    context = {
-        'form': form,
-        'pet': pet,
-    }
+class PetEditView(UpdateView):
+    model = Pet
+    form_class = PetEditForm
+    template_name = 'pets/pet-edit-page.html'
+    slug_url_kwarg = 'pet_slug'
+    context_object_name = 'pet'
 
-    return render(request, template_name='pets/pet-edit-page.html', context=context)
+    def get_success_url(self):
+        return reverse_lazy(
+            'pet-details',
+            kwargs={
+                'username':self.kwargs['username'],
+                'pet_slug':self.object.slug,
+            }
+        )
+
+class PetDeleteView(DeleteView):
+    model =Pet
+    template_name = 'pets/pet-delete-page.html'
+    context_object_name = 'pet'
+    slug_url_kwarg = 'pet_slug'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = PetDeleteForm(instance=self.object)
+        return context
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+
+        related_photos = Photo.objects.filter(tagged_pets=self.object)
+        for photo in related_photos:
+            photo.tagged_pets.remove(self.object)
+
+        return super().delete(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse_lazy(
+            'profile-details',
+            kwargs={
+                'pk': 1,
+            }
+        )
 
 
-def pet_delete_page(request, username: str, pet_slug: str):
-    pet = get_object_or_404(Pet, slug=pet_slug)
-    form = PetDeleteForm(instance=pet)
-
-    if request.method == 'POST':
-        pet.delete()
-        return redirect('profile-details', pk=1)
-
-    context = {
-        'form': form,
-        'pet': pet,
-    }
-
-    return render(request, template_name='pets/pet-delete-page.html', context=context)
