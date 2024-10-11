@@ -8,7 +8,8 @@ from django.shortcuts import render, redirect
 from django.templatetags.i18n import language
 from django.urls import reverse_lazy
 from django.utils.decorators import classonlymethod
-from django.views.generic import View, TemplateView, RedirectView
+from django.views.generic import View, TemplateView, RedirectView, ListView, FormView, CreateView, UpdateView, \
+    DeleteView
 
 from forumApp.posts.forms import PostCreateForm, PostDeleteForm, SearchForm, PostEditForm, CommentFormSet, PostBaseForm
 from forumApp.posts.models import Post, Comment
@@ -89,77 +90,83 @@ class RedirectHomeView(RedirectView):
     def get_redirect_url(self, *args, **kwargs): # used for dynamic redirection logic
         pass
 
+# Longer version that doesn't make use of FormView (mostly used for POST) and also has validation
+# class DashboardView(ListView):
+#     model = Post # Django passes this to context
+#     # queryset = Post.objects.all()
+#     form_class = SearchForm
+#     # success_url = reverse_lazy('dashboard') # this is for FormView POST req.
+#     template_name = 'posts/dashboard.html'
+#     context_object_name = 'posts'
+#
+#     def get_queryset(self):
+#         queryset = super().get_queryset()
+#
+#         form = self.get_form()
+#         if form.is_valid():
+#             query = form.cleaned_data['query']
+#             queryset = queryset.filter(title__icontains=query)
+#
+#         return queryset
+#
+#     # pass form to context
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['form'] = self.get_form()
+#
+#         return context
+#
+#     # populate form with query data
+#     def get_form(self):
+#         return self.form_class(self.request.GET)
+#
+
+# FormView here solely renders the form in the template
+class DashboardView(ListView, FormView):
+    model = Post
+    form_class = SearchForm
+    template_name = 'posts/dashboard.html'
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        query = self.request.GET.get('query')
+        # check to prevent unpredictable results in case of None or  '' with more complex filters
+        # also avoid unnecessary filtering if no query
+        if query:
+            return queryset.filter(title__icontains=query)
+        return queryset
 
 
-def dashboard(request):
-    form = SearchForm(request.GET)
-    posts = Post.objects.all()
-
-    if request.method == 'GET' and form.is_valid():
-        query = form.cleaned_data['query']
-        posts = posts.filter(title__icontains=query)
+class AddPostView(CreateView):
+    model = Post
+    form_class = PostCreateForm
+    template_name = 'posts/add_post.html'
+    success_url = reverse_lazy('dashboard')
 
 
-    context = {
-        'posts': posts,
-        'form': form,
-    }
-
-    return render(request, 'posts/dashboard.html', context)
-
-def add_post(request):
-    form = PostCreateForm (request.POST or None, request.FILES or None)
-
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            return redirect('dashboard')
-    context = {
-        'form': form,
-    }
-
-    return render(request, 'posts/add_post.html', context)
-
-def delete_post(request, pk: int):
-    post = Post.objects.get(pk=pk)
-    form = PostDeleteForm(request.POST or None, instance=post)
-
-    if request.method == 'POST' and form.is_valid():
-        post.delete()
-        return redirect('dashboard')
-
-    context = {
-        'form': form,
-        'post': post,
-    }
-
-    return render(request, 'posts/delete-post.html', context)
+class DeletePostView(DeleteView):
+    model = Post
+    success_url = reverse_lazy('dashboard')
+    template_name = 'posts/delete-post.html'
+    context_object_name = 'post'
 
 
-def edit_post(request, pk: int):
-    post = Post.objects.get(pk=pk)
 
-    if request.method == 'POST':
-        '''
-        instance=post: This tells Django that the form is bound to the existing post instance.
-        By providing the instance argument,
-        Django knows this form should update the existing post rather than creating a new one.
-        '''
-        form = PostEditForm(request.POST, instance=post)
+class EditPostView(UpdateView):
+    model = Post
+    # form_class = PostEditForm
+    success_url = reverse_lazy('dashboard')
+    template_name = 'posts/edit-post.html'
+    context_object_name = 'post'
 
-        if form.is_valid():
-            form.save()
-            return redirect('dashboard')
+    def get_form_class(self):
+        if self.request.user.is_authenticated:
+            return modelform_factory(Post, fields=('title', 'content', 'author', 'language'))
+        else:
+            return modelform_factory(Post, fields=('content',))
 
-    else:
-        form = PostEditForm(instance=post)
-
-    context = {
-        'form': form,
-        'post': post,
-    }
-
-    return render(request, 'posts/edit-post.html', context)
 
 def details_page(request, pk: int):
     post = Post.objects.get(pk=pk)
