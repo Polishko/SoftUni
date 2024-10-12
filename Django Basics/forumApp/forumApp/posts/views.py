@@ -152,6 +152,11 @@ class DeletePostView(DeleteView):
     template_name = 'posts/delete-post.html'
     context_object_name = 'post'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = PostDeleteForm(instance=self.object)
+
+        return context
 
 
 class EditPostView(UpdateView):
