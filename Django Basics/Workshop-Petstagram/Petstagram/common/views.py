@@ -1,6 +1,4 @@
-from django.contrib.admin.templatetags.admin_list import search_form
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.shortcuts import render, redirect, resolve_url, get_object_or_404
+from django.shortcuts import redirect, resolve_url, get_object_or_404
 from django.views.generic import ListView
 from pyperclip import copy
 
@@ -13,6 +11,7 @@ class HomePageView(ListView):
     model = Photo
     template_name = 'common/home-page.html'
     context_object_name = 'all_photos'
+    paginate_by = 1
 
     def get_queryset(self):
         all_photos = Photo.objects.all()
@@ -30,17 +29,6 @@ class HomePageView(ListView):
 
        context['comment_form'] = CommentForm()
        context['search_form'] = SearchForm(self.request.GET)
-
-       photos_per_page = 1
-       paginator = Paginator(context['all_photos'], photos_per_page)
-       page = self.request.GET.get('page')
-
-       try:
-           context['all_photos'] = paginator.page(page)
-       except PageNotAnInteger:
-           context['all_photos'] = paginator.page(1)
-       except EmptyPage:
-           context['all_photos'] = paginator.page(paginator.num_pages)
 
        return context
 
