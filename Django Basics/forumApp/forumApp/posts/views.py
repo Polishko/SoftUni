@@ -1,68 +1,22 @@
 from datetime import datetime
-from idlelib.debugobj import dispatch
-from lib2to3.fixes.fix_input import context
 
 from django.forms import modelform_factory
-from django.http import HttpResponseNotAllowed
 from django.shortcuts import render, redirect
-from django.templatetags.i18n import language
 from django.urls import reverse_lazy
-from django.utils.decorators import classonlymethod
 from django.views.generic import View, TemplateView, RedirectView, ListView, FormView, CreateView, UpdateView, \
     DeleteView
 
 from forumApp.posts.forms import PostCreateForm, PostDeleteForm, SearchForm, PostEditForm, CommentFormSet, PostBaseForm
 from forumApp.posts.models import Post, Comment
 
-# The most basic CBV to render a get form:
-# Index(View). Then less basic Index(BaseView)
-
-# class BaseView:
-#     @classonlymethod
-#     def as_view(cls):
-#
-#         def view(request, *args, **kwargs):
-#             view_instance = cls()
-#             return view_instance.dispatch(request, *args, **kwargs)
-#
-#         return view
-#
-#     def get(self, request, *args, **kwargs):
-#         return HttpResponseNotAllowed(['POST'])
-#
-#     def post(self, request, *args, **kwargs):
-#         return HttpResponseNotAllowed(['GET'])
-#
-#     def dispatch(self, request, *args, **kwargs):
-#         if request.method == 'GET':
-#             return self.get(request, *args, **kwargs)
-#         elif request.method == 'POST':
-#             return self.post(request, *args, **kwargs)
-#
-#
-# class Index(BaseView):
-#     def get(self, request, *args, **kwargs):
-#         post_form = modelform_factory(
-#             Post,
-#             fields=('title', 'content', 'author', 'language',),
-#
-#         )
-#
-#         context = {
-#             'my_form': post_form,
-#         }
-#
-#         return render(request, 'posts/common/index.html', context)
-
 class IndexView(TemplateView):
-    # template_name = 'posts/common/index.html'
-    extra_context = {
-        'static_time': datetime.now()
-    } # this context is static and shows context at time of view initialization
+    template_name = 'posts/common/index.html'
+    # extra_context = {
+    #     'static_time': datetime.now()
+    # } # this context is static and shows context at time of view initialization
 
     def get_context_data(self, **kwargs): # dynamic context passed on each request
         context = super().get_context_data(**kwargs)
-
         context['dynamic_time'] = datetime.now()
 
         return context
@@ -74,23 +28,12 @@ class IndexView(TemplateView):
         else:
             return ['posts/common/index.html']
 
-
-class Index(View):
-    def get(self, request, *args, **kwargs):
-        context = {
-            'dynamic_time': datetime.now(),
-        }
-
-        return render(request, 'posts/common/index.html', context)
-
-
 class RedirectHomeView(RedirectView):
     url = reverse_lazy('index') # static way
 
     def get_redirect_url(self, *args, **kwargs): # used for dynamic redirection logic
         pass
 
-# Longer version that doesn't make use of FormView (mostly used for POST) and also has validation
 class DashboardView(ListView):
     model = Post
     template_name = 'posts/dashboard.html'
@@ -103,7 +46,6 @@ class DashboardView(ListView):
             queryset = queryset.filter(title__icontains=query)
         return queryset
 
-    # pass form to context
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] =  SearchForm(self.request.GET)
@@ -131,7 +73,7 @@ class DeletePostView(DeleteView):
 
 class EditPostView(UpdateView):
     model = Post
-    # form_class = PostEditForm
+    # form_class = PostEditForm # commented out because below we dynamically generate the form
     success_url = reverse_lazy('dashboard')
     template_name = 'posts/edit-post.html'
     context_object_name = 'post'
