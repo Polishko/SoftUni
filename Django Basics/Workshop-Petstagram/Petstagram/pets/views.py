@@ -18,9 +18,6 @@ class PetDetailView(DetailView):
     model = Pet
     template_name = 'pets/pet-details-page.html'
     context_object_name = 'pet'
-    # if your model has a field called 'slug',
-    # Django will automatically use it when you only provide slug_url_kwarg without specifying slug_field
-    # slug_field = 'slug'
     slug_url_kwarg = 'pet_slug'
 
     def get_context_data(self, **kwargs):
@@ -58,11 +55,11 @@ class PetDeleteView(DeleteView):
         return context
 
     def delete(self, request, *args, **kwargs):
-        self.object = self.get_object()
+        pet_object = self.get_object()
 
-        related_photos = Photo.objects.filter(tagged_pets=self.object)
+        related_photos = Photo.objects.filter(tagged_pets=pet_object)
         for photo in related_photos:
-            photo.tagged_pets.remove(self.object)
+            photo.tagged_pets.remove(pet_object)
 
         return super().delete(request, *args, **kwargs)
 
