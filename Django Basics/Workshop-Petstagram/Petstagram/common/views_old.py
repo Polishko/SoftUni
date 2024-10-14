@@ -1,7 +1,5 @@
-from django.contrib.admin.templatetags.admin_list import search_form
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, redirect, resolve_url, get_object_or_404
-from django.views.generic import ListView
 from pyperclip import copy
 
 from Petstagram.common.forms import CommentForm, SearchForm
@@ -9,40 +7,36 @@ from Petstagram.common.models import Like
 from Petstagram.photos.models import Photo
 
 
-class HomePageView(ListView):
-    model = Photo
-    template_name = 'common/home-page.html'
-    context_object_name = 'all_photos'
+# Create your views here.
+def show_home_page(request):
+    all_photos = Photo.objects.all()
+    comment_form = CommentForm()
+    search_form = SearchForm(request.GET)
 
-    def get_queryset(self):
-        all_photos = Photo.objects.all()
+    if search_form.is_valid():
+        all_photos = all_photos.filter(
+            tagged_pets__name__icontains=search_form.cleaned_data['pet_name']
+        )
 
-        search_form = SearchForm(self.request.GET)
-        if search_form.is_valid():
-            all_photos = all_photos.filter(
-                tagged_pets__name__icontains=search_form.cleaned_data['pet_name']
-            )
+    photos_per_page = 1
+    paginator = Paginator(all_photos, photos_per_page)
+    page = request.GET.get('page')
 
-        return all_photos
+    try:
+        all_photos = paginator.page(page)
+    except PageNotAnInteger:
+        all_photos = paginator.page(1)
+    except EmptyPage:
+        all_photos = paginator.page(paginator.num_pages)
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-       context = super().get_context_data(**kwargs)
+    context = {
+        'all_photos': all_photos,
+        'comment_form': comment_form,
+        'search_form': search_form,
+    }
 
-       context['comment_form'] = CommentForm()
-       context['search_form'] = SearchForm(self.request.GET)
+    return render(request, template_name='common/home-page.html', context=context)
 
-       photos_per_page = 1
-       paginator = Paginator(context['all_photos'], photos_per_page)
-       page = self.request.GET.get('page')
-
-       try:
-           context['all_photos'] = paginator.page(page)
-       except PageNotAnInteger:
-           context['all_photos'] = paginator.page(1)
-       except EmptyPage:
-           context['all_photos'] = paginator.page(paginator.num_pages)
-
-       return context
 
 def like_functionality(request, photo_id: int):
     # photo = Photo.objects.get(id=photo_id)
