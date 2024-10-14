@@ -91,53 +91,23 @@ class RedirectHomeView(RedirectView):
         pass
 
 # Longer version that doesn't make use of FormView (mostly used for POST) and also has validation
-# class DashboardView(ListView):
-#     model = Post # Django passes this to context
-#     # queryset = Post.objects.all()
-#     form_class = SearchForm
-#     # success_url = reverse_lazy('dashboard') # this is for FormView POST req.
-#     template_name = 'posts/dashboard.html'
-#     context_object_name = 'posts'
-#
-#     def get_queryset(self):
-#         queryset = super().get_queryset()
-#
-#         form = self.get_form()
-#         if form.is_valid():
-#             query = form.cleaned_data['query']
-#             queryset = queryset.filter(title__icontains=query)
-#
-#         return queryset
-#
-#     # pass form to context
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['form'] = self.get_form()
-#
-#         return context
-#
-#     # populate form with query data
-#     def get_form(self):
-#         return self.form_class(self.request.GET)
-#
-
-# FormView here solely renders the form in the template
-class DashboardView(ListView, FormView):
+class DashboardView(ListView):
     model = Post
-    form_class = SearchForm
     template_name = 'posts/dashboard.html'
     context_object_name = 'posts'
 
     def get_queryset(self):
         queryset = super().get_queryset()
-
         query = self.request.GET.get('query')
-        # check to prevent unpredictable results in case of None or  '' with more complex filters
-        # also avoid unnecessary filtering if no query
         if query:
-            return queryset.filter(title__icontains=query)
+            queryset = queryset.filter(title__icontains=query)
         return queryset
 
+    # pass form to context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] =  SearchForm(self.request.GET)
+        return context
 
 class AddPostView(CreateView):
     model = Post
