@@ -1,10 +1,11 @@
 from datetime import datetime
+from lib2to3.fixes.fix_input import context
 
 from django.forms import modelform_factory
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import View, TemplateView, RedirectView, ListView, FormView, CreateView, UpdateView, \
-    DeleteView
+    DeleteView, DetailView
 
 from forumApp.posts.forms import PostCreateForm, PostDeleteForm, SearchForm, PostEditForm, CommentFormSet, PostBaseForm
 from forumApp.posts.models import Post, Comment
@@ -85,28 +86,33 @@ class EditPostView(UpdateView):
             return modelform_factory(Post, fields=('content',))
 
 
-def details_page(request, pk: int):
-    post = Post.objects.get(pk=pk)
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'posts/details-post.html'
 
-    # Pass the queryset to allow for editing of associated comments
-    comment_formset = CommentFormSet(request.POST or None, queryset=Comment.objects.filter(post=post))
+    def get_object(self, queryset=None):
+        return super().get_object(queryset)
 
-    if request.method == 'POST':
+    def get_form(self):
+        post = self.get_object()
+        return CommentFormSet(queryset=Comment.objects.filter(post=post))
+
+    def post(self, request, *args, **kwargs):
+        post = self.get_object()
+        comment_formset = CommentFormSet(request.POST, queryset=Comment.objects.filter(post=post))
+
         if comment_formset.is_valid():
             for comment_form in comment_formset:
                 if comment_form.cleaned_data.get('author') and comment_form.cleaned_data.get('content'):
                     comment = comment_form.save(commit=False)
                     comment.post = post
                     comment.save()
+            return redirect('details-post', pk=post.pk)
         else:
-            print(comment_formset.errors)
+            return self.render_to_response(self.get_context_data(comment_formset=comment_formset))
 
-
-        return redirect('details-post', pk=post.id)
-
-    context = {
-        'post': post,
-        'comment_formset': comment_formset
-    }
-
-    return render(request, 'posts/details-post.html', context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if 'comment_formset' not in context:
+            context['comment_formset'] = self.get_form()
+        return context
