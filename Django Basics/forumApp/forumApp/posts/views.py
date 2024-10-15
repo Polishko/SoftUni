@@ -3,17 +3,17 @@ from datetime import datetime
 from django.forms import modelform_factory
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView, RedirectView, ListView, CreateView, UpdateView, \
     DeleteView, DetailView
 
+from forumApp.decorators import measure_execution_time
 from forumApp.posts.forms import PostCreateForm, PostDeleteForm, SearchForm, CommentFormSet
 from forumApp.posts.models import Post, Comment
 
+@method_decorator(measure_execution_time, name='dispatch')
 class IndexView(TemplateView):
     template_name = 'posts/common/index.html'
-    # extra_context = {
-    #     'static_time': datetime.now()
-    # } # this context is static and shows context at time of view initialization
 
     def get_context_data(self, **kwargs): # dynamic context passed on each request
         context = super().get_context_data(**kwargs)
