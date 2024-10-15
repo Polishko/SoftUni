@@ -1,13 +1,12 @@
 from datetime import datetime
-from lib2to3.fixes.fix_input import context
 
 from django.forms import modelform_factory
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import View, TemplateView, RedirectView, ListView, FormView, CreateView, UpdateView, \
+from django.views.generic import TemplateView, RedirectView, ListView, CreateView, UpdateView, \
     DeleteView, DetailView
 
-from forumApp.posts.forms import PostCreateForm, PostDeleteForm, SearchForm, PostEditForm, CommentFormSet, PostBaseForm
+from forumApp.posts.forms import PostCreateForm, PostDeleteForm, SearchForm, CommentFormSet
 from forumApp.posts.models import Post, Comment
 
 class IndexView(TemplateView):
@@ -89,9 +88,6 @@ class EditPostView(UpdateView):
 class PostDetailView(DetailView):
     model = Post
     template_name = 'posts/details-post.html'
-
-    def get_object(self, queryset=None):
-        return super().get_object(queryset)
 
     def get_form(self):
         post = self.get_object()
