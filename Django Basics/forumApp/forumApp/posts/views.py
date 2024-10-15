@@ -35,9 +35,11 @@ class RedirectHomeView(RedirectView):
         pass
 
 class DashboardView(ListView):
+    POSTS_PER_PAGE = 2
     model = Post
     template_name = 'posts/dashboard.html'
     context_object_name = 'posts'
+    paginate_by = POSTS_PER_PAGE
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -49,6 +51,7 @@ class DashboardView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] =  SearchForm(self.request.GET)
+        context['posts_per_page'] = self.POSTS_PER_PAGE
         return context
 
 class AddPostView(CreateView):
