@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, time
 
 from django.forms import modelform_factory
 from django.shortcuts import redirect
@@ -9,11 +9,13 @@ from django.views.generic import TemplateView, RedirectView, ListView, CreateVie
 
 from forumApp.decorators import measure_execution_time
 from forumApp.posts.forms import PostCreateForm, PostDeleteForm, SearchForm, CommentFormSet
+from forumApp.posts.mixins import TimeRestrictedMixin
 from forumApp.posts.models import Post, Comment
 
 @method_decorator(measure_execution_time, name='dispatch')
-class IndexView(TemplateView):
+class IndexView(TimeRestrictedMixin, TemplateView):
     template_name = 'posts/common/index.html'
+    end_time = time(22, 30) # override the end-time of the mixin
 
     def get_context_data(self, **kwargs): # dynamic context passed on each request
         context = super().get_context_data(**kwargs)
