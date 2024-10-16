@@ -73,7 +73,7 @@ class CreateCommentView(CreateView):
         comment.to_photo = self.photo
         comment.save()
 
-        return redirect(f"{self.request.META.get('HTTP_REFERER', '/')}#{self.get_object().pk}")
+        return redirect(f"{self.request.META.get('HTTP_REFERER', '/')}#{self.photo.pk}")
 
     def form_invalid(self, form):
         return self.render_to_response(self.get_context_data(form=form))
