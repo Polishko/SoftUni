@@ -1,11 +1,11 @@
 from django.shortcuts import redirect, resolve_url, get_object_or_404
-from django.views.generic import ListView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView
 from pyperclip import copy
 
 from Petstagram.common.forms import CommentForm, SearchForm
-from Petstagram.common.models import Like
+from Petstagram.common.models import Like, Comment
 from Petstagram.photos.models import Photo
-
 
 class HomePageView(ListView):
     model = Photo
@@ -33,7 +33,6 @@ class HomePageView(ListView):
        return context
 
 def like_functionality(request, photo_id: int):
-    # photo = Photo.objects.get(id=photo_id)
     photo = get_object_or_404(Photo, pk=photo_id)
     liked_object = Like.objects.filter(
         to_photo_id=photo_id
@@ -53,14 +52,28 @@ def copy_link_to_clipboard(request, photo_id):
 
     return redirect((request.META.get('HTTP_REFERER', '/')) + f'#{photo_id}')
 
-def comment_functionality(request, photo_id):
-    if request.method == 'POST':
-        photo = get_object_or_404(Photo, pk=photo_id)
-        form = CommentForm(request.POST)
 
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.to_photo = photo
-            comment.save()
+class CreateCommentView(CreateView):
+    model = Comment
+    form_class = CommentForm
 
-    return redirect(f"{request.META.get('HTTP_REFERER', '/')}#{photo_id}")
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self._photo = None
+
+    # fetch photo lazily from DB only once and store as attr for cache
+    @property
+    def photo(self):
+        if self._photo is None:
+            self._photo = get_object_or_404(Photo, pk=self.kwargs['photo_id'])
+        return self._photo
+
+    def form_valid(self, form):
+        comment = form.save(commit=False)
+        comment.to_photo = self.photo
+        comment.save()
+
+        return redirect(f"{self.request.META.get('HTTP_REFERER', '/')}#{self.get_object().pk}")
+
+    def form_invalid(self, form):
+        return self.render_to_response(self.get_context_data(form=form))

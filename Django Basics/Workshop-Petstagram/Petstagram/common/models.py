@@ -16,6 +16,7 @@ class Comment(models.Model):
     to_photo = models.ForeignKey(
         to=Photo,
         on_delete=models.CASCADE,
+        related_name='comments'
     )
 
     class Meta:

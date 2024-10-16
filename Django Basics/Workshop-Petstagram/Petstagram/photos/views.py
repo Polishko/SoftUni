@@ -24,7 +24,7 @@ def photo_add_page(request):
 
 def photo_details_page(request, pk: int):
     photo = get_object_or_404(Photo, pk=pk)
-    comments = photo.comment_set.all()
+    comments = photo.comments.all()
     likes = photo.like_set.all()
     comment_form = CommentForm()
 
