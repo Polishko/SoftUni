@@ -64,7 +64,7 @@
                             <!-- Start Like Button -->
                             <span class="heart">
                                 <a href="{% url 'like' photo.pk %}">
-                                    {% if photo.like_set.all %}
+                                    {% if photo.likes.all %}
                                         <i class="fa-solid fa-heart" style="color: #ed4040;"></i>
                                     {% else %}    
                                         <i class="fa-regular fa-heart"></i>
@@ -84,7 +84,7 @@
                     <!-- End Like and Share Buttons -->
 
                     <!-- Number of Likes per Photo -->
-                    <p class="likes">{{ photo.like_set.count }}</p>
+                    <p class="likes">{{ photo.likes.count }}</p>
 
 
                     <!-- Start Tagged Pets -->

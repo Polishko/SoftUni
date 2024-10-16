@@ -1,59 +1,51 @@
-from lib2to3.fixes.fix_input import context
-
-from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
 from Petstagram.common.forms import CommentForm
 from Petstagram.photos.forms import PhotoCreateForm, PhotoEditForm
 from Petstagram.photos.models import Photo
 
+class PhotoCreateView(CreateView):
+    model = Photo
+    form_class = PhotoCreateForm
+    template_name = 'photos/photo-add-page.html'
+    success_url = reverse_lazy('home')
 
-# Create your views here.
-def photo_add_page(request):
-    form = PhotoCreateForm(request.POST or None, request.FILES or None)
+class PhotoDetailView(DetailView):
+    model = Photo
+    template_name = 'photos/photo-details-page.html'
+    context_object_name = 'photo'
 
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            return redirect('home')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        photo = self.get_object()
+        context['comments'] = photo.comments.all()
+        context['likes'] = photo.likes.all()
+        context['comment_form'] = CommentForm()
 
-    context = {
-        'form': form,
-    }
+        return context
 
-    return render(request, template_name='photos/photo-add-page.html', context=context)
 
-def photo_details_page(request, pk: int):
-    photo = get_object_or_404(Photo, pk=pk)
-    comments = photo.comments.all()
-    likes = photo.like_set.all()
-    comment_form = CommentForm()
+class PhotoEditView(UpdateView):
+    model = Photo
+    form_class = PhotoEditForm
+    context_object_name = 'photo'
+    template_name = 'photos/photo-edit-page.html'
 
-    context = {
-        'photo': photo,
-        'comments': comments,
-        'likes': likes,
-        'comment_form': comment_form,
-    }
+    def get_success_url(self):
+        return reverse_lazy('photo-details', kwargs={'pk': self.object.pk})
 
-    return render(request, template_name='photos/photo-details-page.html', context=context)
 
-def photo_edit_page(request, pk: int):
-    photo = get_object_or_404(Photo, pk=pk)
-    form = PhotoEditForm(request.POST or None, instance=photo)
+class PhotoDeleteView(DeleteView):
+    model = Photo
+    success_url = reverse_lazy('home')
 
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            return redirect('photo-details', pk)
+    def get(self, request, *args, **kwargs):
+        # Instead of rendering a confirmation or GET page, proceed to deletion
+        return self.delete(request, *args, **kwargs)
 
-    context = {
-        'form': form,
-        'photo': photo,
-    }
-
-    return render(request, template_name='photos/photo-edit-page.html', context=context)
-
-def photo_delete_page(request, pk: int):
-    photo = get_object_or_404(Photo, pk=pk)
-    photo.delete()
-    return redirect('home')
+    def delete(self, request, *args, **kwargs):
+        photo = self.get_object()
+        photo.tagged_pets.clear()
+        return super().delete(request, *args, **kwargs)
+    
