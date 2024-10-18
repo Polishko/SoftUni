@@ -6,13 +6,12 @@ from Petstagram.common.forms import CommentForm, SearchForm
 from Petstagram.common.models import Like
 from Petstagram.photos.models import Photo
 
-
-# Create your views here.
 def show_home_page(request):
     all_photos = Photo.objects.all()
     comment_form = CommentForm()
     search_form = SearchForm(request.GET)
 
+    # The filter essentially removes photos that don't have tagged pets in them
     if search_form.is_valid():
         all_photos = all_photos.filter(
             tagged_pets__name__icontains=search_form.cleaned_data['pet_name']
@@ -20,14 +19,16 @@ def show_home_page(request):
 
     photos_per_page = 1
     paginator = Paginator(all_photos, photos_per_page)
-    page = request.GET.get('page')
+    page_number = request.GET.get('page') # '.../?page=10' => GET: {'page': 10}
 
-    try:
-        all_photos = paginator.page(page)
-    except PageNotAnInteger:
-        all_photos = paginator.page(1)
-    except EmptyPage:
-        all_photos = paginator.page(paginator.num_pages)
+    all_photos = paginator.get_page(page_number)
+
+    # try:
+    #     all_photos = paginator.page(page_number)
+    # except PageNotAnInteger:
+    #     all_photos = paginator.page(1)
+    # except EmptyPage:
+    #     all_photos = paginator.page(paginator.num_pages)
 
     context = {
         'all_photos': all_photos,

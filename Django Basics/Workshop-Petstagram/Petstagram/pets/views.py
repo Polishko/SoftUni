@@ -17,12 +17,11 @@ class AddPetView(CreateView):
 class PetDetailView(DetailView):
     model = Pet
     template_name = 'pets/pet-details-page.html'
-    context_object_name = 'pet'
-    slug_url_kwarg = 'pet_slug'
+    slug_url_kwarg = 'pet_slug' # otherwise searches for slug
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['all_photos'] = self.object.photo_set.all()
+        context['all_photos'] = self.object.photo_set.all() # we can use context['pet'] too
         context['comment_form'] = CommentForm()
         return context
 
@@ -32,43 +31,38 @@ class PetEditView(UpdateView):
     form_class = PetEditForm
     template_name = 'pets/pet-edit-page.html'
     slug_url_kwarg = 'pet_slug'
-    context_object_name = 'pet'
+    # context_object_name = 'pet' # no need, inferred from model name
 
     def get_success_url(self):
         return reverse_lazy(
             'pet-details',
             kwargs={
                 'username':self.kwargs['username'],
-                'pet_slug':self.object.slug,
+                'pet_slug':self.object.slug, # or self.kwargs['pet_slug']
             }
         )
 
 class PetDeleteView(DeleteView):
     model =Pet
     template_name = 'pets/pet-delete-page.html'
-    context_object_name = 'pet'
     slug_url_kwarg = 'pet_slug'
+    success_url = reverse_lazy('profile-details', kwargs={'pk': 1})
+    # no need for form_class, we don't use form to submit user input
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = PetDeleteForm(instance=self.object)
         return context
 
-    def delete(self, request, *args, **kwargs):
-        pet_object = self.get_object()
+    # no need, Django will remove the tagged pet from the photos
+    # def delete(self, request, *args, **kwargs):
+    #     pet_object = self.get_object()
+    #
+    #     related_photos = Photo.objects.filter(tagged_pets=pet_object)
+    #     for photo in related_photos:
+    #         photo.tagged_pets.remove(pet_object)
+    #
+    #     return super().delete(request, *args, **kwargs)
 
-        related_photos = Photo.objects.filter(tagged_pets=pet_object)
-        for photo in related_photos:
-            photo.tagged_pets.remove(pet_object)
-
-        return super().delete(request, *args, **kwargs)
-
-    def get_success_url(self):
-        return reverse_lazy(
-            'profile-details',
-            kwargs={
-                'pk': 1,
-            }
-        )
 
 

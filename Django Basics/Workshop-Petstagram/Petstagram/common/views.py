@@ -1,5 +1,5 @@
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import redirect, resolve_url, get_object_or_404
-from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView
 from pyperclip import copy
 
@@ -10,27 +10,41 @@ from Petstagram.photos.models import Photo
 class HomePageView(ListView):
     model = Photo
     template_name = 'common/home-page.html'
-    context_object_name = 'all_photos'
+    context_object_name = 'all_photos' # by default object_list and photos
     paginate_by = 1
 
     def get_queryset(self):
-        all_photos = Photo.objects.all()
+        # all_photos = Photo.objects.all()
 
-        search_form = SearchForm(self.request.GET)
-        if search_form.is_valid():
-            all_photos = all_photos.filter(
-                tagged_pets__name__icontains=search_form.cleaned_data['pet_name']
+        # validates the search form and also excludes photos that don't have tagged pets
+
+        # search_form = SearchForm(self.request.GET)
+        # if search_form.is_valid():
+        #     all_photos = all_photos.filter(
+        #         tagged_pets__name__icontains=search_form.cleaned_data['pet_name']
+        #     )
+        #
+        # return all_photos
+
+        # filters only if there is a search query
+        queryset = super().get_queryset()
+
+        pet_name = self.request.GET.get('pet_name')
+        if pet_name:
+            queryset = queryset.filter(
+                tagged_pets__name__icontains=pet_name
             )
 
-        return all_photos
+        return queryset
 
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_context_data(self, **kwargs):
        context = super().get_context_data(**kwargs)
 
        context['comment_form'] = CommentForm()
        context['search_form'] = SearchForm(self.request.GET)
 
        return context
+
 
 def like_functionality(request, photo_id: int):
     photo = get_object_or_404(Photo, pk=photo_id)
