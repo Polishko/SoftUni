@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 
 from musicapp.album.forms import AddAlbumForm
 from musicapp.album.models import Album
@@ -48,9 +48,16 @@ class AddAlbum(CreateView):
 #
 #     return render(request, 'album/album-add.html', {'form': form})
 
+class AlbumDetails(DetailView):
+    model = Album
+    template_name = 'album/album-details.html'
+    context_object_name = 'album' # optional
+
+# FBV option
 def album_details(request, pk=int):
-    context = {}
-    return render(request, 'album/album-details.html', context)
+    album = get_object_or_404(Album, pk=pk)
+
+    return render(request, 'album/album-details.html', {'album': album})
 
 def album_edit(request, pk=int):
     context = {}

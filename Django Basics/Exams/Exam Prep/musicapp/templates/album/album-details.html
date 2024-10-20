@@ -1,4 +1,5 @@
 {% extends 'common/base.html' %}
+{% load custom_filters %}
 {% load static %}
 
 {% block content %}
@@ -8,27 +9,27 @@
         <div class="wrapper">
           <div class="albumCover">
             <!-- Album Image -->
-            <img src="/static/images/Lorde.jpg" alt="Cover Image" />
+            <img src="{{ album.image_url }}" alt="Cover Image" />
           </div>
 
           <div class="albumInfo">
             <div class="albumText">
               <!-- Album Info -->
-              <h1>Name: Melodrama</h1>
-              <h3>Artist: Lorde</h3>
-              <h4>Genre: Pop Music</h4>
-              <h4>Price: $7.33</h4>
-              <p>
-                Description: Melodrama is the second studio album by New Zealand
-                singer-songwriter Lorde. It was released on 16 June 2017 by Lava
-                and Republic Records and distributed through Universal.
-              </p>
+              <h1>Name: {{ album.album_name|titlecase }}</h1>
+              <h3>Artist: {{ album.artist|titlecase }}</h3>
+              <h4>Genre: {{ album.genre|titlecase }}</h4>
+              <h4>Price: ${{ album.price|floatformat:2 }}</h4>
+                {% if album.description %}
+                  <p>
+                    {{ album.description }}
+                  </p>
+                {% endif %}
             </div>
 
             <div class="actionBtn">
               <!-- Album Buttons -->
-              <a href="#" class="edit">Edit</a>
-              <a href="#" class="remove">Delete</a>
+              <a href="{% url 'album-edit' album.pk %}" class="edit">Edit</a>
+              <a href="{% url 'album-delete' album.pk %}" class="remove">Delete</a>
             </div>
           </div>
         </div>
