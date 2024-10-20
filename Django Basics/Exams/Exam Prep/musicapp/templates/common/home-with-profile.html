@@ -17,7 +17,7 @@
                       <p class="name">Name: {{ album.album_name|titlecase }}</p>
                       <p class="artist">Artist: {{ album.artist|titlecase }}</p>
                       <p class="genre">Genre: {{ album.genre|titlecase }}</p>
-                      <p class="price">Price: ${{ album.price|floatformat:2 }}</p>
+                      <p class="price">Price: ${{ album.price }}</p>
                     </div>
                     <div class="btn-group">
                       <a href="{% url 'album-details' album.pk %}">Details</a>

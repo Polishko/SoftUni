@@ -18,7 +18,7 @@
               <h1>Name: {{ album.album_name|titlecase }}</h1>
               <h3>Artist: {{ album.artist|titlecase }}</h3>
               <h4>Genre: {{ album.genre|titlecase }}</h4>
-              <h4>Price: ${{ album.price|floatformat:2 }}</h4>
+              <h4>Price: ${{ album.price }}</h4>
                 {% if album.description %}
                   <p>
                     {{ album.description }}
