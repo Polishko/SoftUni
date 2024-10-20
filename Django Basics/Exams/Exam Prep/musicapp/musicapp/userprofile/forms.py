@@ -2,7 +2,7 @@ from django import forms
 from musicapp.userprofile.models import Profile
 
 
-class UserBaseProfile(forms.ModelForm):
+class UserBaseForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['username', 'email', 'age']
@@ -12,6 +12,6 @@ class UserBaseProfile(forms.ModelForm):
             'age': forms.NumberInput(attrs={'placeholder': 'Age'}),
         }
 
-class AddUserProfile(UserBaseProfile):
+class AddUserProfile(UserBaseForm):
     pass
 
