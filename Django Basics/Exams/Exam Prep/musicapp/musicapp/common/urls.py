@@ -1,7 +1,7 @@
 from django.urls import path
 
-from musicapp.common.views import show_home
+from musicapp.common.views import HomePageView
 
 urlpatterns = [
-    path('', show_home, name='home-page')
+    path('', HomePageView.as_view(), name='home-page')
 ]
