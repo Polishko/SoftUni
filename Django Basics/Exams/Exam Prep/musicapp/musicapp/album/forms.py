@@ -15,3 +15,10 @@ class AlbumBaseForm(forms.ModelForm):
 
 class AddAlbumForm(AlbumBaseForm):
     pass
+
+
+class EditAlbumForm(AlbumBaseForm):
+    pass
+
+class DeleteAlbumForm(AlbumBaseForm):
+    pass
