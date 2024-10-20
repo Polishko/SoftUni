@@ -54,10 +54,10 @@ class AlbumDetails(DetailView):
     context_object_name = 'album' # optional
 
 # FBV option
-def album_details(request, pk=int):
-    album = get_object_or_404(Album, pk=pk)
-
-    return render(request, 'album/album-details.html', {'album': album})
+# def album_details(request, pk=int):
+#     album = get_object_or_404(Album, pk=pk)
+#
+#     return render(request, 'album/album-details.html', {'album': album})
 
 def album_edit(request, pk=int):
     context = {}
