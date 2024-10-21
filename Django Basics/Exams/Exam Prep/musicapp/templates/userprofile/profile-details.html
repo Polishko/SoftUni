@@ -14,7 +14,7 @@
           </div>
 
           <div class="profileText">
-            <!-- Profile Info -->
+
             <h1>Username: {{ profile.username|titlecase }}</h1>
             <h1>Email: {{ profile.email }}</h1>
               {% if profile.age %}
@@ -24,8 +24,7 @@
           </div>
 
           <div class="actionBtn">
-            <!-- Button for Deleting the Profile -->
-            <a href="#" class="remove">Delete</a>
+            <a href="{% url 'profile-delete' %}" class="remove">Delete</a>
           </div>
         </div>
       </section>
