@@ -51,6 +51,3 @@ class Album(models.Model):
         on_delete=CASCADE,
         related_name='albums'
     )
-
-
-
