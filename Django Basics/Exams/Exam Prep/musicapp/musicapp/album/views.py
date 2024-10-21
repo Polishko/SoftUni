@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, UpdateView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
-from musicapp.album.forms import AddAlbumForm, EditAlbumForm
+from musicapp.album.forms import AddAlbumForm, EditAlbumForm, DeleteAlbumForm
 from musicapp.album.models import Album
 from musicapp.userprofile.models import Profile
 
@@ -31,7 +31,33 @@ class AddAlbum(CreateView):
     def form_invalid(self, form):
         return self.render_to_response(self.get_context_data(form=form))
 
-# FBV option
+class AlbumDetails(DetailView):
+    model = Album
+    template_name = 'album/album-details.html'
+    context_object_name = 'album' # optional
+
+class AlbumEdit(UpdateView):
+    model = Album
+    form_class = EditAlbumForm
+    success_url = reverse_lazy('home-page')
+    template_name = 'album/album-edit.html'
+
+    def form_invalid(self, form):
+        return self.render_to_response(self.get_context_data(form=form))
+
+class AlbumDelete(DeleteView):
+    model = Album
+    template_name = 'album/album-delete.html'
+    success_url = reverse_lazy('home-page')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = DeleteAlbumForm(instance=self.object)
+
+        return context
+
+
+# FBVs
 # def album_add(request):
 #     form = AddAlbumForm(request.POST or None)
 #
@@ -48,27 +74,12 @@ class AddAlbum(CreateView):
 #
 #     return render(request, 'album/album-add.html', {'form': form})
 
-class AlbumDetails(DetailView):
-    model = Album
-    template_name = 'album/album-details.html'
-    context_object_name = 'album' # optional
 
-# FBV option
 # def album_details(request, pk):
 #     album = get_object_or_404(Album, pk=pk)
 #
 #     return render(request, 'album/album-details.html', {'album': album})
 
-class AlbumEdit(UpdateView):
-    model = Album
-    form_class = EditAlbumForm
-    success_url = reverse_lazy('home-page')
-    template_name = 'album/album-edit.html'
-
-    def form_invalid(self, form):
-        return self.render_to_response(self.get_context_data(form=form))
-
-# FBV option
 # def album_edit(request, pk):
 #     album = get_object_or_404(Album, pk=pk)
 #     form = EditAlbumForm(request.POST or None, instance=album)
@@ -80,6 +91,12 @@ class AlbumEdit(UpdateView):
 #
 #     return render(request, 'album/album-edit.html', {'form': form})
 
-def album_delete(request, pk=int):
-    context = {}
-    return render(request, 'album/album-delete.html', context)
+# def album_delete(request, pk):
+#     album = get_object_or_404(Album, pk=pk)
+#     form = DeleteAlbumForm(instance=album)
+#
+#     if request.method == 'POST':
+#         album.delete()
+#         return redirect('home-page')
+#
+#     return render(request, 'album/album-delete.html', {'form': form})
