@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import redirect, get_object_or_404
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormMixin
@@ -13,10 +14,13 @@ class HomePageView(FormMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-
         if self.request.session.get('has_profile'):
             context['form'] = self.get_form()
             profile_id = self.request.session.get('profile_id')
+
+            if not profile_id:
+                raise Http404('Profile not found. The session may have expired.')
+
             profile = get_object_or_404(Profile, pk=profile_id)
             albums = profile.albums.all()
             context['albums'] = albums
