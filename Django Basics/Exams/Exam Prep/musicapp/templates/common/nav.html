@@ -10,7 +10,7 @@
               {% has_profile request as user_has_profile %}
               {% if user_has_profile %}
                 <li><a href="{% url 'album-add' %}">Create Album</a></li>
-                <li><a href="#">Profile</a></li>
+                <li><a href="{% url 'profile-details' %}">Profile</a></li>
               {% endif %}
           </ul>
         </nav>

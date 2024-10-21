@@ -15,3 +15,5 @@ class UserBaseForm(forms.ModelForm):
 class AddUserProfile(UserBaseForm):
     pass
 
+class DeleteUserProfile(UserBaseForm):
+    pass
