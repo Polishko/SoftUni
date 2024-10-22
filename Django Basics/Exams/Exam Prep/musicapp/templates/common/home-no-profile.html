@@ -10,7 +10,7 @@
             <h1>My Music App!</h1>
           </div>
           <div class="music-img">
-            <img src="/static/images/musicIcons.webp" alt="music-icon" />
+            <img src="{% static 'images/musicIcons.webp' %}" alt="music-icon" />
           </div>
         </section>
 
@@ -21,7 +21,7 @@
             <fieldset>
               <legend>Profile</legend>
 
-                {{ form.as_p }}
+                {{ form }}
 
               <button type="submit" class="register">Enter</button>
             </fieldset>

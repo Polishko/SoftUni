@@ -3,13 +3,16 @@
 {% load static %}
 
 {% block content %}
-      <!-- Main Content -->
-      <!-- Catalog with Albums-->
+
       <section id="catalogPage">
-        {% if albums %}
+{#        {% if albums %}#}
+{#            when you are using a ListView then#}
+        {% if album_list %}
             <h1>All Albums</h1>
             
-            {% for album in albums %}
+{#            {% for album in albums %}#}
+
+              {% for album in album_list %} 
                 <div class="card-box">
                   <img src="{{ album.image_url }}" alt="Cover Image" />
                   <div>
@@ -17,7 +20,7 @@
                       <p class="name">Name: {{ album.album_name|titlecase }}</p>
                       <p class="artist">Artist: {{ album.artist|titlecase }}</p>
                       <p class="genre">Genre: {{ album.genre|titlecase }}</p>
-                      <p class="price">Price: ${{ album.price }}</p>
+                      <p class="price">Price: ${{ album.price|floatformat:2 }}</p>
                     </div>
                     <div class="btn-group">
                       <a href="{% url 'album-details' album.pk %}">Details</a>

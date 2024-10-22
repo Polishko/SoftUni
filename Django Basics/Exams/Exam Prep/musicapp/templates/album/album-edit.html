@@ -11,7 +11,7 @@
               <!-- Form for Editing Album -->
               <label for="name">Album Name:</label>
                 {% csrf_token %}
-                {{ form.as_p }}
+                {{ form }}
                 
                 <!-- Button for Editing Album -->
               <button class="edit-album" type="submit">Edit Album</button>

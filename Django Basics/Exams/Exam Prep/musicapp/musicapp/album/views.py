@@ -1,10 +1,10 @@
-from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
 from musicapp.album.forms import AddAlbumForm, EditAlbumForm, DeleteAlbumForm
 from musicapp.album.models import Album
-from musicapp.userprofile.models import Profile
+
+from musicapp.utils import get_user_object
 
 
 class AddAlbum(CreateView):
@@ -13,20 +13,12 @@ class AddAlbum(CreateView):
     success_url = reverse_lazy('home-page')
     template_name = 'album/album-add.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['form'] = self.get_form()
-
-        return context
-
     def form_valid(self, form):
         album = form.save(commit=False)
-        current_user_id = self.request.session.get('profile_id')
-        current_user = get_object_or_404(Profile, pk=current_user_id)
-        album.owner = current_user
+        album.owner = get_user_object()
         album.save()
 
-        return redirect(self.success_url)
+        return super().form_valid(form)
 
     def form_invalid(self, form):
         return self.render_to_response(self.get_context_data(form=form))
@@ -34,19 +26,18 @@ class AddAlbum(CreateView):
 class AlbumDetails(DetailView):
     model = Album
     template_name = 'album/album-details.html'
-    context_object_name = 'album' # optional
+    pk_url_kwarg = 'id'
 
 class AlbumEdit(UpdateView):
     model = Album
     form_class = EditAlbumForm
+    pk_url_kwarg = 'id'
     success_url = reverse_lazy('home-page')
     template_name = 'album/album-edit.html'
 
-    def form_invalid(self, form):
-        return self.render_to_response(self.get_context_data(form=form))
-
 class AlbumDelete(DeleteView):
     model = Album
+    pk_url_kwarg = 'id'
     template_name = 'album/album-delete.html'
     success_url = reverse_lazy('home-page')
 
@@ -55,48 +46,3 @@ class AlbumDelete(DeleteView):
         context['form'] = DeleteAlbumForm(instance=self.object)
 
         return context
-
-
-# FBVs
-# def album_add(request):
-#     form = AddAlbumForm(request.POST or None)
-#
-#
-#     if request.method == 'POST':
-#         if form.is_valid():
-#             album = form.save(commit=False)
-#             current_user_id = request.session.get('profile_id')
-#             current_user = get_object_or_404(Profile, pk=current_user_id)
-#             album.owner = current_user
-#             album.save()
-#
-#             return redirect('home-page')
-#
-#     return render(request, 'album/album-add.html', {'form': form})
-
-
-# def album_details(request, pk):
-#     album = get_object_or_404(Album, pk=pk)
-#
-#     return render(request, 'album/album-details.html', {'album': album})
-
-# def album_edit(request, pk):
-#     album = get_object_or_404(Album, pk=pk)
-#     form = EditAlbumForm(request.POST or None, instance=album)
-#
-#     if request.method == 'POST':
-#         if form.is_valid():
-#             form.save()
-#             return redirect('home-page')
-#
-#     return render(request, 'album/album-edit.html', {'form': form})
-
-# def album_delete(request, pk):
-#     album = get_object_or_404(Album, pk=pk)
-#     form = DeleteAlbumForm(instance=album)
-#
-#     if request.method == 'POST':
-#         album.delete()
-#         return redirect('home-page')
-#
-#     return render(request, 'album/album-delete.html', {'form': form})

@@ -1,28 +1,21 @@
 from django import forms
+
+from musicapp.mixins import PlaceholderMixin, ReadOnlyMixin
 from musicapp.album.models import Album
 
 class AlbumBaseForm(forms.ModelForm):
     class Meta:
         model = Album
-        fields = ['album_name', 'artist', 'genre', 'description', 'image_url', 'price']
-        widgets = {
-            'album_name': forms.TextInput(attrs={'placeholder': 'Album Name'}),
-            'artist': forms.TextInput(attrs={'placeholder': 'Artist'}),
-            'description': forms.Textarea(attrs={'placeholder': 'Description'}),
-            'image_url': forms.URLInput(attrs={'placeholder': 'Image URL'}),
-            'price': forms.NumberInput(attrs={'placeholder': 'Price'}),
-        }
+        exclude = ('owner',)
 
-class AddAlbumForm(AlbumBaseForm):
+
+class AddAlbumForm(PlaceholderMixin, AlbumBaseForm):
     pass
 
 
-class EditAlbumForm(AlbumBaseForm):
+class EditAlbumForm(PlaceholderMixin, AlbumBaseForm):
     pass
 
 
-class DeleteAlbumForm(AlbumBaseForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.widget.attrs['readonly'] = True
+class DeleteAlbumForm(ReadOnlyMixin, AlbumBaseForm):
+    readonly_fields = ['album_name', 'artist', 'genre', 'price', 'description']

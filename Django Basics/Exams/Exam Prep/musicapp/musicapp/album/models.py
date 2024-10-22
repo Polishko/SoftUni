@@ -38,7 +38,7 @@ class Album(models.Model):
         blank=False,
     )
 
-    price = models.FloatField(
+    price = models.FloatField( # in real apps better to use DecimalField
         null=False,
         blank=False,
         validators=(
@@ -47,7 +47,8 @@ class Album(models.Model):
     )
 
     owner = models.ForeignKey(
-        to=Profile,
+        # to=Profile,
+        to='userprofile.Profile', # better when for importing the app
         on_delete=CASCADE,
         related_name='albums'
     )
