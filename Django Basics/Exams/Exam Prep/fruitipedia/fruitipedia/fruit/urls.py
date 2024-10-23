@@ -1,12 +1,12 @@
 from django.urls import include, path
 
-from fruitipedia.fruit.views import fruit_create, fruit_details, fruit_edit, fruit_delete
+from fruitipedia.fruit.views import FruitCreateView, FruitDetailView, FruitEditView, FruitDeleteView
 
 urlpatterns = [
-    path('create/', fruit_create, name='fruit-create'),
+    path('create/', FruitCreateView.as_view(), name='fruit-create'),
     path('<int:fruitId>/', include([
-        path('details/', fruit_details, name='fruit-details'),
-        path('edit/', fruit_edit, name='fruit-edit'),
-        path('delete/', fruit_delete, name='fruit-delete'),
+        path('details/', FruitDetailView.as_view(), name='fruit-details'),
+        path('edit/', FruitEditView.as_view(), name='fruit-edit'),
+        path('delete/', FruitDeleteView.as_view(), name='fruit-delete'),
     ]))
 ]

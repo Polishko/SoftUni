@@ -50,3 +50,6 @@ class Profile(models.Model):
     age = models.IntegerField(
         default=18,
     )
+
+    def get_full_name(self):
+        return f'{self.first_name.capitalize()} {self.last_name.capitalize()}'

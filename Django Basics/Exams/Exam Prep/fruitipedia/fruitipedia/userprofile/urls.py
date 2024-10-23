@@ -1,12 +1,13 @@
 from django.urls import include, path
 
-from fruitipedia.userprofile.views import profile_create, profile_details, profile_edit, profile_delete
+from fruitipedia.userprofile.views import (ProfileCreateView, ProfileDetailView, ProfileEditView,
+                                           ProfileDeleteView)
 
 urlpatterns = [
-    path('create/', profile_create, name='profile-create'),
     path('', include([
-        path('details/', profile_details, name='profile-details'),
-        path('edit/', profile_edit, name='profile-edit'),
-        path('delete/', profile_delete, name='profile-delete'),
+        path('create/', ProfileCreateView.as_view(), name='profile-create'),
+        path('details/', ProfileDetailView.as_view(), name='profile-details'),
+        path('edit/', ProfileEditView.as_view(), name='profile-edit'),
+        path('delete/', ProfileDeleteView.as_view(), name='profile-delete'),
     ]))
 ]

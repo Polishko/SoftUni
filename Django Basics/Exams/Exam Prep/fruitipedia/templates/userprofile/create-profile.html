@@ -5,34 +5,9 @@
         <section id="register">
           <div class="form">
             <h2>Create Profile</h2>
-            <form class="register-form">
-              <input
-                type="text"
-                name="first-name"
-                id="first-name"
-                placeholder="First Name"
-              />
-              <input
-                type="text"
-                name="last-name"
-                id="last-name"
-                placeholder="Last Name"
-              />
-              <input
-                type="email"
-                name="email"
-                id="register-email"
-                placeholder="Email"
-              />
-              <div class="helptext" id="id_password_helptext">
-                *Password length requirements: 8 to 20 characters
-              </div>
-              <input
-                type="password"
-                name="password"
-                id="register-password"
-                placeholder="Password"
-              />
+            <form class="register-form" method="post">
+              {% csrf_token %}
+                {{ form }}
 
               <button type="submit">Create</button>
             </form>

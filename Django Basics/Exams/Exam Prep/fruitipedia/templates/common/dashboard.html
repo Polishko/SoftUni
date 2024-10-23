@@ -1,51 +1,24 @@
 {% extends 'common/base.html' %}
+{% load custom_filters %}
 {% load static %}
 
 {% block content %}
-        <!-- Dashboard Page -->
-        <h2>Fruits</h2>
-        <section id="dashboard">
-            <!-- Display a div "fruit" with information about each post (if any)-->
-
-            <!-- first fruit -->
-            <div class="fruit">
-                <!-- fruit image -->
-                <img src="/static/images/fruit 1.png" alt="example1"/>
-                <!-- fruit name -->
-                <h3 class="title">Pineapple</h3>
-                <!-- fruit description -->
-                <p class="description">The pineapple is a tropical plant with an edible f...</p>
-                <!-- fruit details button -->
-                <a class="details-btn" href="#">More Info</a>
-            </div>
-
-            <!-- second fruit -->
-            <div class="fruit">
-                <!-- fruit image -->
-                <img src="/static/images/fruit 2.png" alt="example1"/>
-                <!-- fruit name -->
-                <h3 class="title"> Kiwi</h3>
-                <!-- fruit description -->
-                <p>Kiwifruit (often shortened to kiwi in North Americ...</p>
-                <!-- fruit details button -->
-                <a class="details-btn" href="#">More Info</a>
-            </div>
-
-            <!-- third fruit -->
-            <div class="fruit">
-                <!-- fruit image -->
-                <img src="/static/images/fruit 3.png" alt="example1"/>
-                <!-- fruit name -->
-                <h3 class="title">Banana</h3>
-                <!-- fruit description -->
-                <p>A banana is an elongated, edible fruit – botanical...</p>
-                <!-- fruit details button -->
-                <a class="details-btn" href="#">More Info</a>
-            </div>
-
-        </section>
-
-        <!-- Display a heading if there are no posts -->
-        <h2>No fruit info yet.</h2>
-
+    
+        {% if fruits %}
+            <h2>Fruits</h2>
+            {% for fruit in fruits %}
+                <section id="dashboard">
+                        <div class="fruit">
+                        <img src="{{ fruit.image_url }}" alt="example1"/>
+                        <h3 class="title">{{ fruit.fruit_name|titlecase }}</h3>
+                        <p class="description">{{ fruit.description }}</p>
+                        <a class="details-btn" href="{% url 'fruit-details' fruit.pk %}">More Info</a>
+                    </div>
+                    {% empty %}
+                        
+                </section>
+            {% endfor %}
+        {% else %}
+            <h2>No fruit info yet.</h2>z
+        {% endif %}
 {% endblock %}
