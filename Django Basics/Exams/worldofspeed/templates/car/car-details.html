@@ -1,0 +1,27 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+      <section id="car-details">
+        <h1>Car Details</h1>
+        <div class="info-section">
+          <div class="car-header">
+            <img
+              class="car-img"
+              src="{{ car.image_url }}"
+              alt="car image"
+            />
+            <h1>{{ car.type|title }}</h1>
+            <p><span class="description">Model: {{ car.model|title }}</span></p>
+            <p><span class="description">Year: {{ car.year|title }}</span></p>
+            <p><span class="description">Price: {{ car.price|floatformat:3 }}</span></p>
+          </div>
+
+          <div class="buttons">
+            <a href="{% url 'car-edit' id=car.pk %}" class="edit-button">Edit</a>
+            <a href="{% url 'car-delete' id=car.pk %}" class="delete-button">Delete</a>
+          </div>
+        </div>
+      </section>
+
+{% endblock %}

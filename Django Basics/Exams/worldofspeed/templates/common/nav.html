@@ -1,0 +1,17 @@
+{% load static %}
+{%  load custom_tags %}
+<h1>
+    <a class="index-navigation" href="{% url 'index' %}">
+        <span>World of Speed</span>
+    </a>
+</h1>
+<nav>
+    {% has_profile as user_profile %}
+    {% if user_profile %}
+        <a href="{% url 'car-catalogue' %}">Catalogue</a>
+        <a href="{% url 'car-create' %}">Create Car</a>
+        <a href="{% url 'profile-detail' %}">Profile</a>
+    {% else %}
+        <a href="{% url 'profile-create' %}">Create Profile</a>
+    {% endif %}
+</nav>
