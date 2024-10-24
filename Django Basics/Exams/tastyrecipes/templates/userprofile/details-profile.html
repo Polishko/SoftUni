@@ -1,0 +1,34 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+
+      <section id="recipe-details">
+        <h1>Profile Details</h1>
+        <div class="info-section">
+          <div class="recipe-header">
+              {%  if profile.chef %}
+                  <img class="recipe-img" src="{% static '/images/chef_img.png' %}" alt="profile-image">
+              {% else %}
+                  <img class="recipe-img" src="{% static '/images/no_chef_img.png' %}" alt="profile-image">
+              {% endif %}
+
+            <h1>{{ profile.get_full_name }}</h1>
+
+            <p class="description">Nickname: {{ profile.nickname|title}}</p>
+            {% if profile.bio %}
+                <p class="description">Bio: {{ profile.bio }}</p>
+            {% else %}
+                <p class="description">Bio: N/A</p>
+            {% endif %}
+
+            <p class="description">Published recipes: {{ profile.recipes.all|length }}</p>
+
+            <div class="buttons">
+              <a href="{% url 'profile-edit' %}" class="edit-button">Edit</a>
+              <a href="{% url 'profile-delete' %}" class="delete-button">Delete</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+{% endblock %}

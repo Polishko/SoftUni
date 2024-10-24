@@ -1,0 +1,37 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+
+      {% if recipes %}
+          {% for recipe in recipes %}
+              <section id="catalogue">
+                <div class="recipe-card">
+                  <div class="image-wrap">
+                    {% if recipe.image_url %}
+                        <img
+                          class="recipe-img"
+                          src="{{ recipe.image_url }}"
+                          alt="recipe image"
+                        />
+                    {% else %}
+                        <img
+                          class="recipe-img"
+                          src="https://cdn.pixabay.com/photo/2016/12/27/21/22/salad-1934944_1280.jpg"
+                          alt="recipe image"
+                        />
+                      {% endif %}
+                      </div>
+                      <h3>{{ recipe.title|title }}</h3>
+                      <h1>Cooking time: {{ recipe.cooking_time }}min.</h1>
+                      <h1>{{ recipe.instructions|truncatechars:35 }} ...</h1>
+                      <div class="details-buttons">
+
+                        <a href="{% url 'recipe_details' recipe_id=recipe.pk %}" class="details-btn">Details</a>
+                      </div>
+                </div>
+            </section>
+          {% endfor %}
+      {% else %}
+          <p class="no-articles">There are currently no recipes available.</p>
+      {% endif %}
+{% endblock %}
