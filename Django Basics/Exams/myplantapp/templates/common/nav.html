@@ -1,0 +1,14 @@
+{% load static %}
+{% load custom_tags %}
+
+<h1><a class="index-navigation" href="#">MyPlants</a></h1>
+    <nav>
+        {% has_profile as user_profile %}
+        {% if user_profile %}
+            <a href="{% url 'catalogue' %}">Catalogue</a>
+            <a href="{% url 'plant-create' %}">Create Plant</a>
+            <a href="{% url 'profile-details' %}">Profile</a>
+        {% else %}
+            <a href="{% url 'profile-create' %}">Create Profile</a>
+        {% endif %}     
+    </nav>
