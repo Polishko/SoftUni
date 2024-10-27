@@ -18,10 +18,10 @@ class AuthorCreateForm(PlaceHolderMixin, AuthorBaseForm):
         }
 
 
-class ProfileEditForm(AuthorBaseForm):
+class AuthorEditForm(AuthorBaseForm):
     class Meta(AuthorBaseForm.Meta):
         exclude = ['passcode',]
 
 
-class ProfileDeleteForm(AuthorBaseForm):
+class AuthorDeleteForm(AuthorBaseForm):
     pass
