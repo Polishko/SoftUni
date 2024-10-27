@@ -1,0 +1,19 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+        <!-- Add Post Form -->
+        <section id="create">
+          <div class="form">
+            <h2>New Post</h2>
+
+            <form class="create-form" action="" method="post">
+              {% csrf_token %}
+                  {{ form }}
+
+              <!-- form button -->
+              <button type="submit">Publish</button>
+            </form>
+          </div>
+        </section>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+        <!-- Delete Post Form -->
+        <section id="edit">
+          <div class="form">
+            <h2>Delete Post</h2>
+
+            <form class="edit-form" method="post" action="">
+              {% csrf_token %}
+                {{ form }}
+
+              <!-- form button -->
+              <button type="submit">Delete</button>
+            </form>
+          </div>
+        </section>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+        <!-- Post Details -->
+        <section id="details">
+          <div id="details-wrapper">
+            <h2>Post Details</h2>
+            <!-- post image -->
+            <img
+              id="details-img"
+              src="{{ post.image_url }}"
+              alt="{{ post.title }}"
+            />
+            <!-- post title -->
+            <p id="details-title">{{ post.title|capfirst }}</p>
+            <div id="info-wrapper">
+              <div id="details-description">
+                <!-- post content -->
+                <p>{{ post.content|capfirst }}</p>
+              </div>
+
+              <!--Edit and Delete buttons -->
+              <div id="action-buttons">
+                <a href="{% url 'post-edit' post_id=post.pk %}" id="edit-btn">Edit</a>
+                <a href="{% url 'post-delete' post_id=post.pk %}" id="delete-btn">Delete</a>
+              </div>
+            </div>
+          </div>
+        </section>
+{% endblock %}
