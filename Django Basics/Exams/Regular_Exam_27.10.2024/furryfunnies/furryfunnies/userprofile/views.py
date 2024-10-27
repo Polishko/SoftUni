@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
-from furryfunnies.userprofile.forms import AuthorCreateForm, ProfileEditForm
+from furryfunnies.userprofile.forms import AuthorCreateForm, AuthorEditForm
 from furryfunnies.userprofile.models import Author
 from furryfunnies.utils import get_user_object
 
@@ -30,7 +30,7 @@ class AuthorDetailView(DetailView):
 
 class AuthorEditView(UpdateView):
     model = Author
-    form_class = ProfileEditForm
+    form_class = AuthEditForm
     template_name = 'userprofile/edit-author.html'
     success_url = reverse_lazy('author-detail')
 
