@@ -1,0 +1,22 @@
+{% extends 'posts/common/base.html' %}
+{% load uppercase %}
+{#{% load crispy_forms_tags %}#}
+
+{% block content %}
+    {% uppercase %}
+        <h1>Hello user!</h1>
+    {% enduppercase %}
+    
+    {{ dynamic_time }}
+    
+{#    <form action="">#}
+{#        {{ my_form }}#}
+{#        <button>Submit</button>#}
+{#    </form>#}
+
+{#    <form method="POST" action="/">#}
+{#        {% csrf_token %}#}
+{#        {% crispy my_form %}#}
+{#        <button>Submit</button>#}
+{#    </form>#}
+{% endblock %}

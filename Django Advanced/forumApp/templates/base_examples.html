@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum Posts</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    {#    tags#}
+
+    {#    self-enclosing #}
+    {% include 'posts/common/nav.html' %}
+    
+    {#    if block#}
+    {% if empty_text %}
+        <h1>{{ empty_text }}</h1>
+    {% else %}
+        <p>No results</p>
+    {% endif %}
+    
+    {% if some_text == 'hi' %}
+        <h1>{{ some_text }}</h1>
+    {% else %}
+        <p>No results</p>
+    {% endif %}
+    
+    {% if some_text|length > 10 %}
+        <h1>{{ some_text }}</h1>
+    {% else %}
+        <p>No results</p>
+    {% endif %}
+    
+    {#    for cycle #}
+    <ul>
+        {% for user in users %}
+        <li>{{ user|capfirst }}</li>
+        {% empty %}
+            <p>No users</p>
+        {% endfor %}
+    </ul>
+    
+    {#    comment tag#}
+    {% comment %}
+        I'm a comment
+    {% endcomment %}
+    
+    {#    cycle tag#}
+    <ol>
+        {% for id in ids %}
+            <li class='{% cycle 'cycle1' 'cycle2' %}'>{{ id }}</li>
+        {% endfor %}
+    </ol>
+    
+    {#    lorem tag#}
+    {% lorem 3 p %}
+    
+    {#    add variable defined in view with the same name#}
+    <h1>Current time is {{ current_time }}</h1>
+    <p>{{ person.age }}</p>
+    {#    dic items of dict person#}
+    <p>{{ person.items }}</p>
+    {#    index 1 of ids list#}
+    <p>Id num 1: {{ ids.1 }}</p> 
+ 
+    <h1>{{ some_text}}</h1>
+    {#    filters #}
+    <h1>{{ some_text|truncatechars:10 }}</h1>
+    <h1>{{ some_text|truncatewords:3 }}</h1>
+    <h1>{{ some_text|capfirst }}</h1>
+    <h1>{{ some_text|capfirst|truncatechars:2 }}</h1>
+    <h1>{{ ids|join:', ' }}</h1>
+    <h1>{{ some_text|slugify }}</h1>
+    {#    date as number #}
+    <h1>Current month is {{ current_time|date:'m' }}</h1>
+    {#    date as text #}
+    <h1>Current month is {{ current_time|date:'M' }}</h1>
+    {#    showing default for empty #}
+    <h1>{{ empty_text|default:'Empty' }}</h1>
+    
+    
+    
+   
+</body>
+    <script src='https://unpkg.com/akar-icons-fonts'></script>
+</html>

@@ -1,0 +1,21 @@
+{% extends 'posts/common/base.html' %}
+
+{% block styles %}
+    {{ block.super }}
+    <style>
+        h1 {
+        color: #405cf5;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+    <h1>Add post</h1>
+    <form action="{% url 'add-post' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="button-9">Submit</button>
+    </form>
+    
+{% endblock %}
