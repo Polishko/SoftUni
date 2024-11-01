@@ -98,6 +98,10 @@ DATABASES = {
     },
 }
 
+AUTHENTICATION_BACKENDS = [
+    'forumApp.accounts.authentication.EmailOrUsernameBackend',
+    'django.contrib.auth.backends.ModelBackend' # next backend after our custom
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
