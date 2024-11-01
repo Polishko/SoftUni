@@ -1,5 +1,6 @@
 from datetime import datetime, time
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import modelform_factory
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -56,7 +57,7 @@ class DashboardView(ListView):
         context['posts_per_page'] = self.POSTS_PER_PAGE
         return context
 
-class AddPostView(CreateView):
+class AddPostView(LoginRequiredMixin, CreateView):
     model = Post
     form_class = PostCreateForm
     template_name = 'posts/add_post.html'
