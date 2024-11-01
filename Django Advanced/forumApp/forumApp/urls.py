@@ -22,7 +22,8 @@ from forumApp import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('forumApp.posts.urls'))
+    path('', include('forumApp.posts.urls')),
+    path('accounts/', include('forumApp.accounts.urls')),
 ]
 
 # To render in /media everything we have in the root_dir
