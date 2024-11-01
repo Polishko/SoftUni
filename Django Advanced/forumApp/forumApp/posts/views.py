@@ -14,7 +14,7 @@ from forumApp.posts.models import Post, Comment
 
 @method_decorator(measure_execution_time, name='dispatch')
 class IndexView(TimeRestrictedMixin, TemplateView):
-    template_name = 'posts/common/index.html'
+    template_name = 'posts/../../templates/common/index.html'
     end_time = time(22, 30) # override the end-time of the mixin
 
     def get_context_data(self, **kwargs): # dynamic context passed on each request

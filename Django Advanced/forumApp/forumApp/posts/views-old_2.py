@@ -31,7 +31,7 @@ def  index(request):
         'my_form': form,
     }
 
-    return render(request, 'posts/common/index.html', context)
+    return render(request, 'posts/../../templates/common/index.html', context)
 
 def dashboard(request):
     form = SearchForm(request.GET)

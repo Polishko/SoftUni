@@ -19,7 +19,7 @@ def  index(request):
         'my_form': form,
     }
 
-    return render(request, 'posts/common/base.html', context)
+    return render(request, 'posts/../../templates/common/base.html', context)
 
 def dashboard(request):
     context = {

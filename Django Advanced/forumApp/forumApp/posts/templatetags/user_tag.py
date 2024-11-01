@@ -3,7 +3,7 @@ from django.core.exceptions import ImproperlyConfigured
 
 register = template.Library()
 # 1. user provided by the tag function that gets the context as arg
-@register.inclusion_tag('posts/common/user_info.html', takes_context=True)
+@register.inclusion_tag('posts/../../../templates/common/user_info.html', takes_context=True)
 def user_info(context):
     request = context.get('request')
 
