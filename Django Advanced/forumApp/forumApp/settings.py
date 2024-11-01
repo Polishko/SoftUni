@@ -136,6 +136,9 @@ USE_TZ = True
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
+SESSION_COOKIE_HTTPONLY = True # access only on HTTPS
+SESSION_COOKIE_SECURE = True # prevent cookie access using JS
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
