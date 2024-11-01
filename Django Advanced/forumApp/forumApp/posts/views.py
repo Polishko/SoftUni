@@ -14,7 +14,7 @@ from forumApp.posts.models import Post, Comment
 
 @method_decorator(measure_execution_time, name='dispatch')
 class IndexView(TimeRestrictedMixin, TemplateView):
-    template_name = 'posts/../../templates/common/index.html'
+    template_name = 'common/index.html'
     end_time = time(22, 30) # override the end-time of the mixin
 
     def get_context_data(self, **kwargs): # dynamic context passed on each request
@@ -26,9 +26,9 @@ class IndexView(TimeRestrictedMixin, TemplateView):
 
     def get_template_names(self):
         if self.request.user.is_authenticated:
-            return ['posts/common/index-logged-in.html']
+            return ['common/index-logged-in.html']
         else:
-            return ['posts/common/index.html']
+            return ['common/index.html']
 
 class RedirectHomeView(RedirectView):
     url = reverse_lazy('index') # static way
