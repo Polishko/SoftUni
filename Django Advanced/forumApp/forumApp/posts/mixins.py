@@ -15,15 +15,15 @@ class DisableFieldsMixin(forms.Form):
             if self.disabled_fields[0] == '__all__' or field_name in self.disabled_fields:
                 field.disabled = True
 
-class TimeRestrictedMixin:
-    start_time = time(9, 0)
-    end_time = time(17, 0)
-    forbidden_message = "Access restricted at this time. Try again later!"
-
-    def dispatch(self, request, *args, **kwargs):
-        current_time = localtime().time()
-
-        if not (self.start_time <= current_time <= self.end_time):
-            return HttpResponseForbidden(self.forbidden_message)
-
-        return super().dispatch(request, *args, **kwargs)
+# class TimeRestrictedMixin:
+#     start_time = time(9, 0)
+#     end_time = time(17, 0)
+#     forbidden_message = "Access restricted at this time. Try again later!"
+#
+#     def dispatch(self, request, *args, **kwargs):
+#         current_time = localtime().time()
+#
+#         if not (self.start_time <= current_time <= self.end_time):
+#             return HttpResponseForbidden(self.forbidden_message)
+#
+#         return super().dispatch(request, *args, **kwargs)

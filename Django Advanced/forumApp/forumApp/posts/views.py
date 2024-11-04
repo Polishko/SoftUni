@@ -10,11 +10,12 @@ from django.views.generic import TemplateView, RedirectView, ListView, CreateVie
 
 from forumApp.decorators import measure_execution_time
 from forumApp.posts.forms import PostCreateForm, PostDeleteForm, SearchForm, CommentFormSet
-from forumApp.posts.mixins import TimeRestrictedMixin
+# from forumApp.posts.mixins import TimeRestrictedMixin
 from forumApp.posts.models import Post, Comment
 
 @method_decorator(measure_execution_time, name='dispatch')
-class IndexView(TimeRestrictedMixin, TemplateView):
+# class IndexView(TimeRestrictedMixin, TemplateView):
+class IndexView(TemplateView):
     template_name = 'common/index.html'
     end_time = time(22, 30) # override the end-time of the mixin
 

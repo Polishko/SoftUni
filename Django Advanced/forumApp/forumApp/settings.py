@@ -40,6 +40,7 @@ MY_APPS = [
 THIRD_PARTY_APPS = [
     'crispy_forms',
     'crispy_bootstrap4',
+    'django_extensions',
 ]
 
 INSTALLED_APPS = [
@@ -49,7 +50,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_extensions',
 ] + MY_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
