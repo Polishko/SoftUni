@@ -28,6 +28,10 @@ class Post(models.Model):
         auto_now_add=True,
     )
 
+    approved = models.BooleanField(
+        default=False,
+    )
+
     language = models.CharField(
         max_length=LANGUAGE_MAX_LENGTH,
         choices=LanguageChoices.choices,
