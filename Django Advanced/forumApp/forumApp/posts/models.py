@@ -44,6 +44,10 @@ class Post(models.Model):
         null=True,
     )
 
+    class Meta:
+        permissions = [
+            ('can_approve_posts', 'Can approve posts'),
+        ]
 
 class Comment(models.Model):
     post = models.ForeignKey(
