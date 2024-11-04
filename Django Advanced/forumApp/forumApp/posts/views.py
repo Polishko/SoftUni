@@ -3,6 +3,7 @@ from datetime import datetime, time
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import modelform_factory
 from django.shortcuts import redirect
+from django.template.context_processors import request
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView, RedirectView, ListView, CreateView, UpdateView, \
@@ -48,6 +49,10 @@ class DashboardView(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         query = self.request.GET.get('query')
+
+        if not self.request.user.has_perm('posts.can_approve_posts'):
+            queryset = queryset.filter(approved=True)
+
         if query:
             queryset = queryset.filter(title__icontains=query)
         return queryset
