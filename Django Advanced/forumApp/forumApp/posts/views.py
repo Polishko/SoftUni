@@ -69,6 +69,8 @@ def approve_post(request, pk):
     post.approved = True
     post.save()
 
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
 
 class AddPostView(LoginRequiredMixin, CreateView):
     model = Post
