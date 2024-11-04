@@ -2,7 +2,7 @@ from datetime import datetime, time
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import modelform_factory
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.template.context_processors import request
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
@@ -63,6 +63,12 @@ class DashboardView(ListView):
         context['form'] =  SearchForm(self.request.GET)
         context['posts_per_page'] = self.POSTS_PER_PAGE
         return context
+
+def approve_post(request, pk):
+    post = get_object_or_404(Post, pk)
+    post.approved = True
+    post.save()
+
 
 class AddPostView(LoginRequiredMixin, CreateView):
     model = Post
