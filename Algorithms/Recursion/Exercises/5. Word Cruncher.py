@@ -1,39 +1,92 @@
-from collections import deque
+# lecturer`s solution
 
-
-def word_cruncher(pieces, target, result, combinations):
-    # base cases
-    if len(''.join(result)) > len(target):
+def find_all_solutions(idx, target, words_by_idx, words_count, used_words):
+    if idx >= len(target):
+        print(' '.join(used_words))
+        return
+    if not idx in words_by_idx:
         return
 
-    if ''.join(result) == target:
-        combinations.add(' '.join(result))
-        return
+    for word in words_by_idx[idx]:
+        if words_count[word] == 0:
+            continue
 
-    for _ in range(len(pieces)):
-        piece = pieces.popleft()
-        result.append(piece)
+        used_words.append(word)
+        words_count[word] -= 1
 
-        # continue searching if match
-        if target.startswith(''.join(result)):
-            word_cruncher(pieces, target, result, combinations)
+        find_all_solutions(idx + len(word), target, words_by_idx, words_count, used_words)
 
-        # backtracking
-        result.pop()
-        pieces.append(piece)
+        used_words.pop()
+        words_count[word] += 1
 
 
-def rotate_words(pieces, target):
-    combinations = set()
-    for _ in range(len(pieces)):
-        pieces.rotate(-1)
-        word_cruncher(deque(pieces), target, [], combinations)
-
-    for combination in combinations:
-        print(''.join(combination))
-
-
-pieces = deque(input().split(', '))
+words = input().split(', ')
 target = input()
 
-rotate_words(pieces, target)
+# which word can go to which idx
+words_by_idx = {}
+# how many of the same word
+words_count = {}
+
+for word in words:
+    if word in words_count:
+        words_count[word] += 1
+        # each occurrence of the same word at different indexes is treated as a separate unique instance
+        continue
+    words_count[word] = 1
+
+    try:
+        idx = 0
+        while True:
+            idx = target.index(word, idx)
+            if idx not in words_by_idx:
+                words_by_idx[idx] = []
+            words_by_idx[idx].append(word)
+            idx += len(word)
+    # if irrelevant words or out of range
+    except ValueError:
+        pass
+
+
+find_all_solutions(0, target, words_by_idx, words_count, [])
+
+# initial solution
+# from collections import deque
+#
+#
+# def word_cruncher(pieces, target, result, combinations):
+#     # base cases
+#     if len(''.join(result)) > len(target):
+#         return
+#
+#     if ''.join(result) == target:
+#         combinations.add(' '.join(result))
+#         return
+#
+#     for _ in range(len(pieces)):
+#         piece = pieces.popleft()
+#         result.append(piece)
+#
+#         # continue searching if match
+#         if target.startswith(''.join(result)):
+#             word_cruncher(pieces, target, result, combinations)
+#
+#         # backtracking
+#         result.pop()
+#         pieces.append(piece)
+#
+#
+# def rotate_words(pieces, target):
+#     combinations = set()
+#     for _ in range(len(pieces)):
+#         pieces.rotate(-1)
+#         word_cruncher(deque(pieces), target, [], combinations)
+#
+#     for combination in combinations:
+#         print(''.join(combination))
+#
+#
+# pieces = deque(input().split(', '))
+# target = input()
+#
+# rotate_words(pieces, target)
