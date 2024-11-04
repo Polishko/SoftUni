@@ -50,7 +50,8 @@ class DashboardView(ListView):
         queryset = super().get_queryset()
         query = self.request.GET.get('query')
 
-        if not self.request.user.has_perm('posts.can_approve_posts'):
+        # if 'posts.can_approve_posts' not in self.request.user.get_group_permissions() or not self.request.user.has_perm('posts.can_approve_posts'):
+        if not self.request.user.has_perm('posts.can_approve_posts'): # covers both group and individual perms
             queryset = queryset.filter(approved=True)
 
         if query:
