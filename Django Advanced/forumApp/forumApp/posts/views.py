@@ -66,11 +66,11 @@ class DashboardView(ListView):
         return context
 
 def approve_post(request, pk):
-    post = get_object_or_404(Post, pk)
+    post = get_object_or_404(Post, pk=pk)
     post.approved = True
     post.save()
 
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 class AddPostView(LoginRequiredMixin, CreateView):
