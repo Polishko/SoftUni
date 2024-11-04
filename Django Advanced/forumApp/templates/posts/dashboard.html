@@ -14,6 +14,11 @@
                     <div class="post">
 
                     <h2>{{ post.title|capfirst }}</h2>
+                    {% if perms.posts.can_approve_posts and not post.approved %}
+                        <a href="{% url 'approve' post.pk %}">
+                        <i class="ai-check"></i>
+                        </a>
+                    {% endif %}
 
                     {% if not post.content %}
                         {% lorem 3 p %}
