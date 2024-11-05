@@ -5,5 +5,5 @@ def recursive_factorial(n):
     return n * recursive_factorial(n-1)
 
 
-num = int(input("Enter a number: "))
+num = int(input())
 print(recursive_factorial(num))

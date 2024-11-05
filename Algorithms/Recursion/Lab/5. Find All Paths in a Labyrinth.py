@@ -10,7 +10,7 @@ def find_all_paths(row, col, labyrinth, direction, path):
     path.append(direction) # append before checking for e if you want to print the last move leading to e
 
     if labyrinth[row][col] == 'e':
-        print(' '.join(path))
+        print(''.join(path))
     else:
         labyrinth[row][col] = 'v'
 

@@ -14,7 +14,7 @@
 #     result  += '*' * n + '\n'
 #     return draw_stars(n-1, result)
 #
-# counter = int(input('Enter a number: '))
+# counter = int(input())
 # num = counter
 #
 # print(draw_stars(num, ''))
@@ -28,4 +28,4 @@ def draw_stars(n):
     draw_stars(n-1)
     print('#' * n)
 
-draw_stars(int(input('Enter a number: ')))
+draw_stars(int(input()))
