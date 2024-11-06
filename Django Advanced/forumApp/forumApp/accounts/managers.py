@@ -37,6 +37,9 @@ class AppUserManager(BaseUserManager):
 
         return self._create_user(username, email, password, **extra_fields)
 
+    def get_by_natural_key(self, email):
+        return self.get(email=email)
+
     def with_perm(
         self, perm, is_active=True, include_superusers=True, backend=None, obj=None
     ):

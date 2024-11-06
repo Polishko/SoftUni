@@ -40,7 +40,7 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
         ),
     )
     # Add your manager (custom: inheriting from BaseUserManager)
-    objects = AppUserManager
+    objects = AppUserManager()
 
     # Add the main credential for login
     USERNAME_FIELD = 'email'
