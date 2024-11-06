@@ -6,7 +6,6 @@ from django.contrib.auth.hashers import make_password
 
 class AppUserManager(BaseUserManager):
     def _create_user(self, username, email, password, **extra_fields):
-
         if not username:
             raise ValueError("The given username must be set")
         email = self.normalize_email(email)
@@ -36,9 +35,6 @@ class AppUserManager(BaseUserManager):
             raise ValueError("Superuser must have is_superuser=True.")
 
         return self._create_user(username, email, password, **extra_fields)
-
-    def get_by_natural_key(self, email):
-        return self.get(email=email)
 
     def with_perm(
         self, perm, is_active=True, include_superusers=True, backend=None, obj=None
