@@ -50,7 +50,8 @@ for word in words:
 
 find_all_solutions(0, target, words_by_idx, words_count, [])
 
-# initial solution
+# # initial solution
+#
 # from collections import deque
 #
 #

@@ -1,0 +1,144 @@
+[33m5d88afe[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Added lecturers solution to Qu4.
+[33m3022af4[m Added lecturers solution to Qu4.
+[33m38ef30e[m Added lecturers solution to Qu3.
+[33mbb5d548[m Added solution to Qu3.
+[33m194cb98[m Added lecturers solution to Qu2.
+[33mcd7379c[m Added solution to Qu2.
+[33m027d5f4[m Added lecturers solution for Qu1.
+[33mabe508e[m Added solution for the first question.
+[33mb6ce35e[m Moved project location
+[33md6a33b1[m Create create.txt
+[33mc260744[m Added cookie access restriction
+[33m10f1839[m Added custom auth backend logic
+[33m62557b8[m Added RequiredLoginMixin to AddPostView
+[33mf6c62e9[m Added logout url, form and onclick event listener for logout
+[33m851ff8b[m Added redirect link for login and an arrow for login in menu
+[33md5a7364[m Added login view, url and template
+[33mbb27184[m Corrected registration view form
+[33m3ebf09c[m Corrected some import issues
+[33md8ea045[m Added path to main urls file
+[33m98ba710[m Added the registration url
+[33m866943f[m Compleded registration view
+[33m7933674[m created register form and refractored common app templates
+[33m826d676[m Added accounts app and a CustomUser model
+[33m8715ad8[m Added a copy of forumapp to Django Advanced folder
+[33m4140517[m Update Authentication.md
+[33m2ae7a63[m Added new folder for the course and started study notes
+[33mbd1c557[m Update views.py
+[33me287b91[m Update forms.py
+[33m181d09b[m Moved regular exam folder
+[33maf13519[m Added regular exam solutions
+[33m6c27f25[m Added another exam solution
+[33m0263f19[m Added solution for another exam.
+[33m1fc659b[m Added an exam soution.
+[33m19701ee[m Added the rest of the exam
+[33md2d83ee[m Separated the repeating html in a base template.
+[33m93f2b2c[m Addition: added the models.
+[33mcb3e1f8[m Improvements: after watching the lecture Exam prep
+[33m0b5edf3[m Fixes: In settings file and urls
+[33m8493675[m Merge branch 'main' of https://github.com/Polishko/SoftUni
+[33me0890b4[m Configured urls and added placeholder views.
+[33m5fc9138[m Update urls.py
+[33mad135d4[m Started exam prep II: Added the basic structure, apps and settings
+[33m197f642[m Upgrade: Added a session expire check in HomePageView.
+[33mc3ff8e3[m Formatting: Cleaned empty lines in template.
+[33m0568f24[m Feature: Added profile deletion view and related url and template logic.
+[33m32fe64d[m Feature: Added profile details view and modified related template, url and form.
+[33m7d1ff63[m Formatting: Cleared some comments from the delete album template.
+[33mb244f12[m Feature: Added delete view for the album and modified the corresponding template, url and form.
+[33m1120aff[m Feature: Added edit album view and related url and template.
+[33m68be0c2[m Fix: Removed floating num formatting as per requirements
+[33mf06d5d3[m Update: Removed unused views for album
+[33m3187dcd[m Fix: Corrected a missing space in join
+[33mc17ac95[m Feature: Added album detail view and modified the relevant template and url
+[33m7683918[m Feature: Added album adding logic
+[33ma00dde0[m Feature: Added the homepage logic: view and templates
+[33me98df2e[m Added some explanatory comments after finishing lecture
+[33mb908de4[m Added some improvements after the lecture
+[33mdab45fc[m Started Exam Prep: Added the models, the basic structure and the urls
+[33m198a36e[m Feature: Changed FBVs for photos app with CBVs
+[33ma6687d9[m Fix: Corrected the wrong fetching of photo object
+[33m9b503bb[m Feature: Converted the coments FBV to CBV: Fix: Corrected the pet-posts template to show comments
+[33ma0ade27[m Feature: Time restrict mixin added to IndexView
+[33mba413ec[m Feature: Decorator example on Index view
+[33m6159b19[m Added paginator
+[33mef91f20[m Fix: Removed redundant method.
+[33m1219c8d[m Fix: Added the custom tag that preserves the filter query between pages.
+[33mcd7271f[m Implemented Django's built in pagination logic for CBVs
+[33m99898c8[m Added ListView CBV for the posts and pagination - long way
+[33m0265e5d[m Cleaned some code and added pagination FBV and template logic
+[33m549320c[m Added CBV for the post detail view.py
+[33m55b37a8[m Cleaned out the code in the view.py
+[33m98d13e8[m Improved the Dashboard CBV
+[33mca53bbf[m Create Programming_Basics_-_October_2022_-_Certificate_Fx8Bceh.jpeg
+[33ma9b7603[m showhing delete form to user with disabled fields before submitting.
+[33m862e2de[m Converted few more FBVs t CBVs
+[33mc0b8b62[m Added some basic view logic
+[33m1adade7[m Added the first part of Workshop 3
+[33m53c76cc[m Update CBV_conventions.md
+[33mbf46803[m Create CBV_conventions.md
+[33mbb99e53[m Added the improved final parts of the Workshop after the lecture.
+[33mb48ef2d[m Improved parts 1-3 of workshop based on lecture material.
+[33m7a1dd05[m Added the final part of workshop
+[33m93e8e28[m Added part 4 of workshop, removed idea folder
+[33m8a048a4[m Added third part of workshop
+[33m5329c1a[m Added the second part of workshop
+[33m8933b49[m Finished part 1: Added include tag for repeating content
+[33m7c52218[m Improvement: Added template inheritance
+[33mafd7eea[m Update Class_Based_Views.md
+[33m09eb4f3[m Update Class_Based_Views.md
+[33m1ab9c03[m Update Class_Based_Views.md
+[33m822ae7b[m Update Class_Based_Views.md
+[33m97543bd[m Update Class_Based_Views.md
+[33m583e8b9[m Update Class_Based_Views.md
+[33m453f397[m Update Class_Based_Views.md
+[33m99c0660[m Update Class_Based_Views.md
+[33m6e79b7f[m Update Class_Based_Views.md
+[33ma534a26[m Update Class_Based_Views.md
+[33m7b07e72[m Update Class_Based_Views.md
+[33m68b33a2[m Update Class_Based_Views.md
+[33m7febfc8[m Update Class_Based_Views.md
+[33m092edcf[m Update Class_Based_Views.md
+[33m24b1f54[m Update Class_Based_Views.md
+[33mb6f70fd[m Update Class_Based_Views.md
+[33m81ff2ce[m Update Class_Based_Views.md
+[33mba55ea7[m Update Class_Based_Views.md
+[33m4001834[m Feature: Adding image to a post.
+[33m3ad8237[m Added: Showing all comments in detail page.
+[33mece0d37[m Updated: Updated the css files with the lecturer provided resources.
+[33m39014e8[m Added: Crispy form styling example.
+[33mde07e04[m Fixed: Corrected key error issue in details_page view.
+[33mb14a680[m Added: Crispy library and updated requirements.
+[33mbcacc67[m Added formfactory with model form, allowing simultaneous editing and creation.
+[33mad80d2c[m Added: Comment model.
+[33m00fee89[m Added: Example for model form factory.
+[33m57f47a4[m Fix: Corrected mistake in save() code.
+[33m94c3e97[m Added clean and save method examples.
+[33m6b4a363[m Update Validation.md
+[33mf741e1e[m Added more customizability for the field disable mixin: takes fields to disable.
+[33m2e075e2[m Aded modelform class error messages example.
+[33m293baca[m Create Error_messages.md
+[33m3007067[m Aded validator function example.'
+[33m1d955b0[m Update Validation.md
+[33mb4fdce7[m Update Class_Based_Views.md
+[33m609412a[m Create Class_Based_Views.md
+[33mf119042[m Update Form_Methods.md
+[33me110f72[m Create Formsets.md
+[33m97b0d41[m Update Form_Methods.md
+[33mde89a6b[m Create Form_Methods.md
+[33m20efe44[m Update Validation.md
+[33mf1f1e6a[m Create Lazy_Evaluation_in_Django_ORM.md
+[33mac279ef[m Added bootsrap example applıei to the dashboard template. Corrected temp ıiherÄitance mistake in search-bar
+[33m37527a7[m Added ready code for block tag example.
+[33m3c5acd9[m Added inclusion tag example.
+[33mfd5a227[m Added simple tag example.
+[33ma93b43b[m Merged updates from upstream branchMerge branch 'main' of https://github.com/Polishko/SoftUni
+[33mb90bf5b[m Example: adding param to a filter tag.
+[33mfe0c049[m Update Templates.md
+[33mabd85e9[m Update Templates.md
+[33md8cc937[m Update Templates.md
+[33m62d29e0[m Including context from parent using 'with kwarg'.
+[33m9cd72cc[m Including context from parent template and using with block.
+[33m533230c[m Added temp extension for dashboard.
+[33m278b04c[m Added separate index.html for the home page.
+[33m

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="edit-delete edit-photo">
+        <h2>Edit photo</h2>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="edit-btn" type="submit">Edit Photo</button>
+        </form>
+
+    </div>
+
+{% endblock %}

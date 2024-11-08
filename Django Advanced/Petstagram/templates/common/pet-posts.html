@@ -1,0 +1,163 @@
+{%  load static %}
+
+            <!-- Start First Pet Photo Post -->
+            <div class="card">
+
+                <!-- Start User Details and Image Location -->
+                <div class="top">
+                    <div class="userDetails">
+                        <a href="{% url 'profile-details' %}">
+                            <div class="profilepic">
+                                <div class="profile_img">
+                                    <div class="image">
+                                        {% if photo.user.profile.profile_picture %}
+                                            <img src="{{  photo.user.profile.profile_picture }}" alt="">
+                                        {% else %}
+                                            <img src="{% static 'images/person.png' %}" alt="">
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <h3>
+                            <!-- Link to User Profile Page -->
+{#                            <a href="{% url 'profile-details' photo.user.pk %}"> not secure#}
+                            <a href="{% url 'profile-details' %}">
+                                {{ photo.user.profile.get_profile_name }}
+                            </a>
+                            <br>
+                            <!-- if the photo has location -->
+                            {% if photo.location %}
+                                <span>{{ photo.location }}</span>
+                            {% endif %}
+                            
+                            {% if photo_page and request.user.pk == photo.user.pk %}
+                                <div class="edit-delete-btns">
+    
+                                    <!-- Link to Edit Pet Photo Page -->
+                                    <a href="{% url 'photo-edit' photo.pk %}">
+                                        <img class="edit-img" src="{% static 'images/edit-pen-icon-6.jpg' %}"
+                                             alt="edit button">
+                                    </a>
+    
+                                    <!-- Link to Delete Pet Photo Page -->
+                                    <a href="{% url 'photo-delete' photo.pk %}">
+                                        <img class="bin-img" src="{% static 'images/icon-remove-22.jpg' %}" alt="bin button">
+                                    </a>
+                                </div>
+                            {% endif %}
+                        
+                        </h3>
+                    </div>
+                </div>
+                <!-- End User Details and Image Location -->
+
+                <!-- Start Pet Photo -->
+                <div class="imgBx" id="{{ photo.pk }}">
+                    <img src="{{ photo.photo.url }}" alt="post" class="cover">
+                </div>
+                <!-- End Pet Photo -->
+
+                <!-- Start Like and Share Buttons -->
+                <div class="bottom">
+                    <div class="actionBtns">
+                        <div class="left">
+                            <!-- Start Like Button -->
+                            <span class="heart">
+                                <a href="{% url 'like' photo.pk %}">
+{#                                    {% if photo.likes.all %}#}
+                                    {% if photo.has_liked %}
+                                        <i class="fa-solid fa-heart" style="color: #ed4040;"></i>
+                                    {% else %}    
+                                        <i class="fa-regular fa-heart"></i>
+                                    {% endif %}                                
+                                </a>
+                            </span>
+                            <!-- End Like Button -->
+
+                            <!-- Start Share Button -->
+                            <a href="{% url 'share' photo.pk %}">
+                                <i class="fa-solid fa-share"></i>
+                            </a>
+                            <!-- End Share Button -->
+
+                        </div>
+                    </div>
+                    <!-- End Like and Share Buttons -->
+
+                    <!-- Number of Likes per Photo -->
+                    <p class="likes">{{ photo.likes.count }}</p>
+
+
+                    <!-- Start Tagged Pets -->
+
+                    {% for pet in photo.tagged_pets.all %}
+                        <!-- Link to First Tagged Pet Details Page-->
+                    <a href="{% url 'pet-details' pet.user.profile.get_profile_name|lower pet.slug %}">
+                        <p class="message">
+                            <b>{{ pet.name }}</b>
+                        </p>
+                    </a>
+                        
+                    {% endfor %}
+                
+                    <!-- Link to Photo Details Page -->
+                    {% if photo_page %}
+                        <p class="pet-details">{{ photo.description }}</p>
+                    {% else %}
+                        <a href="{% url 'photo-details' photo.pk%}">
+                            <h4 class="details">See details</h4>
+                        </a>
+                    {% endif %}
+                
+
+                    <!-- Date of Publication -->
+                    <h5 class="postTime">{{ photo.date_of_publication }}</h5>
+                
+                    {% if photo_page %}
+                        {% for comment in photo.comments.all %}
+                            <div class="comments">
+                                <div class="top">
+                                    <div class="userDetails">
+                                        <div class="comment-data">
+                                            <div class="profilepic">
+                                                <div class="profile_img">
+                                                    <div class="image">
+                                                        <!-- User Profile Image -->
+                                                        <img src="{% static 'images/person.png' %}" alt="img8">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p>
+                                                <!-- Link to User Profile Details Page-->
+                                                <!-- User First and/or Last Name or username-->
+                                                <a href="">Steven Ivanov</a>
+                                                <!-- User Comment -->
+                                                {{ comment.text }}
+                                            </p>
+                                        </div>
+                                        <span>{{ comment.date_time_of_publication }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <!-- Start Add Comments Section -->
+                    <div class="addComments">
+
+                        <!-- Start Add Comments Form -->
+                        <form method="post" action="{% url 'comment' photo.pk%}">
+                            {% csrf_token %}
+                            {{ comment_form }}
+                            <button type="submit">Post</button>
+                        </form>
+                        <!-- End Add Comments Form -->
+
+                    </div>
+                    <!-- End Add Comments Section -->
+
+                </div>
+            </div>
+            <!-- End First Pet Photo Post -->
+            

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Start Edit Profile Section -->
+    <div class="edit-delete">
+        <h2>Edit Profile</h2>
+        <!-- Start Edit Profile From -->
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="label-input">
+                    <p class="error">{{ field.errors }}</p>
+                    
+                    <label for="">{{ field.label }}</label>
+                    {{ field }}
+                </div>
+            {% endfor %}
+            
+            <!-- Edit Profile Button -->
+            <button class="edit-btn" type="submit">Edit</button>
+        </form>
+        <!-- End Edit Profile Form -->
+
+    </div>
+    <!-- End Edit Profile Section -->
+
+{% endblock %}

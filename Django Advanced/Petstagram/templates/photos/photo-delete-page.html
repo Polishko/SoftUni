@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <h1>Delete post</h1>
+
+    <form action="{% url 'photo-delete' photo.pk %}" method="post">
+        {{ form.as_p }}
+        <p>Are you sure you want to delete the photo?</p>
+        {% csrf_token %}
+        <button class="button-9">Submit</button>
+    </form>
+
+{% endblock %}
