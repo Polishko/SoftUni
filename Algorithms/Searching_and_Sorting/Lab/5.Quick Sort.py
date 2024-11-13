@@ -18,8 +18,12 @@ def quicksort(start, end, arr):
 
     arr[pivot], arr[right] = arr[right], arr[pivot]
 
-    quicksort(start, right - 1, arr)
-    quicksort(left, end, arr)
+    if right - 1 - start < end - left:
+        quicksort(start, right - 1, arr)
+        quicksort(left, end, arr)
+    else:
+        quicksort(left, end, arr)
+        quicksort(start, right - 1, arr)
 
 
 arr = [int(x) for x in input().split()]
