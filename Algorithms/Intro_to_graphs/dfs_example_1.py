@@ -1,3 +1,5 @@
+# unordered num nodes example
+
 def dfs(node, graph, visited):
     if node in visited:
         return
