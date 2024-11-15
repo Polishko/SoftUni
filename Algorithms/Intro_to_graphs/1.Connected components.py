@@ -14,8 +14,8 @@ n = int(input())
 graph = []
 
 for i in range(n):
-    line = input()
-    graph.append([] if line == '' else [int(x) for x in line.split()])
+    line_parts = input()
+    graph.append([] if line_parts == '' else [int(x) for x in line_parts.split()])
 
 visited = [False] * n
 
@@ -46,8 +46,8 @@ for node in range(n):
 # graph = {}
 #
 # for i in range(n):
-#     line = input()
-#     graph[i] = [] if line == '' else [int(x) for x in line.split()]
+#     line_parts = input()
+#     graph[i] = [] if line_parts == '' else [int(x) for x in line_parts.split()]
 #
 # visited = set()
 # result = []
