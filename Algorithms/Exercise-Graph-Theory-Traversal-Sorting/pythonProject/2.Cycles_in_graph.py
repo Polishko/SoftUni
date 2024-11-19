@@ -39,7 +39,7 @@ except Exception:
     
 
 
-# initial solution
+# initial solution: will fail for disconnected components and multiple starting points
 # graph = []
 # starting = set()
 # ending = set()
