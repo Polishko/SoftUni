@@ -1,3 +1,5 @@
+## Greedy operation, focuses on connected neighbours and only adds neighbours to queue, connection focused
+
 from collections import deque
 from queue import  PriorityQueue
 
