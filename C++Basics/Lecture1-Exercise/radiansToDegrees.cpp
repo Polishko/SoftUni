@@ -1,14 +1,17 @@
 #include <iostream>
 #include <math.h>
-using namespace std;
+using std::cout;
+using std::cin;
+using std::endl;
 
-// int main() {
-//     int degreeCoeff = 180;
-//     double p = 3.14;
-//     double rad;
-//     cin >> rad;
+int main() {
+    const int DEGREE_COEFF = 180;
+    const double P = 3.14;
+    
+    double rad;
+    cin >> rad;
 
-//     cout << round(rad * degreeCoeff / p) << endl;
+    cout << round(rad * DEGREE_COEFF / P) << endl;
 
-//     return 0;
-// }
+    return 0;
+}

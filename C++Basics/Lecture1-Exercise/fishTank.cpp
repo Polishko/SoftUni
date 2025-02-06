@@ -1,22 +1,25 @@
 #include <iostream>
-using namespace std;
+#include <iostream>
+using std::cout;
+using std::cin;
+using std::endl;
 
-// int main() {
-//     int length;
-//     int width;
-//     int height;
-//     double occupiedPercent;
-//     double CMToDMConversionFactor = 0.001;
+int main() {
+    const double CONVERSION_FACTOR = 0.001;
+    int length;
+    int width;
+    int height;
+    double occupiedPercent;
 
-//     cin >> length;
-//     cin >> width;
-//     cin >> height;
-//     cin >> occupiedPercent;
+    cin >> length;
+    cin >> width;
+    cin >> height;
+    cin >> occupiedPercent;
 
-//     double volume = length * width * height * CMToDMConversionFactor;
-//     double waterCapacity = volume * (100 - occupiedPercent) /100;
+    double volume = length * width * height * CONVERSION_FACTOR;
+    double waterCapacity = volume * (100 - occupiedPercent) /100;
 
-//     cout << waterCapacity << endl;
+    cout << waterCapacity << endl;
 
-//     return 0;
-// }
+    return 0;
+}

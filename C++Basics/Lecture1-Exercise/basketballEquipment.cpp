@@ -1,23 +1,25 @@
 #include <iostream>
-using namespace std;
+using std::cout;
+using std::cin;
+using std::endl;
 
-// int main() {
-//     double snikersCostPercent = 60;
-//     double equiomentCostPercent = 80;
-//     double basketballCostCoeff = 0.25;
-//     double accessoriesCostCoeff = 0.2;
+int main() {
+    const double SNIKERS_COST_PERC = 60;
+    const double EQUIPMENT_COST_PERC = 80;
+    const double BASKETBALL_COST_COEFF = 0.25;
+    const double ACCESSORIES_COST_COEFF= 0.2;
 
-//     int trainingCost;
-//     cin >> trainingCost;
+    int trainingCost;
+    cin >> trainingCost;
 
-//     double snikersCost = snikersCostPercent * trainingCost / 100;
-//     double equipmentCost = equiomentCostPercent * snikersCost / 100;
-//     double basketballCost = basketballCostCoeff * equipmentCost;
-//     double accessoriesCost = accessoriesCostCoeff * basketballCost;
+    double snikersCost = SNIKERS_COST_PERC * trainingCost / 100;
+    double equipmentCost = EQUIPMENT_COST_PERC * snikersCost / 100;
+    double basketballCost = BASKETBALL_COST_COEFF * equipmentCost;
+    double accessoriesCost = ACCESSORIES_COST_COEFF * basketballCost;
 
-//     double totalCost = trainingCost + snikersCost + equipmentCost + basketballCost + accessoriesCost;
+    double totalCost = trainingCost + snikersCost + equipmentCost + basketballCost + accessoriesCost;
 
-//     cout << totalCost << endl; 
+    cout << totalCost << endl; 
 
-//     return 0;
-// }
+    return 0;
+}

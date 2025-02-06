@@ -1,18 +1,22 @@
 #include <iostream>
 #include <math.h>
-using namespace std;
+using std::cout;
+using std::cin;
+using std::endl;
 
 
-// int main() {
-//     int pages;
-//     cin >> pages;
-//     int pagesPerHour;
-//     cin >> pagesPerHour;
-//     int readDays;
-//     cin >> readDays;
+int main() {
+    int pages;
+    cin >> pages;
 
-//     double daysNeeded = round(pages / pagesPerHour / readDays);
-//     cout << daysNeeded << endl;
+    int pagesPerHour;
+    cin >> pagesPerHour;
+    
+    int readDays;
+    cin >> readDays;
 
-//     return 0;
-// }
+    double daysNeeded = round(pages / pagesPerHour / readDays);
+    cout << daysNeeded << endl;
+
+    return 0;
+}
