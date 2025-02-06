@@ -1,15 +1,19 @@
 #include <iostream>
 
-using namespace std;
+using std::cout;
+using std::cin;
+using std::string;
+using std::endl;
 
 int main() {
 	string firstName;
-	cin >> firstName;
 	string lastName;
-	cin >> lastName;
 	int age;
-	cin >> age;
 	string town;
+
+	cin >> firstName;
+	cin >> lastName;
+	cin >> age;
 	cin >> town;
 
 	cout << "You are " << firstName << " " << lastName << ", a " << age << "-years old person from " << town << "." << endl;

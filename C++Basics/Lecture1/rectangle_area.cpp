@@ -1,11 +1,14 @@
 #include <iostream>
 
-using namespace std;
+using std::cout;
+using std::cin;
+using std::endl;
 
 int main() {
 	int a;
-	cin >> a;
 	int b;
+
+	cin >> a;
 	cin >> b;
 	cout << a * b << endl;
 

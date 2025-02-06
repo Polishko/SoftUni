@@ -2,15 +2,16 @@
 using namespace std;
 
 int main() {
-	double pricePerSqm = 7.61;
-	double discount = 0.18;
+	const double PRICE_PER_SUM = 7.61;
+	const double DISCOUNT = 0.18;
 	double squareMeters;
+	
 	cin >> squareMeters;
-	double totalPrice = pricePerSqm * squareMeters;
-	double discountedPrice = totalPrice * discount;
+	double totalPrice = PRICE_PER_SUM * squareMeters;
+	double discountedPrice = totalPrice * DISCOUNT;
 
 	cout << "The final price is: " << totalPrice - discountedPrice << " lv." << endl;
-	cout << "The discount is: " << discountedPrice << " lv." << endl;
+	cout << "The DISCOUNT is: " << discountedPrice << " lv." << endl;
 
 	return 0;
 }
